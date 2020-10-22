@@ -17,7 +17,8 @@
 
 <body>
 
-    
+    <!-- sections -->
+    <?= $content ?>
 
     <script src="public/js/all_js.js"></script>
 </body>
