@@ -5,7 +5,7 @@ ini_set('error_reporting', E_ALL);
 
 require_once('vendor/autoload.php');
 
-//use \App\Controller\FrontController;
+use \App\Controller\FrontController;
 //use \App\Controller\PostController;
 //use \App\Controller\CommentController;
 //use \App\Controller\UserController;
@@ -41,9 +41,11 @@ try {
         }
     } else {
         //Accueil
-        //$frontController = new FrontController();
-        //$frontController->home();
+        $frontController = new FrontController();
+        $frontController->home();
     }
 } catch (Exception $e) {
-    echo $e->getMessage();
+    //echo $e->getMessage();
+    $frontController = new FrontController();
+    $frontController->home();
 }
