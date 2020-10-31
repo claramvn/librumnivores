@@ -18,12 +18,6 @@ try {
             /*********************************************************************************
             ************************************ FrontController *****************************
             *********************************************************************************/
-            
-            /*// L'auteur
-            case 'author':
-                $frontController = new FrontController();
-                $frontController->author();
-            break;
 
             // Mentions légales
             case 'mentions':
@@ -35,7 +29,7 @@ try {
             case 'privacyPolicy':
                 $frontController = new FrontController();
                 $frontController->privacyPolicy();
-            break;*/
+            break;
 
             
         }
@@ -45,7 +39,7 @@ try {
         $frontController->home();
     }
 } catch (Exception $e) {
-    //echo $e->getMessage();
+    //page erreur
     $frontController = new FrontController();
     $frontController->home();
 }

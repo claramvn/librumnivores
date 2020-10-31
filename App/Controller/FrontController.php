@@ -9,15 +9,19 @@ class FrontController
     // Accueil
     public function home()
     {
-        //$postManager = new PostManager();
-
-        //$recentPost = $postManager->getRecentPost();
-
-        /*if ($recentPost === false) {
-            $_SESSION['error_recentPost'] = "Impossible d'afficher le dernier chapitre";
-        }*/
-        
         require('App/View/home.php');
+    }
+
+    // Mentions légales
+    public function mentions()
+    {
+        require('App/View/mentions.php');
+    }
+
+    // Politique de confidentialité
+    public function privacyPolicy()
+    {
+        require('App/View/policy.php');
     }
 
 }

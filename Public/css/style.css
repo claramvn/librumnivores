@@ -1,0 +1,222 @@
+/* PARAMETRES GENERAUX */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+* {
+    box-sizing: 0;
+}
+
+a,
+a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.darkMode {
+    background: black;
+    color: white;
+}
+
+.lightMode {
+    background: white;
+    color: black;
+}
+
+.content {
+    margin-top: 200px;
+    padding: 2%;
+}
+
+.links {
+    font-size: 18px;
+    margin-bottom: 5%;
+}
+
+.red {
+    font-size: 12px;
+    padding-left: 5px;
+    color: #DA5B5A;
+}
+
+
+/* HEADER */
+header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    z-index: 1000;
+    position: fixed;
+    background: white;
+}
+
+header div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+header div img {
+    margin-left: 5%;
+}
+
+header nav,
+header nav ul {
+    width: 100%;
+    display: flex;
+    list-style-type: none;
+}
+
+header nav ul li {
+    font-weight: bold;
+    margin-left: 10%;
+}
+
+#librum {
+    margin-left: 5%;
+    padding: 1%;
+    letter-spacing: 4px;
+    font-family: 'Grenze Gotisch', cursive;
+}
+
+#btn_toggle_theme {
+    cursor: pointer;
+}
+
+/* HOME */
+
+/* SLOGAN */
+#slogan {
+    font-size: 26px;
+    margin-top: 200px;
+    margin-bottom: -3%;
+    text-align: center;
+    letter-spacing: 8px;
+}
+
+/* SLIDER */
+#cover {
+    width: 150%;
+}
+
+#mainImage {
+    width: 100%;
+}
+
+/* FEATURES */
+.features,
+.features_right {
+    width: 45%;
+    padding: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 8%;
+    text-align: justify;
+}
+
+.features h2,
+.features_right h2 {
+    border-bottom: 1px solid;
+}
+
+.features_right h1,
+.features_right h2 {
+    text-align: right;
+    letter-spacing: 4px;
+}
+
+#feature_dark_mode {
+    width: 100%;
+    display: flex;
+    background: #DA5B5A;
+    justify-content: center;
+}
+
+#feature_dark_mode>div {
+    text-align: right;
+    padding: 1%;
+}
+
+#feature_dark_mode div {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#feature_dark_mode p {
+    font-size: 19px;
+    text-align: justify;
+}
+
+#feature_dark_mode img {
+    width: 100%;
+}
+
+/* FRIEZE */
+#frieze {
+    width: 100%;
+    overflow: hidden;
+    margin-top: -8%;
+}
+
+/* FOOTER */
+
+/* Contact */
+#contact {
+    width: 50%;
+    padding: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -5%;
+    text-align: center;
+}
+
+#contact>p {
+    font-size: 18px;
+}
+
+/* Flèche go top */
+#arrow {
+    text-align: right;
+    margin-bottom: 1.5%;
+    margin-top: 1.5%;
+    margin-right: 1%;
+}
+
+#arrow a {
+    background: #DA5B5A;
+    padding: 1%;
+}
+
+/* Mentions légales */
+#mentions,
+#privacyPolicy {
+    width: 80%;
+    padding: 4%;
+    font-size: 18px;
+    text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
+    text-align: justify;
+    border: 1px solid;
+}
+
+#mentions h1,
+#privacyPolicy h1 {
+    font-size: 22px;
+    text-align: center;
+}
+
+/* footer */
+footer {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}
