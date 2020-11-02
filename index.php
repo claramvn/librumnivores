@@ -6,9 +6,10 @@ ini_set('error_reporting', E_ALL);
 require_once('vendor/autoload.php');
 
 use \App\Controller\FrontController;
+use \App\Controller\UserController;
 //use \App\Controller\PostController;
 //use \App\Controller\CommentController;
-//use \App\Controller\UserController;
+
 
 try {
     if (isset($_GET['action'])) {
@@ -18,6 +19,12 @@ try {
             /*********************************************************************************
             ************************************ FrontController *****************************
             *********************************************************************************/
+
+            // Accueil
+            case 'home':
+                $frontController = new FrontController();
+                $frontController->home();
+            break;
 
             // Mentions légales
             case 'mentions':
@@ -29,6 +36,29 @@ try {
             case 'privacyPolicy':
                 $frontController = new FrontController();
                 $frontController->privacyPolicy();
+            break;
+
+
+            /*********************************************************************************
+            ************************************ UserController ******************************
+            *********************************************************************************/
+
+            // Connexion
+            case 'connection':
+                $userController = new UserController();
+                $userController->connection();
+            break;
+
+            // Inscription
+            case 'registration':
+                $userController = new UserController();
+                $userController->registration();
+            break;
+
+            // Contact
+            case 'contact':
+                $userController = new UserController();
+                $userController->contact();
             break;
 
             
