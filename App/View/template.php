@@ -31,9 +31,9 @@
         <div>
             <nav>
                 <ul>
-                    <li><a href="#features_anchor">FONCTIONNALITÉS</a></li>
-                    <li><a href="#">SE CONNECTER</a></li>
-                    <li><a href="#">CRÉER UN COMPTE</a></li>
+                    <li><a href="index.php?action=home#slogan">FONCTIONNALITÉS</a></li>
+                    <li><a href="index.php?action=connection">SE CONNECTER</a></li>
+                    <li><a href="index.php?action=registration">CRÉER UN COMPTE</a></li>
                     <li><a id="btn_toggle_theme"><i class="fas fa-adjust"></i></a></li>
                 </ul>
             </nav> 
@@ -45,7 +45,7 @@
 
     <!-- Contact --> 
     <div id="contact">
-        <p>CONTACTER LIBRUMNIVORES</p>
+        <p><a href="index.php?action=contact"><span class="red"><i class="fas fa-square"></i></span> CONTACTER LIBRUMNIVORES <span class="red"><i class="fas fa-square"></i></span></a></p>
         <p>Une question ? Un disfonctionnement ? Faites-nous en part !</p>
     </div>
     <!-- Flèche scroll-top -->
