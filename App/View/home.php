@@ -14,7 +14,7 @@ $title = 'Accueil';
 <div><img id="mainImage" src="Public/img/cover3.png" alt="cover librumnivores"/></div>
 
 <!-- FEATURES --> 
-<div id="features_anchor" class="features">
+<div class="features">
     <h1>01<span class="red"><i class="fas fa-square"></i></span></h1>
     <h2>BIBLIOTHÈQUE</h2><br/><br/>
     <h3>Répertoriez vos livres sur Librumnivores et créez votre bibliothèque en ligne. Ajoutez ces derniers à l'aide de leurs ISBN et profitez de notre plateforme accessible sur mobile, tablette et ordinateurs. Autrement dit, régalez-vous !</h3> 
