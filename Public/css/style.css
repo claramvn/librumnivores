@@ -16,17 +16,8 @@ a:hover {
     color: black;
 }
 
-.darkMode {
-    background: black;
-    color: white;
-}
-
-.lightMode {
-    background: white;
-    color: black;
-}
-
 .content {
+    min-height: 600px;
     margin-top: 200px;
     padding: 2%;
 }
@@ -44,26 +35,53 @@ a:hover {
 }
 
 
+/************************** BUTTONS **************************/
+
+#button_contact,
+#button_connection,
+#button_register,
+#button_open_search,
+#button_search,
+#button_add {
+    font-weight: bold;
+    background: #DA5B5A;
+    border-color: #DA5B5A;
+}
+
+#button_close {
+    font-size: 25px;
+    color: #DA5B5A;
+    background: #eff5f5;
+    border-color: #eff5f5 !important;
+}
+
+
+/************************** THEME MODE **************************/
+
+.darkMode {
+    background: black;
+    color: white;
+}
+
+.lightMode {
+    background: white;
+    color: black;
+}
+
+
 /************************** HEADER **************************/
 header {
     top: 0;
     left: 0;
     width: 100%;
-    height: 140px;
+    height: 160px;
     z-index: 1000;
     position: fixed;
     background: white;
 }
 
-header nav ul {
-    display: flex;
+.nav {
     justify-content: center;
-    list-style-type: none;
-}
-
-header nav ul li {
-    font-weight: bold;
-    margin-left: 10%;
 }
 
 #librum {
@@ -82,13 +100,16 @@ header nav ul li {
 /* SLOGAN */
 #slogan {
     font-size: 26px;
-    margin-top: 200px;
-    margin-bottom: -3%;
+    margin-bottom: 5%;
     text-align: center;
     letter-spacing: 8px;
 }
 
 /* SLIDER */
+#slider {
+    margin-top: 140px;
+}
+
 #cover {
     width: 150%;
 }
@@ -154,10 +175,235 @@ header nav ul li {
     margin-top: -8%;
 }
 
+/************************* BOOKCASE *************************/
+
+/* HEADER BOOKCASE */
+.number_book {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    display: inline-block;
+    background: #DA5B5A;
+}
+
+#header_bookcase {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* BLOCK SEARCH */
+
+#block_search {
+    top: 180px;
+    left: 15%;
+    display: none;
+    width: 70%;
+    padding: 2%;
+    margin: auto;
+    height: 500px;
+    z-index: 1001;
+    position: absolute;
+    overflow-y: scroll;
+    background: #eff5f5;
+}
+
+#search_label {
+    font-size: 22px;
+    color: #DA5B5A;
+    font-weight: bold;
+}
+
+/* BLOCK RESULT */
+#block_result {
+    padding: 4%;
+    width: 600px;
+    display: none;
+    margin-top: 5%;
+    margin-left: 10%;
+    color: black !important;
+}
+
+#no_result {
+    display: none;
+    margin-top: 5%;
+    margin-left: 10%;
+    color: black !important;
+}
+
+#button_add_wish {
+    background: none !important;
+    border: none !important;
+    text-decoration: none !important;
+    box-shadow: none !important;
+    margin-top: 2%;
+}
+
+#more_sign {
+    color: #99335e;
+    font-weight: bold;
+}
+
+/* DISPLAY LIST BOOKS */
+#block_shelves {
+    width: 100%;
+    padding: 4%;
+    display: flex;
+    margin-top: 1%;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+
+#card_shelves {
+    margin: 2%;
+    padding: 1.5%;
+    width: 13rem;
+}
+
+.card h5,
+.card h6,
+.card p {
+    color: black !important;
+}
+
+.card img {
+    max-width: 138px;
+    max-height: 208px;
+}
+
+/* DISPLAY ONE BOOK */
+
+#card_book {
+    width: 60%;
+    padding: 4%;
+    margin: auto;
+}
+
+.card_infos {
+    display: flex;
+    justify-content: space-between;
+}
+
+#flags {
+    width: 15%;
+    display: flex;
+    margin-left: auto;
+    justify-content: space-around;
+}
+
+#flags div {
+    color: black !important;
+}
+
+.card .success_flags,
+.card .errors_flags {
+    font-weight: bold;
+    color: white !important;
+}
+
+.fav,
+.lend,
+.add_wish,
+.delete_book {
+    margin-top: 6%;
+    text-align: center;
+}
+
+.fav a {
+    font-size: 1.1em;
+    color: #d54444 !important;
+}
+
+.lend a,
+.add_wish a,
+.delete_book a {
+    font-size: 1.1em;
+    color: black !important;
+}
+
+.fav a:hover,
+.lend a:hover,
+.add_wish a:hover,
+.delete_book a:hover {
+    font-size: 1.4em;
+}
+
+#link_lent_books a {
+    font-size: 12px;
+}
+
+#line {
+    width: 70%;
+    height: 1px;
+    margin-top: 8%;
+    margin-bottom: 6%;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.errors_flags,
+.success_flags {
+    width: auto;
+    padding: 2%;
+    height: auto;
+    margin-left: auto;
+    text-align: center;
+    border-radius: 15px;
+    background: black;
+    border: 1px solid black;
+}
+
+.errors_triangle,
+.success_triangle {
+    width: 0;
+    height: 0;
+    margin-top: 4%;
+    margin-left: auto;
+    margin-right: 8.5%;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid black;
+}
+
+/* FILTERS */
+
+#filters {
+    display: flex;
+    margin-top: 4%;
+    justify-content: space-around;
+}
+
+.filters {
+    letter-spacing: 5px;
+}
+
+/************************* PAGINATION *************************/
+
+#block_pagination {
+    display: flex;
+    margin-bottom: 4%;
+    justify-content: center;
+}
+
+.page-link,
+.page-link a {
+    color: black !important;
+    border-color: none !important;
+}
+
+.page-item.active .page-link {
+    background-color: #DA5B5A !important;
+    border-color: #DA5B5A !important;
+}
+
 /************************* FORMS *************************/
 
 .display_form {
-    width: 70%;
+    width: 80%;
     margin: auto;
 }
 
@@ -167,12 +413,6 @@ header nav ul li {
     text-align: center;
 }
 
-#button_form {
-    font-weight: bold;
-    background: #DA5B5A;
-    border-color: #DA5B5A;
-}
-
 #connection {
     margin-bottom: 8%;
 }
@@ -180,7 +420,7 @@ header nav ul li {
 .errors,
 .success {
     padding: 2%;
-    color: white;
+    color: white !important;
     margin-top: 2%;
     border-radius: 5px;
     font-weight: bold;
@@ -196,6 +436,42 @@ header nav ul li {
 
 .cross {
     font-size: 10px;
+}
+
+.logged {
+    font-size: 10px;
+    padding-left: 5px;
+    padding-right: 50px;
+    color: #2EA44F;
+}
+
+.asterisk {
+    font-size: 12px;
+    padding: 2px;
+    color: #DA5B5A;
+}
+
+#mentions_required {
+    font-size: 10px;
+    text-align: right;
+    margin-bottom: -2%;
+}
+
+.bad {
+    border: 3px dotted #DA5B5A;
+}
+
+/************************* FOOTER *************************/
+
+#error {
+    width: 561px;
+    margin: auto;
+}
+
+#para_error {
+    width: 561px;
+    margin: auto;
+    text-align: center;
 }
 
 /************************* FOOTER *************************/

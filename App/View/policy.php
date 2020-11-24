@@ -1,12 +1,13 @@
-<!-- Titre site -->
-<?php $title = 'Politique de confidentialité'; ?>
+<?php 
+$title = 'Politique de confidentialité'; 
+?>
 
-<!-- Content -->
+<!-- CONTENT -->
 <?php ob_start(); ?>
 
 <div class="content">
 
-    <!-- Retour accueil -->
+    <!-- BACK HOME -->
     <div class="links"><a href="index.php">Accueil</a> <span class="red"><i class=" fas
                     fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span> Politique de confidentialité
     </div>

@@ -1,14 +1,14 @@
 <?php
-//session_start();
-// Affichage des erreurs
+session_start();
+
+// DISPLAY ERRORS
 ini_set('error_reporting', E_ALL);
 
 require_once('vendor/autoload.php');
 
 use \App\Controller\FrontController;
 use \App\Controller\UserController;
-//use \App\Controller\PostController;
-//use \App\Controller\CommentController;
+use \App\Controller\BookController;
 
 
 try {
@@ -20,56 +20,126 @@ try {
             ************************************ FrontController *****************************
             *********************************************************************************/
 
-            // Accueil
             case 'home':
                 $frontController = new FrontController();
                 $frontController->home();
             break;
 
-            // Mentions légales
             case 'mentions':
                 $frontController = new FrontController();
                 $frontController->mentions();
             break;
 
-            // Politique de confidentialité
             case 'privacyPolicy':
                 $frontController = new FrontController();
                 $frontController->privacyPolicy();
             break;
 
+            case 'error404':
+                $frontController = new FrontController();
+                $frontController->error404();
+            break;
+            
 
             /*********************************************************************************
             ************************************ UserController ******************************
             *********************************************************************************/
 
-            // Connexion
             case 'connection':
                 $userController = new UserController();
                 $userController->connection();
             break;
 
-            // Inscription
-            case 'registration':
+            case 'register':
                 $userController = new UserController();
-                $userController->registration();
+                $userController->register();
             break;
 
-            // Contact
+            case 'logout':
+                $userController = new UserController;
+                $userController->logout();
+            break;
+
             case 'contact':
                 $userController = new UserController();
                 $userController->contact();
             break;
 
+            /*********************************************************************************
+            ************************************ bookController ******************************
+            *********************************************************************************/
+
+            case 'listBooks':
+                $bookController = new BookController();
+                $bookController->listBooks();
+            break;
+
+            case 'addBook':
+                $bookController = new BookController();
+                $bookController->addBook();
+            break;
+
+            case 'getBook':
+                $bookController = new BookController();
+                $bookController->getBook();
+            break;
+
+            case 'addToFavoritesBooks':
+                $bookController = new BookController();
+                $bookController->addToFavoritesBooks();
+            break;
+
+            case 'takeBackFromFavoritesBooks':
+                $bookController = new BookController();
+                $bookController->takeBackFromFavoritesBooks();
+            break;
+
+            case 'listFavoritesBooks':
+                $bookController = new BookController();
+                $bookController->listFavoritesBooks();
+            break;
+
+            case 'lendABook':
+                $bookController = new BookController();
+                $bookController->lendABook();
+            break;
+
+            case 'takeBackFromLentBooks':
+                $bookController = new BookController();
+                $bookController->takeBackFromLentBooks();
+            break;
+
+            case 'listLentBooks':
+                $bookController = new BookController();
+                $bookController->listLentBooks();
+            break;
+
+            case '$addWishBook':
+                $bookController = new BookController();
+                $bookController->$addWishBook();
+            break;
+
+            case 'listWishBooks':
+                $bookController = new BookController();
+                $bookController->listWishBooks();
+            break;
+
+            case 'addWishToBookcase':
+                $bookController = new BookController();
+                $bookController->addWishToBookcase();
+            break;   
+            
+            case 'deleteBook':
+                $bookController = new BookController();
+                $bookController->deleteBook();
+            break;
             
         }
     } else {
-        //Accueil
         $frontController = new FrontController();
         $frontController->home();
     }
 } catch (Exception $e) {
-    //page erreur
     $frontController = new FrontController();
-    $frontController->home();
+    $frontController->error404();
 }

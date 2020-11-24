@@ -2,12 +2,12 @@
 $title = 'Mentions légales';
 ?>
 
-<!-- Content -->
+<!-- CONTENT -->
 <?php ob_start(); ?>
 
 <div class="content">
 
-    <!-- Retour accueil -->
+    <!-- BACK HOME -->
     <div class="links"><a href="index.php">Accueil</a> <span class="red"><i class=" fas
                     fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span> Mentions légales</div>
 

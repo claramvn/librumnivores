@@ -1,4 +1,4 @@
-/********************************* Slider ****************************************/
+/********************************* THEME *********************************/
 
 class Theme {
     constructor() {
@@ -8,7 +8,6 @@ class Theme {
         this.btnToggle = document.getElementById("btn_toggle_theme");
     }
 
-    // Dark mode activé
     enableDarkMode() {
         document.body.classList.add("darkMode");
         document.body.classList.remove("lightMode");
@@ -22,7 +21,6 @@ class Theme {
         sessionStorage.setItem("darkMode", "enabled");
     }
 
-    // Dark mode désactivé
     disableDarkMode() {
         document.body.classList.add("lightMode");
         document.body.classList.remove("darkMode");
@@ -36,7 +34,6 @@ class Theme {
         sessionStorage.clear();
     }
 
-    // Choix thème
     init() {
 
         if (this.darkMode === "enabled") {
