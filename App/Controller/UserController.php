@@ -7,8 +7,7 @@ use \App\Model\UserManager;
 class UserController extends AncestorController
 {
 
-    /**************  CHECK PASSWORD LENGTH **************/
-
+    // CHECK PASSWORD LENGTH
     public function checkPasswordLength($password)
     {
         $passLength = strlen($password);
@@ -19,8 +18,8 @@ class UserController extends AncestorController
         }
     }
 
-    // Inscription
-    public function registration()
+    // REGISTER
+    public function register()
     {
         $name="";
         $email="";
@@ -28,10 +27,8 @@ class UserController extends AncestorController
         $confPassword="";
 
         $errors=[];
-        $success="";
 
-        if(isset($_POST['button_registration'])) {
-            $userManager = new UserManager();
+        if(isset($_POST['button_register'])) {
             $name=$this->cleanParam($_POST['user_name']);
             $email=$this->cleanParam($_POST['user_email']);
             $password=$this->cleanParam($_POST['user_pass']);
@@ -42,33 +39,35 @@ class UserController extends AncestorController
                 $errors['empty_fields_registration']= '<span class="cross"><i class="fas fa-times"></i></span> Oups, vous ne pouvez pas laisser de champs vides.';
             }
 
+            $userManager = new UserManager();
             $user = $userManager->getUserByName($name);
+
             if ($user['name_user'] === $name) {
-                $errors['user_exist_registration'] = '<span class="cross"><i class="fas fa-times"></i></span> Nom d\'utilisateur déjà existant.';
+                $errors['user_exist_register'] = '<span class="cross"><i class="fas fa-times"></i></span> Nom d\'utilisateur déjà existant.';
             }
 
             if(!$this->cleanEmail($email)) {
-                $errors['invalid_email_registration'] = '<span class="cross"><i class="fas fa-times"></i></span> Le format de l\'adresse e-mail n\'est pas valide.';
+                $errors['invalid_email_register'] = '<span class="cross"><i class="fas fa-times"></i></span> Le format de l\'adresse e-mail n\'est pas valide.';
             }
 
             $emailExist = $userManager->emailExist($email);
             if ($emailExist['email_user'] === $email) {
-                $errors['exist_email_registration'] = '<span class="cross"><i class="fas fa-times"></i></span> Adresse e-mail déjà utilisée.';
+                $errors['exist_email_register'] = '<span class="cross"><i class="fas fa-times"></i></span> Adresse e-mail déjà utilisée.';
             }
 
             if(!$this->checkPasswordLength($password)) {
-                $errors['password_length_registration'] = '<span class="cross"><i class="fas fa-times"></i></span> Le mot de passe doit comporter minimum 6 caractères.';
+                $errors['password_length_register'] = '<span class="cross"><i class="fas fa-times"></i></span> Le mot de passe doit comporter minimum 6 caractères.';
             } 
 
             if($password !== $confPassword) {
-                $errors['not_same_passwords_registration'] = '<span class="cross"><i class="fas fa-times"></i></span> Veuillez renseigner un mot de passe identique au mot de passe de confirmation.';
+                $errors['not_same_passwords_register'] = '<span class="cross"><i class="fas fa-times"></i></span> Veuillez renseigner un mot de passe identique au mot de passe de confirmation.';
             }
 
             if(!$errors) {
                 $eltHash = $password;
                 $password = $this->getPowerfulHash($eltHash);
 
-                $addUser = $userManager->addUser($name,$email,$password, $avatar);
+                $addUser = $userManager->addUser($name,$email,$password,$avatar);
 
                 if($addUser !== false) {
                     $user = $userManager->getUserByName($name);
@@ -76,39 +75,79 @@ class UserController extends AncestorController
                     $_SESSION['id_user'] = $eltHash;
                     $_SESSION['id_hash_user'] = $this->getPowerfulHash($eltHash);
 
-                    $success= "Vous êtes désormais inscrit.";
-                    header ("Refresh: 3;URL=index.php?action=connection");
+                    header('Location: index.php');
                 }
             }
         }
 
-        require('App/View/registration.php');
+        require('App/View/register.php');
     }
 
-    // Connexion
+    // CONNECTION
     public function connection()
     {
+        $name="";
+
+        $errors=[];
+
+        if(isset($_POST['button_connection'])) {
+        $name=$this->cleanParam($_POST['user_name']);
+        $eltHash=$this->cleanParam($_POST['user_pass']);
+        $password=$this->getPowerfulHash($eltHash);
+
+        if(empty($name) || empty($password)) {
+            $errors['empty_fields_connection']= '<span class="cross"><i class="fas fa-times"></i></span> Oups, vous ne pouvez pas laisser de champs vides.';
+        }
+
+        $userManager = new UserManager();
+        $user = $userManager->getUserByName($name);
+
+        if ($user['name_user'] !== $name) {
+            $errors['error_connection'] = '<span class="cross"><i class="fas fa-times"></i></span> Erreur Authentification : Identifiants incorrects.';
+        }
+
+        if ($user['pass_user'] !== $password) {
+            $errors['error_connection'] = '<span class="cross"><i class="fas fa-times"></i></span> Erreur Authentification : Identifiants incorrects.';
+        }
+
+        if(!$errors) {
+            $eltHash = $user['id_user'];
+            $_SESSION['id_user'] = $eltHash;
+            $_SESSION['id_hash_user'] = $this->getPowerfulHash($eltHash);
+
+            header('Location: index.php?action=listBooks');
+        }
+
+        }
+
         require('App/View/connection.php');
     }
 
-    /**************  CHECK TEXTAREA LENGTH **************/
+    // LOGOUT
+    public function logout()
+    {
+        session_destroy();
+        header('Location: index.php');
+    }
 
+    // CHECK TEXTAREA LENGTH
     public function checkMessageLength($message)
     {
         $messLength = strlen($message);
-        if ($messLength >= 30) {
+        if ($messLength >= 15) {
             return true;
         } else {
             return false;
         }
     }
 
-    // Contact
+    // CONTACT
     public function contact()
     {
         $name= "";
         $email= "";
         $message= "";
+
         $errors = [];
         $success = "";
 
