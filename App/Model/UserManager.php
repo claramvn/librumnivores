@@ -4,6 +4,7 @@ namespace App\Model;
 
 class UserManager extends Manager
 {
+    // GET USER BY NAME
     public function getUserByName($name)
     {
         $db = $this->dbConnect();
@@ -13,6 +14,7 @@ class UserManager extends Manager
         return $user;
     }
 
+    // GET USER BY ID
     public function getUserById($id)
     {
         $db = $this->dbConnect();
@@ -22,6 +24,7 @@ class UserManager extends Manager
         return $user;
     }
 
+    // GET USER EMAIL
     public function emailExist($email)
     {
         $db = $this->dbConnect();
@@ -31,6 +34,7 @@ class UserManager extends Manager
         return $emailExist;
     }
 
+    // ADD USER
     public function addUser($name, $email, $password, $avatar)
     {
         $db = $this->dbConnect();

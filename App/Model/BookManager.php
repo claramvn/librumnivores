@@ -4,7 +4,7 @@ namespace App\Model;
 
 class BookManager extends Manager
 {
-    // Add Book
+    // ADD BOOK
     public function addBook($isbn, $title, $author, $cover, $publisher, $publishedDate, $pageCount, $shortDescription, $description, $idUser)
     {
         $db = $this->dbConnect();
@@ -13,7 +13,7 @@ class BookManager extends Manager
         return $addBook;
     }
 
-    // Book exist
+    // BOOK EXIST 
     public function bookExist($isbn, $idUser)
     {
         $db = $this->dbConnect();
@@ -24,7 +24,7 @@ class BookManager extends Manager
         return $bookExist;
     }
 
-    // Count Books
+    // COUNT BOOKS OF BOOKCASE
     public function bookCount($idUser) {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT COUNT(*) as total FROM books WHERE id_user = ? AND wish_book = 0 AND lend_book = 0');
@@ -33,7 +33,7 @@ class BookManager extends Manager
         return $bookCount['total'];
     }
 
-    // List Books
+    // LIST BOOKS OF BOOKCASE
     public function listBooks($idUser, $first, $perPage)
     {
         $db = $this->dbConnect();
@@ -44,7 +44,7 @@ class BookManager extends Manager
         return $books;
     }
 
-    // Add Wish Book
+    // ADD WISH BOOK 
     public function addWishBook($isbn, $title, $author, $cover, $publisher, $publishedDate, $pageCount, $shortDescription, $description, $idUser)
     {
         $db = $this->dbConnect();
@@ -53,7 +53,7 @@ class BookManager extends Manager
         return $addWishBook;
     }
 
-    // Count Wish Books
+    // COUNT WISH BOOK
     public function wishBookCount($idUser) {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT COUNT(*) as total FROM books WHERE id_user = ? AND wish_book = 1 AND lend_book = 0');
@@ -62,7 +62,7 @@ class BookManager extends Manager
         return $wishBookCount['total'];
     }
 
-    // List Wish Books
+    // LIST WISH BOOKS
     public function listWishBooks($idUser, $first, $perPage)
     {
         $db = $this->dbConnect();
@@ -73,7 +73,7 @@ class BookManager extends Manager
         return $listWishBooks;
     } 
 
-    // Add to bookcase
+    // ADD WISH BOOK ON BOOKCASE
     public function addWishToBookcase($idBook,$idUser)
     {
         $db = $this->dbConnect();
@@ -82,7 +82,7 @@ class BookManager extends Manager
         return $addWishToBookcase;
     }
 
-    // Get selected Book
+    // GET SELECTED BOOK
     public function getBook($idBook,$idUser)
     {
         $db = $this->dbConnect();
@@ -93,7 +93,7 @@ class BookManager extends Manager
         return  $book;
     } 
 
-    // Count favorites Books
+    // COUNT FAVORITES BOOKS
     public function favoritesBookCount($idUser) {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT COUNT(*) as total FROM books WHERE id_user = ? AND favorite_book = 1 AND lend_book = 0');
@@ -102,7 +102,7 @@ class BookManager extends Manager
         return $favoritesBookCount['total'];
     }
 
-    // List Favorites Books
+    // LIST FAVORITES BOOKS ON FAVORITES BOOKCASE
     public function listFavoritesBooks($idUser, $first, $perPage)
     {
         $db = $this->dbConnect();
@@ -113,7 +113,7 @@ class BookManager extends Manager
         return $favoritesBooks;
     } 
 
-    // Add to favorites books
+    // ADD BOOK TO FAVORITES BOOKCASE
     public function addToFavoritesBooks($idBook,$idUser)
     {
         $db = $this->dbConnect();
@@ -122,7 +122,7 @@ class BookManager extends Manager
         return $addToFavoritesBooks;
     }
 
-    // Take back from favorites books
+    // TAKE BACK BOOK FROM FAVORITES BOOKCASE
     public function takeBackFromFavoritesBooks($idBook,$idUser)
     {
         $db = $this->dbConnect();
@@ -131,7 +131,7 @@ class BookManager extends Manager
         return $takeBackFavoritesBooks;
     }
 
-    // Lend a book
+    // ADD BOOK TO LEND BOOK BOOKCASE
     public function lendABook($idBook,$idUser)
     {
         $db = $this->dbConnect();
@@ -140,7 +140,7 @@ class BookManager extends Manager
         return $lendABook;
     }
 
-    // Take back from lent books
+    // TAKE BACK BOOK FROM LENT BOOKCASE
     public function takeBackFromLentBooks($idBook,$idUser)
     {
         $db = $this->dbConnect();
@@ -149,7 +149,7 @@ class BookManager extends Manager
         return $takeBackFromLentBooks;
     }
 
-    // Count lent Books
+    // COUNT LENT BOOKS
     public function lentBookCount($idUser) {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT COUNT(*) as total FROM books WHERE id_user = ? AND lend_book = 1');
@@ -158,7 +158,7 @@ class BookManager extends Manager
         return $lentBookCount['total'];
     }
 
-    // List lent Books
+    // LIST LENT BOOKS ON LENT BOOKCASE
     public function listLentBooks($idUser, $first, $perPage)
     {
         $db = $this->dbConnect();
@@ -169,7 +169,7 @@ class BookManager extends Manager
         return $listLentBooks;
     } 
 
-    // Delete selected book
+    // DELETE SELECTED BOOK
     public function deleteBook($idBook,$idUser)
     {
         $db = $this->dbConnect();
