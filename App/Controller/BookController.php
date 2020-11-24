@@ -11,7 +11,7 @@ class BookController extends AncestorController
 		$this->bookManager = new BookManager();
 	}
 
-    // Add to bookcase
+    // ADD TO BOOKCASE
     public function addBook()
     {
         if (!$this->isLogged()) {
@@ -86,32 +86,9 @@ class BookController extends AncestorController
 
     } 
 
-    // Wish to bookcase
-    public function addWishToBookcase()
-    {
-        if (!$this->isLogged()) {
-            header('Location: index.php');
-        }
-
-        $idBook = intval($this->cleanParam($_GET['id']));
-
-        $idUser = $this->user['id_user'];
-
-        $addWishToBookcase = $this->bookManager->addWishToBookcase($idBook, $idUser);
-
-        if ($addWishToBookcase === false || !isset($idBook) || $idBook === 0) {
-            $_SESSION['error_flags'] = "Oups, désolé mais il est impossible d'ajouter le livre à votre bibliothèque.";
-            header('Location: index.php?action=getBook&id=' . $idBook);
-        } else {
-            $_SESSION['success_flags'] = "Le livre a bien été ajouté à votre bibliothèque.";
-            header('Location: index.php?action=getBook&id=' . $idBook);
-        }
-    }
-
-    // List on Bookcase
+    // LIST BOOKCASE
     public function listBooks()
     {
-
         if (!$this->isLogged()) {
             header('Location: index.php');
         }
@@ -146,7 +123,7 @@ class BookController extends AncestorController
         require('App/View/listBooks.php');
     }
 
-    // List wish book
+    // LIST WISH BOOKCASE
     public function listWishBooks()
     {
         if (!$this->isLogged()) {
@@ -179,72 +156,7 @@ class BookController extends AncestorController
         require('App/View/listWishBooks.php');
     }
 
-    // Get Selected Book
-    public function getBook()
-    {
-        if (!$this->isLogged()) {
-            header('Location: index.php');
-        }
-
-        $idBook = intval($this->cleanParam($_GET['id']));
-
-        $idUser = $this->user['id_user'];
-
-        $book = $this->bookManager->getBook($idBook, $idUser);
- 
-        if ($book === false || !isset($idBook) || $idBook === 0) {
-            header('Location: index.php?action=error404');
-        }
-
-        require('App/View/getBook.php');
-    }
-
-    // Add to favorites books
-    public function addToFavoritesBooks()
-    {
-
-        if (!$this->isLogged()) {
-            header('Location: index.php');
-        }
-
-        $idBook = intval($this->cleanParam($_GET['id']));
-
-        $idUser = $this->user['id_user'];
-
-        $addToFavoritesBooks = $this->bookManager->addToFavoritesBooks($idBook,$idUser);
-
-        if ($addToFavoritesBooks === false || !isset($idBook) || $idBook === 0 ) {
-            $_SESSION['error_flags'] = "Oups, désolé mais il est impossible d'ajouter le livre à vos favoris.";
-            header('Location: index.php?action=getBook&id=' . $idBook . '#flags');
-        } else {
-            $_SESSION['success_flags'] = "Le livre a bien été ajouté à vos favoris.";
-            header('Location: index.php?action=getBook&id=' . $idBook . '#flags');
-        }
-    }
-
-    // Take back from favorites books
-    public function takeBackFromFavoritesBooks()
-    {
-        if (!$this->isLogged()) {
-            header('Location: index.php');
-        }
-
-        $idBook = intval($this->cleanParam($_GET['id']));
-
-        $idUser = $this->user['id_user'];
-
-        $takeBackFromFavoritesBooks = $this->bookManager->takeBackFromFavoritesBooks($idBook,$idUser);
-
-        if ($takeBackFromFavoritesBooks === false || !isset($idBook) || $idBook === 0 ) {
-            $_SESSION['error_flags'] = "Oups, désolé mais il est impossible de retirer le livre de vos favoris.";
-            header('Location: index.php?action=getBook&id=' . $idBook . '#flags');
-        } else {
-            $_SESSION['success_flags'] = "Le livre a bien été retiré de vos favoris.";
-            header('Location: index.php?action=getBook&id=' . $idBook . '#flags');
-        }
-    }
-
-    // List favorites book
+    // LIST FAVORITES BOOKS BOOKCASE
     public function listFavoritesBooks()
     {
         if (!$this->isLogged()) {
@@ -277,51 +189,7 @@ class BookController extends AncestorController
         require('App/View/listFavoritesBooks.php');
     }
 
-    // Lend a book
-    public function lendABook()
-    {
-        if (!$this->isLogged()) {
-            header('Location: index.php');
-        }
-
-        $idBook = intval($this->cleanParam($_GET['id']));
-
-        $idUser = $this->user['id_user'];
-
-        $lendABook = $this->bookManager->lendABook($idBook, $idUser);
-
-        if ($lendABook === false || !isset($idBook) || $idBook === 0) {
-            $_SESSION['error_flags'] = "Oups, désolé mais il est impossible d'ajouter le livre aux prêts.";
-            header('Location: index.php?action=getBook&id=' . $idBook . '#flags');
-        } else {
-            $_SESSION['success_flags'] = "Le livre a bien été ajouté à vos prêts.";
-            header('Location: index.php?action=getBook&id=' . $idBook . '#flags');
-        }
-    }
-
-    // Take back from lent books
-    public function takeBackFromLentBooks()
-    {
-        if (!$this->isLogged()) {
-            header('Location: index.php');
-        }
-
-        $idBook = intval($this->cleanParam($_GET['id']));
-
-        $idUser = $this->user['id_user'];
-
-        $takeBackFromLentBooks = $this->bookManager->takeBackFromLentBooks($idBook,$idUser);
-
-        if ($takeBackFromLentBooks === false || !isset($idBook) || $idBook === 0 ) {
-            $_SESSION['error_flags'] = "Oups, désolé mais il est impossible de retirer le livre de vos prêts.";
-            header('Location: index.php?action=getBook&id=' . $idBook . '#flags');
-        } else {
-            $_SESSION['success_flags'] = "Le livre a bien été retiré de vos prêts.";
-            header('Location: index.php?action=getBook&id=' . $idBook . '#flags');
-        }
-    }
-
-    // List lent books
+    // LIST LENT BOOKS BOOKCASE
     public function listLentBooks()
     {
         if (!$this->isLogged()) {
@@ -354,7 +222,104 @@ class BookController extends AncestorController
         require('App/View/listLentBooks.php');
     }
 
-    // Delete selected book
+    // GET SELECTED BOOK
+    public function getBook()
+    {
+        if (!$this->isLogged()) {
+            header('Location: index.php');
+        }
+
+        $idBook = intval($this->cleanParam($_GET['id']));
+
+        $idUser = $this->user['id_user'];
+
+        $book = $this->bookManager->getBook($idBook, $idUser);
+ 
+        if ($book === false || !isset($idBook) || $idBook === 0) {
+            header('Location: index.php?action=error404');
+        }
+
+        require('App/View/getBook.php');
+    }
+
+    // SKELETON METHOD FOR ADD/REMOVE WISH/FAVORITES/LENT BOOKS
+    public function structureMethodAddOrRemoveFlags($newObject, $objectModel, $errorMessage, $successMessage) {
+
+        if (!$this->isLogged()) {
+            header('Location: index.php');
+        }
+        
+        $idBook = intval($this->cleanParam($_GET['id']));
+        
+        $idUser = $this->user['id_user'];
+        
+        $newObject = $this->bookManager->$objectModel($idBook,$idUser);
+        
+        if ($newObject === false || !isset($idBook) || $idBook === 0 ) {
+            $_SESSION['error_flags'] = $errorMessage;
+            header('Location: index.php?action=getBook&id=' . $idBook . '#flags');
+        } else {
+            $_SESSION['success_flags'] = $successMessage;
+            header('Location: index.php?action=getBook&id=' . $idBook . '#flags');
+        }
+    }
+
+    // ADD WISH BOOK TO BOOKCASE
+    public function addWishToBookcase()
+    {
+        $newObject = "$" . "addWishToBookcase";
+        $objectModel = "addWishToBookcase";
+        $errorMessage = "Oups, désolé mais il est impossible d'ajouter le livre à votre bibliothèque.";
+        $successMessage = "Le livre a bien été ajouté à votre bibliothèque.";
+
+        $this->structureMethodAddOrRemoveFlags($newObject, $objectModel, $errorMessage, $successMessage);
+    }
+
+    // ADD BOOK TO FAVORITES BOOKS BOOKCASE
+    public function addToFavoritesBooks()
+    {
+        $newObject = "$" . "addToFavoritesBooks";
+        $objectModel = "addToFavoritesBooks";
+        $errorMessage = "Oups, désolé mais il est impossible d'ajouter le livre à vos favoris.";
+        $successMessage = "Le livre a bien été ajouté à vos favoris.";
+
+        $this->structureMethodAddOrRemoveFlags($newObject, $objectModel, $errorMessage, $successMessage);
+    }
+
+    // TAKE BACK FROM FAVORITES BOOKS BOOKCASE
+    public function takeBackFromFavoritesBooks()
+    {
+        $newObject = "$" . "takeBackFromFavoritesBooks";
+        $objectModel = "takeBackFromFavoritesBooks";
+        $errorMessage = "Oups, désolé mais il est impossible de retirer le livre de vos favoris.";
+        $successMessage = "Le livre a bien été retiré de vos favoris.";
+
+        $this->structureMethodAddOrRemoveFlags($newObject, $objectModel, $errorMessage, $successMessage);
+    }
+
+    // ADD TO LENT BOOK BOOKCASE
+    public function lendABook()
+    {
+        $newObject = "$" . "lendABook";
+        $objectModel = "lendABook";
+        $errorMessage = "Oups, désolé mais il est impossible d'ajouter le livre aux prêts.";
+        $successMessage = "Le livre a bien été ajouté à vos prêts.";
+
+        $this->structureMethodAddOrRemoveFlags($newObject, $objectModel, $errorMessage, $successMessage);
+    }
+
+    // TAKE BACK FROM LENT BOOK BOOKCASE
+    public function takeBackFromLentBooks()
+    {
+        $newObject = "$" . "takeBackFromLentBooks";
+        $objectModel = "takeBackFromLentBooks";
+        $errorMessage = "Oups, désolé mais il est impossible de retirer le livre de vos prêts.";
+        $successMessage = "Le livre a bien été retiré de vos prêts.";
+
+        $this->structureMethodAddOrRemoveFlags($newObject, $objectModel, $errorMessage, $successMessage);
+    }
+
+    // DELETE SELECTED BOOK
     public function deleteBook()
     {
         if (!$this->isLogged()) {
