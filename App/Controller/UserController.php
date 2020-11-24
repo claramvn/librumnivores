@@ -7,6 +7,11 @@ use \App\Model\UserManager;
 class UserController extends AncestorController
 {
 
+    function __construct()
+	{
+		$this->userManager = new UserManager();
+	}
+
     // CHECK PASSWORD LENGTH
     public function checkPasswordLength($password)
     {
@@ -39,8 +44,7 @@ class UserController extends AncestorController
                 $errors['empty_fields_registration']= '<span class="cross"><i class="fas fa-times"></i></span> Oups, vous ne pouvez pas laisser de champs vides.';
             }
 
-            $userManager = new UserManager();
-            $user = $userManager->getUserByName($name);
+            $user = $this->userManager->getUserByName($name);
 
             if ($user['name_user'] === $name) {
                 $errors['user_exist_register'] = '<span class="cross"><i class="fas fa-times"></i></span> Nom d\'utilisateur déjà existant.';
@@ -50,7 +54,7 @@ class UserController extends AncestorController
                 $errors['invalid_email_register'] = '<span class="cross"><i class="fas fa-times"></i></span> Le format de l\'adresse e-mail n\'est pas valide.';
             }
 
-            $emailExist = $userManager->emailExist($email);
+            $emailExist = $this->userManager->emailExist($email);
             if ($emailExist['email_user'] === $email) {
                 $errors['exist_email_register'] = '<span class="cross"><i class="fas fa-times"></i></span> Adresse e-mail déjà utilisée.';
             }
@@ -67,10 +71,10 @@ class UserController extends AncestorController
                 $eltHash = $password;
                 $password = $this->getPowerfulHash($eltHash);
 
-                $addUser = $userManager->addUser($name,$email,$password,$avatar);
+                $addUser = $this->userManager->addUser($name,$email,$password,$avatar);
 
                 if($addUser !== false) {
-                    $user = $userManager->getUserByName($name);
+                    $user = $this->userManager->getUserByName($name);
                     $eltHash = $user['id_user'];
                     $_SESSION['id_user'] = $eltHash;
                     $_SESSION['id_hash_user'] = $this->getPowerfulHash($eltHash);
@@ -99,8 +103,7 @@ class UserController extends AncestorController
             $errors['empty_fields_connection']= '<span class="cross"><i class="fas fa-times"></i></span> Oups, vous ne pouvez pas laisser de champs vides.';
         }
 
-        $userManager = new UserManager();
-        $user = $userManager->getUserByName($name);
+        $user = $this->userManager->getUserByName($name);
 
         if ($user['name_user'] !== $name) {
             $errors['error_connection'] = '<span class="cross"><i class="fas fa-times"></i></span> Erreur Authentification : Identifiants incorrects.';
