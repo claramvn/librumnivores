@@ -191,5 +191,23 @@ class UserController extends AncestorController
         }
         require('App/View/contact.php');
     }
+
+    // UPDATE PROFIL USER
+    public function updateProfil()
+    {
+        if (!$this->isLogged()) {
+            header('Location: index.php');
+        }
+
+        $id = $this->user['id_user'];
+        $name = $this->user['name_user'];
+        $email = $this->user['email_user'];
+        $avatar = $this->user['avatar_user'];
+
+        $errors = [];
+        $success = [];
+
+        require('App/View/updateProfil.php');
+    }
     
 }
