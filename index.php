@@ -70,8 +70,13 @@ try {
                 $userController->updateProfil();
             break;
 
+            case 'deleteUserAccount':
+                $userController = new UserController();
+                $userController->deleteUserAccount();
+            break;
+
             /*********************************************************************************
-            ************************************ bookController ******************************
+            ************************************ BookController ******************************
             *********************************************************************************/
 
             case 'listBooks':
