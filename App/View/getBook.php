@@ -74,6 +74,7 @@ $title = 'Ma bibliothèque';
 
 <!-- SCRIPT JS -->
 <script src="Public/js/confirmation.js"></script>
+<script>objetConfirmation.deleteBook();</script>
 
 <?php $content = ob_get_clean(); ?>
 <?php require('App/View/template.php');

@@ -11,20 +11,19 @@ $title = 'Mon profil';
     <div id="header_bookcase">
     <div id="intro_header_bookcase">
         <h1>Mon profil <span class="red"><i class="fas fa-square"></i></span></h1>
-        <p>Modifier votre profil librumnivores</p>
+        <p>Modifier mon profil librumnivores</p>
     </div>
     </div>
 
-    <!-- AVATAR --> 
-    <div id="block_avatar"> 
-        <img src="Public/img/avatar/<?php echo $this->user['avatar_user']?>" alt="Librumnivores - avatar utilisateur"/>
-    </div>
-
+    <!-- FORM -->
     <div class="display_form">
-        <form action="index.php?action=updateProfil" method="post">
+        <form action="index.php?action=updateProfil" method="post" enctype="multipart/form-data">
+            <div id="block_avatar"> 
+                <img src="Public/img/avatar/<?= $avatar ?>" alt="Librumnivores - avatar utilisateur"/>
+            </div>
             <div class="form-group">
-            <label for="user_avatar">IMAGE :</label><br />
-            <input type="file" class="form-control-file" id="user_avatar" name="user_avatar" accept="image/png, image/jpeg, image/jpg" />
+                <label for="user_avatar">IMAGE :</label><br />
+                <input type="file" class="form-control-file" id="user_avatar" name="user_avatar" accept="image/png, image/jpeg, image/jpg" />
             </div>
             <div class="form-group">
                 <label for="user_name">NOM D'UTILISATEUR</label>
@@ -34,20 +33,28 @@ $title = 'Mon profil';
                 <label for="user_email">E-MAIL</label>
                 <input type="email" class="form-control" id="user_email" name="user_email" value="<?= htmlspecialchars($email) ?>">
             </div>
-            <input id="button_update_profil" type="submit" class="btn btn-primary" name="button_update_profil" value="MODIFIER" />
+            <input id="button_update_profil" type="submit" class="btn btn-primary" name="button_update_profil" value="ACTUALISER MON PROFIL" />
         </form>
+
+        <!-- ERRORS & SUCCESS -->
+        <?php if (!empty($errors)) { ?>
+        <div class="errors"><?= implode('<br/>', $errors) ?></div><br /><br />
+        <?php } else if (!empty($success)) { ?>
+        <div class="success"><?= implode('<br/>', $success) ?></div><br /><br />
+        <?php } ?>
     </div>
 
-     <!-- ERRORS & SUCCESS -->
-     <?php if (!empty($errors)) { ?>
-        <div class="errors"><?= implode('<br/>', $errors) ?></div><br /><br />
-    <?php } else if (!empty($success)) { ?>
-        <div class="success"><?= implode('<br/>', $success) ?></div><br /><br />
-    <?php } ?>
-    
+
+    <!-- DELETE ACCOUNT -->
+    <div id="block_delete_account">
+        <a id="btn_delete_account" class="btn btn-primary" href="index.php?action=deleteUserAccount" title="SUPPRIMER MON COMPTE LIBRUMNIVORES"><i class="fas fa-user-slash"></i></a>
+    </div>
     
 </div>
 
+<!-- SCRIPT JS -->
+<script src="Public/js/confirmation.js"></script>
+<script>objetConfirmation.deleteAccountUser();</script>
 
 <?php $content = ob_get_clean(); ?>
 <?php require('App/View/template.php');
