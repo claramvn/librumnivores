@@ -25,9 +25,12 @@
 
     <!-- HEADER --> 
     <header id="header">
-        <div>
+        <div id="intro_header">
             <h1 id="librum"><a href="index.php">LIBRUMNIVORES</a></h1>
-        </div>
+            <?php if($this->isLogged()) { ?>
+            <a id="avatar_header" href="index.php?action=updateProfil" title="PROFIL"><img src="Public/img/avatar/<?php echo $this->user['avatar_user']?>" alt="Librumnivores - avatar utilisateur" /></a>
+            <?php } ?>
+        </div>  
         <div>
             <nav>
                 <ul class="nav">
