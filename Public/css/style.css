@@ -42,7 +42,8 @@ a:hover {
 #button_register,
 #button_open_search,
 #button_search,
-#button_add {
+#button_add,
+#button_update_profil {
     font-weight: bold;
     background: #DA5B5A;
     border-color: #DA5B5A;
@@ -78,6 +79,21 @@ header {
     z-index: 1000;
     position: fixed;
     background: white;
+}
+
+#intro_header {
+    display: flex;
+}
+
+#avatar_header {
+    margin-top: 1.3%;
+    margin-left: 1%;
+}
+
+#avatar_header img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
 }
 
 .nav {
@@ -193,6 +209,11 @@ header {
     justify-content: space-between;
 }
 
+#intro_header_bookcase {
+    width: 30%;
+    border-bottom: 1px solid;
+}
+
 /* BLOCK SEARCH */
 
 #block_search {
@@ -248,7 +269,7 @@ header {
 /* DISPLAY LIST BOOKS */
 #block_shelves {
     width: 100%;
-    padding: 4%;
+    padding: 1%;
     display: flex;
     margin-top: 1%;
     flex-wrap: wrap;
@@ -461,7 +482,27 @@ header {
     border: 3px dotted #DA5B5A;
 }
 
-/************************* FOOTER *************************/
+/************************* UPDATE PROFIL PAGE *************************/
+
+#block_avatar {
+    width: 110px;
+    margin-top: 4%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#block_avatar img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+#user_avatar {
+    width: 150px;
+    overflow: hidden;
+}
+
+/************************* ERROR PAGE *************************/
 
 #error {
     width: 561px;
