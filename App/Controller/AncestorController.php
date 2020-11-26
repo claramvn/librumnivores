@@ -7,6 +7,9 @@ use \App\Model\UserManager;
 class AncestorController
 {
 
+    // AUTHENTIFICATION
+
+
     // CLEAN SETTINGS 
     protected function cleanParam($param)
     {
@@ -69,6 +72,9 @@ class AncestorController
         }
     }
 
+
+
+
     // DATE PROCESSING
     protected function dateUsToDateFr($date)
     {
@@ -88,6 +94,50 @@ class AncestorController
         } else {
             return $date;
         }
+    }
+
+
+
+
+    // UPLOAD FILES
+
+    protected function checkMaxSize($file)
+    {
+        if ($file['size'] !== 0 && $file['size'] <= 3000000) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected function checkExtensionFileUpload($file)
+    {
+        $extensionUpload = pathinfo($file['name']);
+        $extension = $extensionUpload['extension'];
+        return $extension;
+    }
+
+    protected function checkIfExtensionIsAllowed()
+    {
+        $extension = array('jpg', 'jpeg', 'png');
+        return $extension;
+    }
+
+    protected function renameFile($file, $extension)
+    {
+        $fileUpload = str_replace($file['name'], "Librumnivores", $file['name']);
+        $file = $fileUpload . time() . '.' . $extension;
+        return $file;
+    }
+
+    protected function uploadAvatarFile($file, $nameFile)
+    {
+        move_uploaded_file($file['tmp_name'], 'Public/img/avatar/' . $nameFile);
+    }
+
+    protected function uploadFile($file, $nameFile)
+    {
+        move_uploaded_file($file['tmp_name'], 'Public/img/' . $nameFile);
     }
     
 }
