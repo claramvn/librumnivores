@@ -42,4 +42,22 @@ class UserManager extends Manager
         $addUser = $req->execute(array($name, $email, $password, $avatar));
         return $addUser;
     }
+
+    // UPDATE PROFIL USER
+    public function updateProfilUser($name, $email, $avatar, $id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE users SET name_user = ?, email_user = ?, avatar_user = ? WHERE id_user = ?');
+        $updateProfilUser = $req->execute(array($name, $email, $avatar, $id));
+        return $updateProfilUser;
+    }
+
+    // DELETE USER ACCOUNT
+    public function deleteUserAccount($id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('DELETE FROM users WHERE id_user = ?');
+        $deleteUserAccount = $req->execute(array($id));
+        return $deleteUserAccount;
+    }
 }
