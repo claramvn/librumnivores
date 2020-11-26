@@ -65,6 +65,11 @@ try {
                 $userController->contact();
             break;
 
+            case 'updateProfil':
+                $userController = new UserController();
+                $userController->updateProfil();
+            break;
+
             /*********************************************************************************
             ************************************ bookController ******************************
             *********************************************************************************/
