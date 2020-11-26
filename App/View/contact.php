@@ -31,19 +31,13 @@ $title = 'Contact';
             <input id="button_contact" name="button_contact" type="submit" class="btn btn-primary" value="ENVOYER" />
         </form>
 
-        <!-- ERRORS -->
-        <?php
-        if (!empty($errors)) { ?>
-        <div class="errors"><?= implode('<br/>', $errors) ?></div><br /><br />
-        <?php
-        }
-        ?>
-        <?php
-        if (!empty($success)) { ?>
-        <div class="success"><?=  $success ?></div><br /><br />
-        <?php
-        }
-        ?>
+        <!-- ERRORS & SUCCESS -->
+        <?php if (!empty($errors)) { ?>
+            <div class="errors"><?= implode('<br/>', $errors) ?></div><br /><br />
+        <?php } else if (!empty($success)) { ?>
+            <div class="success"><?=  $success ?></div><br /><br />
+        <?php } ?>
+
     </div>
 </div>
 

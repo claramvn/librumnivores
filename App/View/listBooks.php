@@ -9,18 +9,18 @@ $title = 'Ma bibliothèque';
 
     <!-- HEADER BOOKCASE -->
     <div id="header_bookcase">
-    <div>
-        <h1>Ma bibliothèque <span class="number_book"><?= $bookCount ?></span></h1>
-        <p>Organiser ici l'ensemble de vos librum.</p>
-    </div>
-    <div> 
-        <button id="button_open_search" type="button" class="btn btn-primary">Ajouter un livre</button>
-    </div>
+        <div id="intro_header_bookcase">
+            <h1>Ma bibliothèque <span class="red"><i class="fas fa-square"></i></span></h1>
+            <p>Organiser ici l'ensemble de vos librum</p>
+        </div>
+        <div> 
+            <button id="button_open_search" type="button" class="btn btn-primary">Ajouter un livre</button>
+        </div>
     </div>
 
+    
     <!-- ERROR OR SUCCESS ADD BOOK -->
-    <?php
-            if (isset($_SESSION['error_add_book'])) {
+    <?php if (isset($_SESSION['error_add_book'])) {
                 echo '<p class="errors">' . $_SESSION['error_add_book'] . '</p>';
             }
             unset($_SESSION['error_add_book']);
@@ -28,16 +28,15 @@ $title = 'Ma bibliothèque';
             if (isset($_SESSION['success_add_book'])) {
                 echo '<p class="success">' . $_SESSION['success_add_book'] . '</p>';
             }
-            unset($_SESSION['success_add_book']);
-    ?>
+            unset($_SESSION['success_add_book']); ?>
+
 
     <!-- SUCCESS DELETE SELECTED BOOK -->
-    <?php
-            if (isset($_SESSION['success_delete_book'])) {
+    <?php if (isset($_SESSION['success_delete_book'])) {
                 echo '<p class="success">' . $_SESSION['success_delete_book'] . '</p>';
             }
-            unset($_SESSION['success_delete_book']);
-    ?>
+            unset($_SESSION['success_delete_book']); ?>
+
 
     <!-- BLOCK SEARCH TO ADD BOOK -->
     <div id="block_search">
@@ -85,7 +84,7 @@ $title = 'Ma bibliothèque';
                             <input type="submit" name="button_add_wish" id="button_add_wish" value="Ajouter à ma liste de souhaits"/>
                         </form>
 
-                     </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -107,24 +106,17 @@ $title = 'Ma bibliothèque';
 
     <!-- LISTING BOOKS --> 
     <div id="block_shelves">
-    <?php 
-    if ($bookCount > 0) {
-        foreach ($books as $dataBooks) {
-    ?> 
-            <div id="card_shelves" class="card"><a href="index.php?action=getBook&amp;id=<?= htmlspecialchars($dataBooks['id_book']) ?>">
-                <img src="<?= htmlspecialchars_decode($dataBooks['cover_book']) ?>" class="card-img-top" alt="Librumnivores - Image de couverture">
-                <div class="card-body">
-                    <p class="card-text"><?= htmlspecialchars($dataBooks['title_book']) ?></p>
-                </div></a>
-             </div>
-    <?php 
-        }
-    }else {
-    ?>
-    <p><i class="fas fa-book-open"></i> Votre librumnivothèque attend son premier livre ...</p>
-    <?php
-     }
-    ?>
+        <?php if ($bookCount > 0) {
+            foreach ($books as $dataBooks) { ?> 
+                <div id="card_shelves" class="card"><a href="index.php?action=getBook&amp;id=<?= htmlspecialchars($dataBooks['id_book']) ?>">
+                    <img src="<?= htmlspecialchars_decode($dataBooks['cover_book']) ?>" class="card-img-top" alt="Librumnivores - Image de couverture">
+                    <div class="card-body">
+                        <p class="card-text"><?= htmlspecialchars($dataBooks['title_book']) ?></p>
+                    </div></a>
+                </div>
+        <?php }  } else { ?>
+            <p><i class="fas fa-book-open"></i> Votre librumnivothèque attend son premier livre ...</p>
+        <?php } ?>
     </div>
 
     <!-- PAGINATION -->  
@@ -135,32 +127,26 @@ $title = 'Ma bibliothèque';
                     <a href="index.php?action=listBooks&page=<?= $currentPage - 1 ?>#block_pagination" class="page-link"><i class="fas fa-chevron-left"></i></a>
                 </li>
                 <?php for($i = 1; $i <= $pages; $i++){ ?>
-                    <li class="page-item <?php if($currentPage == $i){ echo "active";}else { echo "";} ?>">
-                        <a href="index.php?action=listBooks&page=<?= $i ?>#block_pagination" class="page-link"><?= $i ?></a>
-                    </li>
+                <li class="page-item <?php if($currentPage == $i){ echo "active";}else { echo "";} ?>">
+                    <a href="index.php?action=listBooks&page=<?= $i ?>#block_pagination" class="page-link"><?= $i ?></a>
+                </li>
                 <?php } ?>
-                    <li class="page-item <?php if($currentPage == $pages){ echo "disabled"; } else { echo ""; } ?>">
-                        <a href="index.php?action=listBooks&page=<?= $currentPage + 1 ?>#block_pagination" class="page-link"><i class="fas fa-chevron-right"></i></a>
-                    </li>
+                 <li class="page-item <?php if($currentPage == $pages){ echo "disabled"; } else { echo ""; } ?>">
+                    <a href="index.php?action=listBooks&page=<?= $currentPage + 1 ?>#block_pagination" class="page-link"><i class="fas fa-chevron-right"></i></a>
+                </li>
             </ul>
         </nav>
     </div>
 
 
-    <!-- LISTING LENT BOOKS -->
-    <?php 
-    if ($countedLentBooks > 0) { ?>
-
-        <!-- HEADER BOOKCASE -->
-        <div id="header_bookcase">
-            <div>
-                <h1>Vous avez <span class="number_book"><?= $countedLentBooks ?></span> prêts en cours. <span id="link_lent_books"><a href="index.php?action=listLentBooks">ah oui ? allons voir d'un peu plus prêts, euh près ...</a></span></h1>
-            </div>
+    <!-- LENT BOOKS INFO -->
+    <?php if ($countedLentBooks > 0) { ?>
+    <div id="header_bookcase">
+        <div>
+            <h1>Vous avez <span class="number_book"><?= $countedLentBooks ?></span> prêts en cours. <span id="link_lent_books"><a href="index.php?action=listLentBooks">ah oui ? allons voir d'un peu plus prêts, euh près ...</a></span></h1>
         </div>
-    <?php 
-    }
-    ?>
     </div>
+    <?php } ?>
     
 </div>
 

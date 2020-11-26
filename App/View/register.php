@@ -36,12 +36,10 @@ $title = 'Inscription';
         </form>
 
         <!-- ERRORS -->
-        <?php
-        if (!empty($errors)) { ?>
-        <div class="errors"><?= implode('<br/>', $errors) ?></div><br /><br />
-        <?php
-        }
-        ?>
+        <?php if (!empty($errors)) { ?>
+            <div class="errors"><?= implode('<br/>', $errors) ?></div><br /><br />
+        <?php } ?>
+        
     </div>
 </div>
 
