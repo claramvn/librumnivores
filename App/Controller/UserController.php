@@ -160,19 +160,18 @@ class UserController extends AncestorController
             $message=$this->cleanParam($_POST['user_message']);
 
             if(empty($name) || empty($email) || empty($message)) {
-                $errors['empty_fields_contact'] = '<i class="fas fa-times"></i> Oups, vous ne pouvez pas laisser de champs vides.';
+                $errors['empty_fields_contact'] = '<span class="cross"><i class="fas fa-times"></i></span> Oups, vous ne pouvez pas laisser de champs vides.';
             } 
 
             if(!$this->cleanEmail($email)) {
-                $errors['invalid_email_contact'] = '<i class="fas fa-times"></i> Le format de l\'adresse e-mail n\'est pas valide.';
+                $errors['invalid_email_contact'] = '<span class="cross"><i class="fas fa-times"></i></span> Le format de l\'adresse e-mail n\'est pas valide.';
             }
 
             if (!$this->checkMessageLength($message)) {
-                $errors['message_length_contact'] = '<i class="fas fa-times"></i> Oups, votre message est trop court.';
+                $errors['message_length_contact'] = '<span class="cross"><i class="fas fa-times"></i></span> Oups, votre message est trop court.';
             }
 
             if(!$errors) {
-                //Version d'encodage mail
                 $header='MIME-Version: 1.0' . "\r\n";
                 $header.='From:"Librumnivores"<claramvnbrg@gmail.com>'."\n";
                 $header.='Content-Type:text/html; charset="uft-8"'."\n";
@@ -207,7 +206,112 @@ class UserController extends AncestorController
         $errors = [];
         $success = [];
 
+        if (isset($_POST['button_update_profil'])) {
+            $name = $this->cleanParam($_POST['user_name']);
+            $email = $this->cleanParam($_POST['user_email']);
+        
+
+            if (empty($name) && empty($email)) {
+                $errors['empty_fields_profil'] = "<span class='cross'><i class='fas fa-times'></i></span> Tous les champs sont nécessaires";
+            }
+
+
+            // NAME TREATMENT
+            if ($this->user['name_user'] !== $name) {
+                $user = $this->userManager->getUserByName($name);
+
+               if ($user['name_user'] === $name) {
+                    $errors['name_user_profil'] = "<span class='cross'><i class='fas fa-times'></i></span> Nom d'utilisateur déjà existant";
+                }
+            
+                if (!$errors) {
+                    $success['name_user_profil'] = "Le pseudo a bien été modifié";
+                } else {
+                    $name = $this->user['name_user'];
+                }
+            }
+
+
+            // EMAIL TREATMENT
+            if ($this->user['email_user'] !== $email) {
+                $emailExist = $this->userManager->emailExist($email);
+
+                if ($emailExist['email_user'] === $email) {
+                    $errors['email_user_profil'] = "<span class='cross'><i class='fas fa-times'></i></span> Adresse e-mail déjà utilisée ";
+                }
+        
+                if (!$this->cleanEmail($email)) {
+                    $errors['email_user_profil'] = "<span class='cross'><i class='fas fa-times'></i></span> Le format de l'adresse e-mail n'est pas valide ";
+                }
+        
+                if (!$errors) {
+                    $success['email_user_profil'] = "L'adresse e-mail a bien été modifiée";
+                } else {
+                    $email = $this->user['email_user'];
+                }
+            }
+
+            // FILE TREATMENT
+            if (isset($_FILES["user_avatar"]) && $_FILES["user_avatar"]["error"] == 0) {
+                $file = $_FILES['user_avatar'];
+                $extensionUpload = $this->checkExtensionFileUpload($file);
+                $extensionAllowed = $this->checkIfExtensionIsAllowed();
+
+                if (!$this->checkMaxSize($file)) {
+                    $errors['size_avatar_profil'] = "<span class='cross'><i class='fas fa-times'></i></span> Impossible de modifier l'image : le fichier est trop volumineux";
+                }
+
+                if (!in_array($extensionUpload, $extensionAllowed)) {
+                    $errors['extension_avatar_profil'] = "<span class='cross'><i class='fas fa-times'></i></span> Impossible de modifier l'image : le fichier n'est pas au format jpg/jpeg/png/gif";
+                }
+
+                if (!$errors) {
+                    $nameFile = $this->renameFile($file, $extensionUpload);
+                    $uploadAvatar = $this->uploadAvatarFile($file, $nameFile);
+
+                    if ($this->user['avatar_user'] !== "thumbnail.jpg") {
+                        unlink('Public/img/avatar/' . $this->user['avatar_user']);
+                    }
+
+                    $avatar = $nameFile;
+
+                    $success['avatar_profil'] = "L'image a bien été modifiée";
+                } else {
+                    $avatar = $this->user['avatar_user'];
+                }
+            }
+
+            $updateProfilUser = $this->userManager->updateProfilUser($name, $email, $avatar, $id);
+
+            if (!$updateProfilUser) {
+                $errors['req_profil'] = "<span class='cross'><i class='fas fa-times'></i></span> Impossible de modifier le profil";
+            }
+        }
+
         require('App/View/updateProfil.php');
+    }
+
+    // DELETE USER ACCOUNT
+    public function deleteUserAccount()
+    {
+        if (!$this->isLogged()) {
+            header('Location: index.php');
+        }
+
+        $id = $this->user['id_user'];
+
+        if ($this->user['avatar_user'] !== "thumbnail.jpg") {
+            unlink('public/img/avatar/' . $this->user['avatar_user']);
+        }
+
+        $deleteUserAccount = $this->userManager->deleteUserAccount($id);
+
+        if ($deleteUserAccount === false) {
+            $errors['req_delete_profil'] = "<span class='cross'><i class='fas fa-times'></i></span> Impossible de supprimer votre compte Librumnivores";
+            header('Location: index.php?action=updateProfil');
+        } else {
+            header('Location: index.php');
+        }
     }
     
 }
