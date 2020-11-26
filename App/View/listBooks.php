@@ -11,7 +11,7 @@ $title = 'Ma bibliothèque';
     <div id="header_bookcase">
         <div id="intro_header_bookcase">
             <h1>Ma bibliothèque <span class="red"><i class="fas fa-square"></i></span></h1>
-            <p>Organiser ici l'ensemble de vos librum</p>
+            <div id="infos_count"><p>Organiser ici l'ensemble de vos librum</p><span><?php if ($bookCount > 0) { echo "(" . $bookCount . ")" ; } ?></span></div>
         </div>
         <div> 
             <button id="button_open_search" type="button" class="btn btn-primary">Ajouter un livre</button>
@@ -115,11 +115,12 @@ $title = 'Ma bibliothèque';
                     </div></a>
                 </div>
         <?php }  } else { ?>
-            <p><i class="fas fa-book-open"></i> Votre librumnivothèque attend son premier livre ...</p>
+            <p id="nothing_to_show"><i class="fas fa-book-open"></i> Votre librumnivothèque attend son premier livre ...</p>
         <?php } ?>
     </div>
 
     <!-- PAGINATION -->  
+    <?php if ($bookCount > 0) { ?>
     <div id="block_pagination">
         <nav>
             <ul class="pagination">
@@ -137,6 +138,7 @@ $title = 'Ma bibliothèque';
             </ul>
         </nav>
     </div>
+    <?php } ?>
 
 
     <!-- LENT BOOKS INFO -->

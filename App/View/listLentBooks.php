@@ -11,7 +11,7 @@ $title = 'Mes prêts';
     <div id="header_bookcase">
         <div id="intro_header_bookcase">
             <h1>Ma liste de prêts <span class="red"><i class="fas fa-square"></i></span></h1>
-            <p>Garder un oeil du côté de vos prêts</p>
+            <div id="infos_count"><p>Garder un oeil du côté de vos prêts</p><span><?php if ($lentBookCount > 0) { echo "(" . $lentBookCount . ")" ; } ?></span></div>
         </div>
     </div>
 
@@ -26,12 +26,13 @@ $title = 'Mes prêts';
             </div></a>
         </div>
         <?php } } else { ?>
-        <p><i class="fas fa-book-open"></i> Votre librumnivothèque ne contient aucun prêt en cours ...</p>
+        <p id="nothing_to_show"><i class="fas fa-book-open"></i> Votre librumnivothèque ne contient aucun prêt en cours ...</p>
         <?php } ?>
     </div>
 
     
     <!-- PAGINATION -->  
+    <?php if ($lentBookCount > 0) { ?>
     <div id="block_pagination">
         <nav>
             <ul class="pagination">
@@ -49,6 +50,7 @@ $title = 'Mes prêts';
             </ul>
         </nav>
     </div>
+    <?php } ?>
     
 </div>
 

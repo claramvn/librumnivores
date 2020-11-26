@@ -11,7 +11,7 @@ $title = 'Mes souhaits';
     <div id="header_bookcase">
         <div id="intro_header_bookcase">
             <h1>Ma liste de souhaits <span class="red"><i class="fas fa-square"></i></span></h1>
-            <p>Mijoter ici vos futurs régals</p>
+            <div id="infos_count"><p>Mijoter ici vos futurs régals</p><span><?php if ($wishBookCount > 0) { echo "(" . $wishBookCount . ")" ; } ?></span></div>
         </div>
     </div>
 
@@ -33,12 +33,13 @@ $title = 'Mes souhaits';
             </div></a>
         </div>
     <?php } } else { ?>
-        <p><i class="fas fa-book-open"></i> Votre librumnivothèque n'a pas d'envie spécifique pour le moment ...</p>
+        <p id="nothing_to_show"><i class="fas fa-book-open"></i> Votre librumnivothèque n'a pas d'envie spécifique pour le moment ...</p>
     <?php } ?>
     </div>
 
     
-    <!-- PAGINATION -->  
+    <!-- PAGINATION --> 
+    <?php if ($wishBookCount > 0) { ?>  
     <div id="block_pagination">
         <nav>
             <ul class="pagination">
@@ -56,6 +57,7 @@ $title = 'Mes souhaits';
             </ul>
         </nav>
     </div>
+    <?php } ?>
 
     
 </div>

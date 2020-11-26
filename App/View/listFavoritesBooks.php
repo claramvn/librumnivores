@@ -11,7 +11,7 @@ $title = 'Mes favoris';
     <div id="header_bookcase">
         <div id="intro_header_bookcase">
             <h1>Ma liste de favoris <span class="red"><i class="fas fa-square"></i></span></h1>
-            <p>Réunisser ici vos librum 5 étoiles</p>
+            <div id="infos_count"><p>Réunisser ici vos librum 5 étoiles</p><span><?php if ($favoritesBookCount > 0) { echo "(" . $favoritesBookCount . ")" ; } ?></span></div>
         </div>
     </div>
 
@@ -26,12 +26,13 @@ $title = 'Mes favoris';
                 </div></a>
             </div>
         <?php } } else { ?>
-        <p><i class="fas fa-book-open"></i> Votre librumnivothèque des favoris attend son premier coup de coeur ...</p>
+        <p id="nothing_to_show"><i class="fas fa-book-open"></i> Votre librumnivothèque des favoris attend son premier coup de coeur ...</p>
         <?php } ?>
     </div>
 
     
-    <!-- PAGINATION -->  
+    <!-- PAGINATION --> 
+    <?php if ($favoritesBookCount > 0) { ?> 
     <div id="block_pagination">
         <nav>
             <ul class="pagination">
@@ -49,6 +50,7 @@ $title = 'Mes favoris';
             </ul>
         </nav>
     </div>
+    <?php } ?>
     
 </div>
 
