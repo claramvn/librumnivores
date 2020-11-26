@@ -96,7 +96,7 @@ class BookController extends AncestorController
         $idUser = $this->user['id_user'];
 
         if (isset($_GET['page']) AND !empty($_GET['page'])) {
-            $currentPage = (int) htmlspecialchars($_GET['page']);
+            $currentPage = (int) $this->cleanParam($_GET['page']);
         }
         else {
             $currentPage = 1;
@@ -133,7 +133,7 @@ class BookController extends AncestorController
         $idUser = $this->user['id_user'];
 
         if (isset($_GET['page']) AND !empty($_GET['page'])) {
-            $currentPage = (int) htmlspecialchars($_GET['page']);
+            $currentPage = (int) $this->cleanParam($_GET['page']);
         }
         else {
             $currentPage = 1;
@@ -166,7 +166,7 @@ class BookController extends AncestorController
         $idUser = $this->user['id_user'];
 
         if (isset($_GET['page']) AND !empty($_GET['page'])) {
-            $currentPage = (int) htmlspecialchars($_GET['page']);
+            $currentPage = (int) $this->cleanParam($_GET['page']);
         }
         else {
             $currentPage = 1;
@@ -199,7 +199,7 @@ class BookController extends AncestorController
         $idUser = $this->user['id_user'];
 
         if (isset($_GET['page']) AND !empty($_GET['page'])) {
-            $currentPage = (int) htmlspecialchars($_GET['page']);
+            $currentPage = (int) $this->cleanParam($_GET['page']);
         }
         else {
             $currentPage = 1;
