@@ -27,11 +27,11 @@ $title = 'Mon profil';
             </div>
             <div class="form-group">
                 <label for="user_name">NOM D'UTILISATEUR</label>
-                <input type="text" class="form-control" id="user_name" name="user_name" value="<?= htmlspecialchars($name) ?>">
+                <input type="text" class="form-control" id="user_name_profil" name="user_name" value="<?= htmlspecialchars($name) ?>">
             </div>
             <div class="form-group">
                 <label for="user_email">E-MAIL</label>
-                <input type="email" class="form-control" id="user_email" name="user_email" value="<?= htmlspecialchars($email) ?>">
+                <input type="email" class="form-control" id="user_email_profil" name="user_email" value="<?= htmlspecialchars($email) ?>">
             </div>
             <input id="button_update_profil" type="submit" class="btn btn-primary" name="button_update_profil" value="ACTUALISER MON PROFIL" />
         </form>
@@ -55,6 +55,8 @@ $title = 'Mon profil';
 <!-- SCRIPT JS -->
 <script src="Public/js/confirmation.js"></script>
 <script>objetConfirmation.deleteAccountUser();</script>
+<script src="Public/js/form.js"></script>
+<script>objetForm.initProfil();</script>
 
 <?php $content = ob_get_clean(); ?>
 <?php require('App/View/template.php');

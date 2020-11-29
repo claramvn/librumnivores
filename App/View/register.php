@@ -17,15 +17,15 @@ $title = 'Inscription';
         <form action="index.php?action=register" method="post">
             <div class="form-group">
                 <label for="user_name">NOM D'UTILISATEUR <span class="asterisk">*</span></label>
-                <input type="text" class="form-control" id="user_name" name="user_name" value="<?= $name ?>" required>
+                <input type="text" class="form-control" id="user_name_register" name="user_name" value="<?= $name ?>" required>
             </div>
             <div class="form-group">
                 <label for="user_email">E-MAIL <span class="asterisk">*</span></label>
-                <input type="email" class="form-control" id="user_email" name="user_email" value="<?= $email ?>" required>
+                <input type="email" class="form-control" id="user_email_register" name="user_email" value="<?= $email ?>" required>
             </div>
             <div class="form-group">
                 <label for="user_pass">MOT DE PASSE <span class="asterisk">*</span></label>
-                <input type="password" class="form-control" id="user_pass" name="user_pass" placeholder="minimum 6 caractères" minlength="6" required>
+                <input type="password" class="form-control" id="user_pass_register" name="user_pass" placeholder="minimum 6 caractères" minlength="6" required>
             </div>
             <div class="form-group">
                 <label for="user_confirm_pass">CONFIRMATION DE MOT DE PASSE <span class="asterisk">*</span></label>
@@ -43,7 +43,8 @@ $title = 'Inscription';
     </div>
 </div>
 
-<script src="Public/js/register.js"></script>
+<script src="Public/js/form.js"></script>
+<script>objetForm.initRegister();</script>
 
 <?php $content = ob_get_clean(); ?>
 <?php require('App/View/template.php');

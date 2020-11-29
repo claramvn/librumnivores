@@ -104,7 +104,7 @@ class BookController extends AncestorController
 
         $bookCount = $this->bookManager->bookCount($idUser);
 
-        $perPage = 6;
+        $perPage = 8;
 
         $pages = ceil($bookCount / $perPage);
 
@@ -141,7 +141,7 @@ class BookController extends AncestorController
 
         $wishBookCount = $this->bookManager->wishBookCount($idUser);
 
-        $perPage = 6;
+        $perPage = 8;
 
         $pages = ceil($wishBookCount / $perPage);
 
@@ -174,7 +174,7 @@ class BookController extends AncestorController
 
         $favoritesBookCount = $this->bookManager->favoritesBookCount($idUser);
 
-        $perPage = 6;
+        $perPage = 8;
 
         $pages = ceil($favoritesBookCount / $perPage);
 
@@ -207,7 +207,7 @@ class BookController extends AncestorController
 
         $lentBookCount = $this->bookManager->lentBookCount($idUser);
 
-        $perPage = 6;
+        $perPage = 8;
 
         $pages = ceil($lentBookCount / $perPage);
 

@@ -125,7 +125,9 @@ $title = 'Ma bibliothèque';
 <!-- SCRIPT JS -->
 <script src="Public/js/confirmation.js"></script>
 <script>objetConfirmation.deleteBook();</script>
+<script src="Public/js/updateInfosBook.js"></script>
 <script src="Public/js/form.js"></script>
+<script>objetForm.initUpdateInfosBook();</script>
 
 <?php $content = ob_get_clean(); ?>
 <?php require('App/View/template.php');

@@ -155,6 +155,8 @@ $title = 'Ma bibliothèque';
 <!-- SCRIPT JS -->
 <script src="Public/js/ajax.js"></script>
 <script src="Public/js/searchBook.js"></script>
+<script src="Public/js/form.js"></script>
+<script>objetForm.initSearchBook();</script>
 
 <?php $content = ob_get_clean(); ?>
 <?php require('App/View/template.php');

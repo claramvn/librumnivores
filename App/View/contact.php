@@ -17,15 +17,15 @@ $title = 'Contact';
         <form action="index.php?action=contact" method="post">
             <div class="form-group">
                 <label for="user_name">NOM D'UTILISATEUR<span class="asterisk">*</span></label>
-                <input type="text" class="form-control" id="user_name" name="user_name" value="<?= $name ?>" required>
+                <input type="text" class="form-control" id="user_name_contact" name="user_name" value="<?= $name ?>" required>
             </div>
             <div class="form-group">
                 <label for="user_email">E-MAIL<span class="asterisk">*</span></label>
-                <input type="email" class="form-control" id="user_email" name="user_email" value="<?= $email ?>" required>
+                <input type="email" class="form-control" id="user_email_contact" name="user_email" value="<?= $email ?>" required>
             </div>
             <div class="form-group">
             <label for="user_message">MESSSAGE<span class="asterisk">*</span></label>
-            <textarea class="form-control" id="user_message" name="user_message" rows="3" minlength="15" required><?= $message ?></textarea>
+            <textarea class="form-control" id="user_message" name="user_message" rows="8" minlength="15" required><?= $message ?></textarea>
             </div>
             <div id="mentions_required"><p><span class="asterisk">*</span> OBLIGATOIRE</div>
             <input id="button_contact" name="button_contact" type="submit" class="btn btn-primary" value="ENVOYER" />
@@ -41,7 +41,8 @@ $title = 'Contact';
     </div>
 </div>
 
-<script src="Public/js/contact.js"></script>
+<script src="Public/js/form.js"></script>
+<script>objetForm.initContact();</script>
 
 <?php $content = ob_get_clean(); ?>
 <?php require('App/View/template.php');
