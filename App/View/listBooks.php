@@ -59,7 +59,7 @@ $title = 'Ma bibliothèque';
             <!-- CARD -->
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <img src="..." id="result_img" class="card-img" alt="Librumnivores - image de couverture">
+                    <img src="" id="result_img" class="card-img" alt="Librumnivores - image de couverture">
                 </div>
                 <div id="card_add" class="col-md-8">
                     <div class="card-body">
@@ -109,7 +109,7 @@ $title = 'Ma bibliothèque';
         <?php if ($bookCount > 0) {
             foreach ($books as $dataBooks) { ?> 
                 <div id="card_shelves" class="card"><a href="index.php?action=getBook&amp;id=<?= htmlspecialchars($dataBooks['id_book']) ?>">
-                    <img src="<?= htmlspecialchars_decode($dataBooks['cover_book']) ?>" class="card-img-top" alt="Librumnivores - Image de couverture">
+                    <img src="<?php if(preg_match("(http)", htmlspecialchars_decode($dataBooks['cover_book']))) { echo htmlspecialchars_decode($dataBooks['cover_book']); } else if(preg_match("((noimg))", htmlspecialchars_decode($dataBooks['cover_book']))) { echo "Public/img/" . htmlspecialchars_decode($dataBooks['cover_book']); }else { echo "Public/img/cover/" . htmlspecialchars_decode($dataBooks['cover_book']);} ?>" class="card-img" alt="Librumnivores - Image de couverture"/>   
                     <div class="card-body">
                         <p class="card-text"><?= htmlspecialchars($dataBooks['title_book']) ?></p>
                     </div></a>

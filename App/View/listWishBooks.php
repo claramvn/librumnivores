@@ -27,7 +27,7 @@ $title = 'Mes souhaits';
     <div id="block_shelves">
     <?php if ($wishBookCount > 0) { foreach ($listWishBooks as $dataWishBooks) { ?> 
         <div id="card_shelves" class="card"><a href="index.php?action=getBook&amp;id=<?= htmlspecialchars($dataWishBooks['id_book']) ?>">
-            <img src="<?= htmlspecialchars_decode($dataWishBooks['cover_book']) ?>" class="card-img-top" alt="Librumnivores - Image de couverture">
+            <img src="<?php if(preg_match("(http)", htmlspecialchars_decode($dataWishBooks['cover_book']))) { echo htmlspecialchars_decode($dataWishBooks['cover_book']); } else if(preg_match("((noimg))", htmlspecialchars_decode($dataWishBooks['cover_book']))) { echo "Public/img/" . htmlspecialchars_decode($dataWishBooks['cover_book']); }else { echo "Public/img/cover/" . htmlspecialchars_decode($dataWishBooks['cover_book']);} ?>" class="card-img-top" alt="Librumnivores - Image de couverture"/>
             <div class="card-body">
                 <p class="card-text"><?= htmlspecialchars($dataWishBooks['title_book']) ?></p>
             </div></a>

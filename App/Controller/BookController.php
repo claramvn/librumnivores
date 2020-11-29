@@ -234,6 +234,12 @@ class BookController extends AncestorController
         $idUser = $this->user['id_user'];
 
         $book = $this->bookManager->getBook($idBook, $idUser);
+
+        $titleBook = $book['title_book'];
+        $authorBook = $book['author_book'];
+        $coverBook = $book['cover_book'];
+        $descriptionBook = $book['description_book'];
+        $isbnBook = $book['isbn_book'];
  
         if ($book === false || !isset($idBook) || $idBook === 0) {
             header('Location: index.php?action=error404');
@@ -319,6 +325,92 @@ class BookController extends AncestorController
         $this->structureMethodAddOrRemoveFlags($newObject, $objectModel, $errorMessage, $successMessage);
     }
 
+    // UPDATE INFOS BOOK
+    public function updateInfosBook()
+    {
+        if (!$this->isLogged()) {
+            header('Location: index.php');
+        }
+
+        $idUser = $this->user['id_user'];
+    
+        if (isset($_POST['button_updates_book'])) {
+            $idBook = $this->cleanParam($_POST['id_book']);;
+
+            $book = $this->bookManager->getBook($idBook, $idUser);
+
+            $titleBook = $this->cleanParam($_POST['title_book']);
+            $authorBook = $this->cleanParam($_POST['author_book']);
+            $descriptionBook = htmlspecialchars_decode($_POST['description_book']);
+                
+            if (empty($titleBook) || empty($authorBook) || empty($descriptionBook)) {
+                $titleBook = $this->cleanParam($book['title_book']);
+                $authorBook = $this->cleanParam($book['author_book']);
+                $descriptionBook = htmlspecialchars_decode($book['description_book']);
+                $_SESSION['errors_updates']['empty_fields_book'] = "Tous les champs sont nécessaires";
+            } else {
+                $titleBook = $this->cleanParam($_POST['title_book']);
+                $authorBook = $this->cleanParam($_POST['author_book']);
+                $descriptionBook = htmlspecialchars_decode($_POST['description_book']);
+            }
+ 
+            if ($_POST['title_book'] !== $book['title_book']) {
+                $titleBook = $this->cleanParam($_POST['title_book']);
+                $_SESSION['success_updates']['title_book'] = "Le titre a bien été modifié";
+            } else {
+                $titleBook = $this->cleanParam($book['title_book']);
+            }
+
+            if ($_POST['author_book'] !== $book['author_book']) {
+                $authorBook = $this->cleanParam($_POST['author_book']);
+                $_SESSION['success_updates']['author_book'] = "L'auteur a bien été modifié";
+            } else {
+                $authorBook = $this->cleanParam($book['author_book']);
+            }
+        
+            if ($_POST['description_book'] !== $book['description_book']) {
+                $descriptionBook = htmlspecialchars_decode($_POST['description_book']);
+                $_SESSION['success_updates']['description_book'] = "La description a bien été modifiée";
+            } else {
+               $descriptionBook = htmlspecialchars_decode($book['description_book']);
+            }
+
+            if (isset($_FILES["cover_book"]) && $_FILES["cover_book"]["error"] == 0) {
+                $file = $_FILES['cover_book'];
+                $extensionUpload = $this->checkExtensionFileUpload($file);
+                $extensionAllowed = $this->checkIfExtensionIsAllowed();
+
+                if (!$this->checkMaxSize($file)) {
+                    $_SESSION['errors_updates']['size_cover_book'] = "Impossible de modifier l'image : le fichier est trop volumineux";
+                }
+
+                if (!in_array($extensionUpload, $extensionAllowed)) {
+                    $_SESSION['errors_updates']['ext_cover_book'] = "Impossible de modifier l'image : le fichier n'est pas au format jpg/jpeg/png/gif";
+                }
+
+                if (!$_SESSION['error_size_cover_update_book'] || !$_SESSION['error_ext_cover_update_book']) {
+                    if(!preg_match("(http)", $book['cover_book'])) {
+                        unlink('Public/img/cover/' . $book['cover_book']);
+                    }
+                    $nameFile = $this->renameFile($file, $extensionUpload);
+                    $uploadCover = $this->uploadCoverFile($file, $nameFile);
+
+                    $coverBook = $nameFile;
+
+                    $_SESSION['success_updates']['cover_book'] = "L'image a bien été modifiée";
+                } else {
+                    $coverBook = $book['cover_book'];
+                }
+
+            } else {
+                $coverBook = $book['cover_book'];
+            }
+
+            $updateInfosBook = $this->bookManager->updateInfosBook($titleBook, $authorBook, $coverBook, $descriptionBook, $idBook, $idUser);
+            header('Location: index.php?action=getBook&id=' . $idBook);
+        }
+    }
+
     // DELETE SELECTED BOOK
     public function deleteBook()
     {
@@ -329,6 +421,12 @@ class BookController extends AncestorController
         $idBook = intval($this->cleanParam($_GET['id']));
 
         $idUser = $this->user['id_user'];
+
+        $book = $this->bookManager->getBook($idBook, $idUser);
+
+        if(!preg_match("(http)", $book['cover_book'])) {
+            unlink('Public/img/cover/' . $book['cover_book']);
+        }
 
         $deleteBook = $this->bookManager->deleteBook($idBook, $idUser);
 

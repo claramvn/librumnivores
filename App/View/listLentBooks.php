@@ -20,7 +20,7 @@ $title = 'Mes prêts';
     <div id="block_shelves">
         <?php if ($lentBookCount > 0) { foreach ($listLentBooks as $dataLentBooks) { ?> 
         <div id="card_shelves" class="card"><a href="index.php?action=getBook&amp;id=<?= htmlspecialchars($dataLentBooks['id_book']) ?>">
-            <img src="<?= htmlspecialchars_decode($dataLentBooks['cover_book']) ?>" class="card-img-top" alt="Librumnivores - Image de couverture">
+            <img src="<?php if(preg_match("(http)", htmlspecialchars_decode($dataLentBooks['cover_book']))) { echo htmlspecialchars_decode($dataLentBooks['cover_book']); } else if(preg_match("((noimg))", htmlspecialchars_decode($dataLentBooks['cover_book']))) { echo "Public/img/" . htmlspecialchars_decode($dataLentBooks['cover_book']); }else { echo "Public/img/cover/" . htmlspecialchars_decode($dataLentBooks['cover_book']);} ?>" class="card-img-top" alt="Librumnivores - Image de couverture"/>
             <div class="card-body">
                 <p class="card-text"><?= htmlspecialchars($dataLentBooks['title_book']) ?></p>
             </div></a>

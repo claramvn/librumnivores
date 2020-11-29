@@ -135,9 +135,9 @@ class AncestorController
         move_uploaded_file($file['tmp_name'], 'Public/img/avatar/' . $nameFile);
     }
 
-    protected function uploadFile($file, $nameFile)
+    protected function uploadCoverFile($file, $nameFile)
     {
-        move_uploaded_file($file['tmp_name'], 'Public/img/' . $nameFile);
+        move_uploaded_file($file['tmp_name'], 'Public/img/cover/' . $nameFile);
     }
     
 }

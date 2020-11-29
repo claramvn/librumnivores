@@ -53,7 +53,7 @@ class SearchBook {
             this.imageInput.value = book.volumeInfo.imageLinks.thumbnail;
         } else {
             this.image.setAttribute("src", "Public/img/noimg.png");
-            this.imageInput.value = "Public/img/noimg.png";
+            this.imageInput.value = "noimg.png";
         }
 
         if (book.volumeInfo.title !== undefined) {

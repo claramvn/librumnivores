@@ -169,6 +169,15 @@ class BookManager extends Manager
         return $listLentBooks;
     } 
 
+    // UPDATE INFOS BOOK
+    public function updateInfosBook($titleBook, $authorBook, $coverBook, $descriptionBook, $idBook, $idUser)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE books SET title_book = ?, author_book = ?, cover_book = ? , description_book = ? WHERE id_book = ? AND id_user = ?');
+        $updateInfosBook = $req->execute(array($titleBook, $authorBook, $coverBook, $descriptionBook, $idBook, $idUser));
+        return $updateInfosBook;
+    }
+
     // DELETE SELECTED BOOK
     public function deleteBook($idBook,$idUser)
     {

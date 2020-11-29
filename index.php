@@ -139,6 +139,11 @@ try {
                 $bookController->addWishToBookcase();
             break;   
             
+            case 'updateInfosBook':
+                $bookController = new BookController();
+                $bookController->updateInfosBook();
+            break;
+            
             case 'deleteBook':
                 $bookController = new BookController();
                 $bookController->deleteBook();

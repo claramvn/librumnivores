@@ -43,17 +43,20 @@ a:hover {
 #button_open_search,
 #button_search,
 #button_add,
-#button_update_profil {
+#button_update_profil,
+#button_updates_book {
     font-weight: bold;
-    background: #DA5B5A;
-    border-color: #DA5B5A;
+    background: #DA5B5A !important;
+    border-color: #DA5B5A !important;
 }
 
-#button_close {
+#button_close,
+#button_close_block_updates {
+    color: rgba(0, 0, 0, 0.6);
     font-size: 25px;
-    color: #DA5B5A;
-    background: #eff5f5;
-    border-color: #eff5f5 !important;
+    background: #f5f5f7;
+    font-weight: normal !important;
+    border-color: #f5f5f7 !important;
 }
 
 #btn_delete_account {
@@ -226,29 +229,37 @@ header {
 
 #infos_count span {
     font-size: 12px;
-    opacity: 0.4;
+    opacity: 0.7;
 }
 
 /* BLOCK SEARCH */
 
-#block_search {
-    top: 180px;
-    left: 15%;
-    display: none;
-    width: 70%;
+#block_search,
+#block_updates {
+    top: 140px;
+    left: 5%;
+    width: 90%;
     padding: 2%;
     margin: auto;
-    height: 500px;
     z-index: 1001;
     position: absolute;
     overflow-y: scroll;
-    background: #eff5f5;
+    background: #f5f5f7;
+}
+
+#block_search {
+    height: 700px;
+    display: none;
+}
+
+#block_updates {
+    height: 950px;
+    display: none;
 }
 
 #search_label {
     font-size: 22px;
-    color: #DA5B5A;
-    font-weight: bold;
+    color: black;
 }
 
 /* BLOCK RESULT */
@@ -277,7 +288,8 @@ header {
 }
 
 #more_sign {
-    color: #99335e;
+    cursor: pointer;
+    color: #DA5B5A;
     font-weight: bold;
 }
 
@@ -411,6 +423,38 @@ header {
     border-bottom: 15px solid black;
 }
 
+#button_display_updates {
+    position: relative;
+    text-align: right;
+}
+
+#btn_update_infos_book {
+    z-index: 5;
+    right: 21%;
+    opacity: 0.6;
+    margin-top: 0.7%;
+    cursor: pointer;
+    font-size: 0.8em;
+    position: absolute;
+    color: black !important;
+}
+
+/* UPDATES BOOK */
+#block_updates form {
+    padding: 2%;
+    color: black !important;
+}
+
+#block_cover img {
+    max-width: 138px;
+    max-height: 208px;
+}
+
+#card_book .success,
+#card_book .errors {
+    color: white !important;
+}
+
 /* FILTERS */
 
 #filters {
@@ -518,7 +562,8 @@ header {
     border-radius: 50%;
 }
 
-#user_avatar {
+#user_avatar,
+#cover_book {
     width: 150px;
     overflow: hidden;
 }
