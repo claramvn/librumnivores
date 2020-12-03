@@ -34,7 +34,6 @@ a:hover {
     color: #DA5B5A;
 }
 
-
 /************************** BUTTONS **************************/
 
 #button_contact,
@@ -44,7 +43,8 @@ a:hover {
 #button_search,
 #button_add,
 #button_update_profil,
-#button_updates_book {
+#button_updates_book,
+#button_search_engine {
     font-weight: bold;
     background: #DA5B5A !important;
     border-color: #DA5B5A !important;
@@ -213,6 +213,7 @@ header {
 
 #header_bookcase {
     display: flex;
+    margin-bottom: 8%;
     align-items: center;
     justify-content: space-between;
 }
@@ -326,7 +327,16 @@ header {
     margin-top: 8%;
 }
 
+#title_list {
+    font-size: 14px;
+    text-align: left;
+    font-weight: bold;
+}
 
+#author_list {
+    font-size: 12px;
+    text-align: left;
+}
 
 /* DISPLAY ONE BOOK */
 
@@ -440,6 +450,7 @@ header {
 }
 
 /* UPDATES BOOK */
+
 #block_updates form {
     padding: 2%;
     color: black !important;
@@ -455,16 +466,67 @@ header {
     color: white !important;
 }
 
+#update_title {
+    color: black !important;
+}
+
 /* FILTERS */
 
 #filters {
     display: flex;
-    margin-top: 4%;
     justify-content: space-around;
 }
 
 .filters {
     letter-spacing: 5px;
+}
+
+.filters p {
+    padding: 2% !important;
+}
+
+#block_search_engine {
+    width: 95%;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#input_search_engine {
+    width: 95%;
+    height: 35px;
+    border: 1px solid;
+    border-radius: 5px;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+#titre_recherche {
+    margin-top: 4%;
+}
+
+#search_no_result {
+    padding-bottom: 8%;
+    text-align: center;
+}
+
+#separation {
+    width: 30%;
+    height: 1px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 1px solid;
+}
+
+.activate {
+    padding-left: 0.8% !important;
+    border-left: 5px solid #d54444 !important;
+}
+
+.desactivate {
+    padding-left: none !important;
+    border-left: none !important;
 }
 
 /************************* PAGINATION *************************/

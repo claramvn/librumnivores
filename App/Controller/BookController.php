@@ -49,11 +49,11 @@ class BookController extends AncestorController
 
                 if($addBook !== false) {
                     $_SESSION['success_add_book'] = "Le livre a bien été ajouté à votre bibliothèque.";
-                    header('Location:index.php?action=listBooks');
+                    header('Location:index.php?action=listBooks&f=all');
                 }
 
             } else {
-                header('Location:index.php?action=listBooks');
+                header('Location:index.php?action=listBooks&f=all');
             }
         }
 
@@ -75,11 +75,11 @@ class BookController extends AncestorController
 
                 if($addWishBook !== false) {
                     $_SESSION['success_add_wish_book'] = "Le livre a bien été ajouté à votre bibliothèque des souhaits.";
-                    header('Location:index.php?action=listWishBooks');
+                    header('Location:index.php?action=listWishBooks&f=all');
                 } 
 
             } else {
-                header('Location:index.php?action=listBooks');
+                header('Location:index.php?action=listBooks&f=all');
             }
 
         }
@@ -104,15 +104,42 @@ class BookController extends AncestorController
 
         $bookCount = $this->bookManager->bookCount($idUser);
 
-        $perPage = 8;
+        $perPage = 12;
 
         $pages = ceil($bookCount / $perPage);
 
         $first = ($currentPage * $perPage) - $perPage;
 
-        $books = $this->bookManager->listBooks($idUser, $first, $perPage);
+        if (isset($_GET['f']) AND !empty($_GET['f'])) {
+            $filter = $this->cleanParam($_GET['f']);
+            if($filter === "title") {
+                $sortKey = "title_book";
+            } else if ($filter === "author") {
+                $sortKey = "author_book";
+            } else if ($filter === "all") {
+                $sortKey = "date_add_book";
+            } else {
+                $sortKey = "date_add_book";
+            }
+        }
+        else {
+            $sortKey = "date_add_book";
+        }
 
-        $listLentBooks = $this->bookManager->listLentBooks($idUser, $first, $perPage);
+        if(isset($_POST['button_search_engine'])) {
+            if(isset($_POST['content_search']) && !empty($_POST['content_search'])) {
+                $content = $this->cleanParam($_POST['content_search']);
+
+                $searchBooks = $this->bookManager->listSearchBooks($idUser, $content);
+                $countedBooksSearch = count($searchBooks);
+            } else {
+                $_SESSION['error_add_book'] = "Veuillez renseigner un élément de recherche";
+            } 
+        } 
+
+        $books = $this->bookManager->listBooks($idUser, $sortKey, $first, $perPage);
+
+        $listLentBooks = $this->bookManager->listLentBooks($idUser, $sortKey, $first, $perPage);
 
         $countedLentBooks = count($listLentBooks);
 
@@ -141,13 +168,29 @@ class BookController extends AncestorController
 
         $wishBookCount = $this->bookManager->wishBookCount($idUser);
 
-        $perPage = 8;
+        $perPage = 12;
 
         $pages = ceil($wishBookCount / $perPage);
 
         $first = ($currentPage * $perPage) - $perPage;
 
-        $listWishBooks = $this->bookManager->listWishBooks($idUser, $first, $perPage);
+        if (isset($_GET['f']) AND !empty($_GET['f'])) {
+            $filter = $this->cleanParam($_GET['f']);
+            if($filter === "title") {
+                $sortKey = "title_book";
+            } else if ($filter === "author") {
+                $sortKey = "author_book";
+            } else if ($filter === "all") {
+                $sortKey = "date_add_book";
+            } else {
+                $sortKey = "date_add_book";
+            }
+        }
+        else {
+            $sortKey = "date_add_book";
+        }
+
+        $listWishBooks = $this->bookManager->listWishBooks($idUser, $sortKey, $first, $perPage);
 
         if ($listWishBooks === false) {
             header('Location: index.php?action=error404');
@@ -174,13 +217,29 @@ class BookController extends AncestorController
 
         $favoritesBookCount = $this->bookManager->favoritesBookCount($idUser);
 
-        $perPage = 8;
+        $perPage = 12;
 
         $pages = ceil($favoritesBookCount / $perPage);
 
         $first = ($currentPage * $perPage) - $perPage;
 
-        $favoritesBooks = $this->bookManager->listFavoritesBooks($idUser, $first, $perPage);
+        if (isset($_GET['f']) AND !empty($_GET['f'])) {
+            $filter = $this->cleanParam($_GET['f']);
+            if($filter === "title") {
+                $sortKey = "title_book";
+            } else if ($filter === "author") {
+                $sortKey = "author_book";
+            } else if ($filter === "all") {
+                $sortKey = "date_add_book";
+            } else {
+                $sortKey = "date_add_book";
+            }
+        }
+        else {
+            $sortKey = "date_add_book";
+        }
+
+        $favoritesBooks = $this->bookManager->listFavoritesBooks($idUser, $sortKey, $first, $perPage);
 
         if ($favoritesBooks === false) {
             header('Location: index.php?action=error404');
@@ -207,13 +266,29 @@ class BookController extends AncestorController
 
         $lentBookCount = $this->bookManager->lentBookCount($idUser);
 
-        $perPage = 8;
+        $perPage = 12;
 
         $pages = ceil($lentBookCount / $perPage);
 
         $first = ($currentPage * $perPage) - $perPage;
 
-        $listLentBooks = $this->bookManager->listLentBooks($idUser, $first, $perPage);
+        if (isset($_GET['f']) AND !empty($_GET['f'])) {
+            $filter = $this->cleanParam($_GET['f']);
+            if($filter === "title") {
+                $sortKey = "title_book";
+            } else if ($filter === "author") {
+                $sortKey = "author_book";
+            } else if ($filter === "all") {
+                $sortKey = "date_add_book";
+            } else {
+                $sortKey = "date_add_book";
+            }
+        }
+        else {
+            $sortKey = "date_add_book";
+        }
+
+        $listLentBooks = $this->bookManager->listLentBooks($idUser, $sortKey, $first, $perPage);
 
         if ($listLentBooks === false) {
             header('Location: index.php?action=error404');
@@ -248,8 +323,8 @@ class BookController extends AncestorController
         require('App/View/getBook.php');
     }
 
-    // SKELETON METHOD FOR ADD/REMOVE WISH/FAVORITES/LENT BOOKS
-    public function structureMethodAddOrRemoveFlags($newObject, $objectModel, $errorMessage, $successMessage) {
+    // STRUCTURE METHOD FOR ADD/REMOVE WISH/FAVORITES/LENT BOOKS
+    public function structureMethodAddOrRemoveFlags($objectModel, $errorMessage, $successMessage) {
 
         if (!$this->isLogged()) {
             header('Location: index.php');
@@ -273,56 +348,51 @@ class BookController extends AncestorController
     // ADD WISH BOOK TO BOOKCASE
     public function addWishToBookcase()
     {
-        $newObject = "$" . "addWishToBookcase";
         $objectModel = "addWishToBookcase";
         $errorMessage = "Oups, désolé mais il est impossible d'ajouter le livre à votre bibliothèque.";
         $successMessage = "Le livre a bien été ajouté à votre bibliothèque.";
 
-        $this->structureMethodAddOrRemoveFlags($newObject, $objectModel, $errorMessage, $successMessage);
+        $this->structureMethodAddOrRemoveFlags($objectModel, $errorMessage, $successMessage);
     }
 
     // ADD BOOK TO FAVORITES BOOKS BOOKCASE
     public function addToFavoritesBooks()
     {
-        $newObject = "$" . "addToFavoritesBooks";
         $objectModel = "addToFavoritesBooks";
         $errorMessage = "Oups, désolé mais il est impossible d'ajouter le livre à vos favoris.";
         $successMessage = "Le livre a bien été ajouté à vos favoris.";
 
-        $this->structureMethodAddOrRemoveFlags($newObject, $objectModel, $errorMessage, $successMessage);
+        $this->structureMethodAddOrRemoveFlags($objectModel, $errorMessage, $successMessage);
     }
 
     // TAKE BACK FROM FAVORITES BOOKS BOOKCASE
     public function takeBackFromFavoritesBooks()
     {
-        $newObject = "$" . "takeBackFromFavoritesBooks";
         $objectModel = "takeBackFromFavoritesBooks";
         $errorMessage = "Oups, désolé mais il est impossible de retirer le livre de vos favoris.";
         $successMessage = "Le livre a bien été retiré de vos favoris.";
 
-        $this->structureMethodAddOrRemoveFlags($newObject, $objectModel, $errorMessage, $successMessage);
+        $this->structureMethodAddOrRemoveFlags($objectModel, $errorMessage, $successMessage);
     }
 
     // ADD TO LENT BOOK BOOKCASE
     public function lendABook()
     {
-        $newObject = "$" . "lendABook";
         $objectModel = "lendABook";
         $errorMessage = "Oups, désolé mais il est impossible d'ajouter le livre aux prêts.";
         $successMessage = "Le livre a bien été ajouté à vos prêts.";
 
-        $this->structureMethodAddOrRemoveFlags($newObject, $objectModel, $errorMessage, $successMessage);
+        $this->structureMethodAddOrRemoveFlags($objectModel, $errorMessage, $successMessage);
     }
 
     // TAKE BACK FROM LENT BOOK BOOKCASE
     public function takeBackFromLentBooks()
     {
-        $newObject = "$" . "takeBackFromLentBooks";
         $objectModel = "takeBackFromLentBooks";
         $errorMessage = "Oups, désolé mais il est impossible de retirer le livre de vos prêts.";
         $successMessage = "Le livre a bien été retiré de vos prêts.";
 
-        $this->structureMethodAddOrRemoveFlags($newObject, $objectModel, $errorMessage, $successMessage);
+        $this->structureMethodAddOrRemoveFlags($objectModel, $errorMessage, $successMessage);
     }
 
     // UPDATE INFOS BOOK
@@ -435,7 +505,7 @@ class BookController extends AncestorController
             header('Location: index.php?action=getBook&id=' . $idBook . '#flags');
         } else {
             $_SESSION['success_delete_book'] = "Le livre a bien été supprimé de votre bibliothèque.";
-            header('Location: index.php?action=listBooks');
+            header('Location: index.php?action=listBooks&f=all');
         }
     }
 

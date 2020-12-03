@@ -34,14 +34,25 @@ class BookManager extends Manager
     }
 
     // LIST BOOKS OF BOOKCASE
-    public function listBooks($idUser, $first, $perPage)
+    public function listBooks($idUser, $sortKey, $first, $perPage)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare("SELECT id_book, title_book, cover_book, wish_book, lend_book, date_add_book, id_user FROM books WHERE wish_book = 0 AND lend_book = 0 AND id_user = ? ORDER BY date_add_book LIMIT $first, $perPage");
+        $req = $db->prepare("SELECT id_book, title_book, author_book, cover_book, wish_book, lend_book, date_add_book, id_user FROM books WHERE wish_book = 0 AND lend_book = 0 AND id_user = ? ORDER BY $sortKey LIMIT $first, $perPage");
         $req->execute(array($idUser));
         $books = $req->fetchAll();
         $req->closeCursor();
         return $books;
+    }
+
+    // LIST SEARCH BOOKS
+    public function listSearchBooks($idUser, $content)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare("SELECT id_book, title_book, author_book, cover_book, wish_book, lend_book, date_add_book, id_user FROM books WHERE title_book LIKE '%$content%' OR author_book LIKE '%$content%' AND id_user = ? LIMIT 24");
+        $req->execute(array($idUser));
+        $searchBooks = $req->fetchAll();
+        $req->closeCursor();
+        return $searchBooks;
     }
 
     // ADD WISH BOOK 
@@ -63,10 +74,10 @@ class BookManager extends Manager
     }
 
     // LIST WISH BOOKS
-    public function listWishBooks($idUser, $first, $perPage)
+    public function listWishBooks($idUser, $sortKey, $first, $perPage)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare("SELECT id_book, title_book, cover_book, wish_book, id_user FROM books WHERE wish_book = 1 AND id_user = ? ORDER BY date_add_book LIMIT $first, $perPage");
+        $req = $db->prepare("SELECT id_book, title_book, author_book, cover_book, wish_book, id_user FROM books WHERE wish_book = 1 AND id_user = ? ORDER BY $sortKey LIMIT $first, $perPage");
         $req->execute(array($idUser));
         $listWishBooks = $req->fetchAll();
         $req->closeCursor();
@@ -103,10 +114,10 @@ class BookManager extends Manager
     }
 
     // LIST FAVORITES BOOKS ON FAVORITES BOOKCASE
-    public function listFavoritesBooks($idUser, $first, $perPage)
+    public function listFavoritesBooks($idUser, $sortKey, $first, $perPage)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare("SELECT id_book, title_book, cover_book, favorite_book, id_user FROM books WHERE favorite_book = 1 AND id_user = ? ORDER BY date_add_book LIMIT $first, $perPage");
+        $req = $db->prepare("SELECT id_book, title_book, author_book, cover_book, favorite_book, id_user FROM books WHERE favorite_book = 1 AND id_user = ? ORDER BY $sortKey LIMIT $first, $perPage");
         $req->execute(array($idUser));
         $favoritesBooks = $req->fetchAll();
         $req->closeCursor();
@@ -159,10 +170,10 @@ class BookManager extends Manager
     }
 
     // LIST LENT BOOKS ON LENT BOOKCASE
-    public function listLentBooks($idUser, $first, $perPage)
+    public function listLentBooks($idUser, $sortKey, $first, $perPage)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare("SELECT id_book, title_book, cover_book, lend_book, id_user FROM books WHERE lend_book = 1 AND id_user = ? ORDER BY date_add_book LIMIT $first, $perPage");
+        $req = $db->prepare("SELECT id_book, title_book, author_book, cover_book, lend_book, id_user FROM books WHERE lend_book = 1 AND id_user = ? ORDER BY $sortKey LIMIT $first, $perPage");
         $req->execute(array($idUser));
         $listLentBooks = $req->fetchAll();
         $req->closeCursor();
