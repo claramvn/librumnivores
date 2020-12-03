@@ -95,31 +95,31 @@ class UserController extends AncestorController
         $errors=[];
 
         if(isset($_POST['button_connection'])) {
-        $name=$this->cleanParam($_POST['user_name']);
-        $eltHash=$this->cleanParam($_POST['user_pass']);
-        $password=$this->getPowerfulHash($eltHash);
+            $name=$this->cleanParam($_POST['user_name']);
+            $eltHash=$this->cleanParam($_POST['user_pass']);
+            $password=$this->getPowerfulHash($eltHash);
 
-        if(empty($name) || empty($password)) {
-            $errors['empty_fields_connection']= '<span class="cross"><i class="fas fa-times"></i></span> Oups, vous ne pouvez pas laisser de champs vides.';
-        }
+            if(empty($name) || empty($password)) {
+                $errors['empty_fields_connection']= '<span class="cross"><i class="fas fa-times"></i></span> Oups, vous ne pouvez pas laisser de champs vides.';
+            }
 
-        $user = $this->userManager->getUserByName($name);
+            $user = $this->userManager->getUserByName($name);
 
-        if ($user['name_user'] !== $name) {
-            $errors['error_connection'] = '<span class="cross"><i class="fas fa-times"></i></span> Erreur Authentification : Identifiants incorrects.';
-        }
+            if ($user['name_user'] !== $name) {
+                $errors['error_connection'] = '<span class="cross"><i class="fas fa-times"></i></span> Erreur Authentification : Identifiants incorrects.';
+            }
 
-        if ($user['pass_user'] !== $password) {
-            $errors['error_connection'] = '<span class="cross"><i class="fas fa-times"></i></span> Erreur Authentification : Identifiants incorrects.';
-        }
+            if ($user['pass_user'] !== $password) {
+                $errors['error_connection'] = '<span class="cross"><i class="fas fa-times"></i></span> Erreur Authentification : Identifiants incorrects.';
+           }
 
-        if(!$errors) {
-            $eltHash = $user['id_user'];
-            $_SESSION['id_user'] = $eltHash;
-            $_SESSION['id_hash_user'] = $this->getPowerfulHash($eltHash);
+            if(!$errors) {
+                $eltHash = $user['id_user'];
+                $_SESSION['id_user'] = $eltHash;
+                $_SESSION['id_hash_user'] = $this->getPowerfulHash($eltHash);
 
-            header('Location: index.php?action=listBooks');
-        }
+                header('Location: index.php?action=listBooks&f=all');
+            }
 
         }
 
