@@ -9,12 +9,12 @@ $title = 'Ma bibliothèque';
 
     <!-- BACK TO BOOKCASE -->
     <div class="links">
-        <a href="index.php?action=listBooks">Bibliothèque</a> <span class="red"><i class=" fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span> <?= htmlspecialchars($book['title_book']) ?>
+        <a href="index.php?action=listBooks&amp;f=all">Bibliothèque</a> <span class="red"><i class=" fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span> <?= htmlspecialchars($book['title_book']) ?>
     </div>
 
     <!-- UPDATES --> 
     <div id="button_display_updates">
-        <a id="btn_update_infos_book"><i class="fas fa-pen"></i></a>
+        <a id="btn_update_infos_book" title="MODIFIER"><i class="fas fa-pen"></i></a>
     </div>
 
     <!-- BLOCK UPDATES --> 
@@ -23,7 +23,7 @@ $title = 'Ma bibliothèque';
 
         <!-- FORM -->
         <div class="display_form">
-            <h1><?= htmlspecialchars($book['title_book']) ?> <span class="red"><i class="fas fa-square"></i></span></h1>
+            <h1 id="update_title"><?= htmlspecialchars($book['title_book']) ?> <span class="red"><i class="fas fa-square"></i></span></h1>
             <form action="index.php?action=updateInfosBook" method="post" enctype="multipart/form-data">
                 <input type="hidden" class="form-control" id="id_book" name="id_book" value="<?= htmlspecialchars($book['id_book']) ?>" >
                 <div class="form-group">

@@ -34,15 +34,15 @@
         <div>
             <nav>
                 <ul class="nav">
-                    <?php
+                    <?php   
                     if ($this->isLogged()) { 
                     ?>
                         <li class="nav-item"><a class="nav-link" >Bienvenue à toi <?php echo ' ' . $this->user['name_user'] . ' ';?> <span class="logged"><i class="fas fa-square"></i></span></a></li>
                         <li class="nav-item"><a class="nav-link" href="index.php">ACCUEIL</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php?action=listBooks">BIBLIOTHÈQUE</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php?action=listWishBooks">SOUHAITS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php?action=listFavoritesBooks">FAVORIS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php?action=listLentBooks">PRÊTS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?action=listBooks&amp;f=all">BIBLIOTHÈQUE</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?action=listWishBooks&amp;f=all">SOUHAITS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?action=listFavoritesBooks&amp;f=all">FAVORIS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?action=listLentBooks&amp;f=all">PRÊTS</a></li>
                         <li class="nav-item"><a class="nav-link" href="index.php?action=logout">DÉCONNECTION</a></li>
                         <li class="nav-item"><a class="nav-link" id="btn_toggle_theme"><i class="fas fa-adjust"></i></a></li>
                         <?php 

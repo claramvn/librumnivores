@@ -15,6 +15,15 @@ $title = 'Mes souhaits';
         </div>
     </div>
 
+    <!-- FILTERS WISH BOOKS -->
+    <?php if ($wishBookCount > 0) {?>
+    <div id="filters">
+        <p>Trier par</p>
+        <p id="btn_filter_all" class="<?php if(isset($_GET['f']) && $_GET['f'] === 'all') { echo 'filters activate'; } else {echo 'filters desactivate'; } ?>"><a href="index.php?action=listWishBooks&amp;f=all">Date d'ajout</a></p>
+        <p id="btn_filter_title" class="<?php if(isset($_GET['f']) && $_GET['f'] === 'title') { echo 'filters activate'; } else {echo 'filters desactivate'; } ?>"><a href="index.php?action=listWishBooks&amp;f=title">Titre</a></p>
+        <p id="btn_filter_author" class="<?php if(isset($_GET['f']) && $_GET['f'] === 'author') { echo 'filters activate'; } else {echo 'filters desactivate'; } ?>"><a href="index.php?action=listWishBooks&amp;f=author">Auteur</a></p>
+    </div>
+    <?php } ?>
 
     <!-- SUCCESS ADD WISH BOOK -->
     <?php if (isset($_SESSION['success_add_wish_book'])) {
@@ -29,7 +38,8 @@ $title = 'Mes souhaits';
         <div id="card_shelves" class="card"><a href="index.php?action=getBook&amp;id=<?= htmlspecialchars($dataWishBooks['id_book']) ?>">
             <img src="<?php if(preg_match("(http)", htmlspecialchars_decode($dataWishBooks['cover_book']))) { echo htmlspecialchars_decode($dataWishBooks['cover_book']); } else if(preg_match("((noimg))", htmlspecialchars_decode($dataWishBooks['cover_book']))) { echo "Public/img/" . htmlspecialchars_decode($dataWishBooks['cover_book']); }else { echo "Public/img/cover/" . htmlspecialchars_decode($dataWishBooks['cover_book']);} ?>" class="card-img-top" alt="Librumnivores - Image de couverture"/>
             <div class="card-body">
-                <p class="card-text"><?= htmlspecialchars($dataWishBooks['title_book']) ?></p>
+                <p id="title_list" class="card-text"><?= htmlspecialchars($dataWishBooks['title_book']) ?></p>
+                <p id="author_list" class="card-text"><?= htmlspecialchars($dataWishBooks['author_book']) ?></p>
             </div></a>
         </div>
     <?php } } else { ?>
@@ -44,15 +54,15 @@ $title = 'Mes souhaits';
         <nav>
             <ul class="pagination">
                 <li class="page-item <?php if($currentPage == 1){ echo "disabled"; }else { echo ""; } ?>">
-                    <a href="index.php?action=listWishBooks&page=<?= $currentPage - 1 ?>#block_pagination" class="page-link"><i class="fas fa-chevron-left"></i></a>
+                    <a href="index.php?action=listWishBooks&page=<?= $currentPage - 1 ?><?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>#block_pagination" class="page-link"><i class="fas fa-chevron-left"></i></a>
                 </li>
                 <?php for($i = 1; $i <= $pages; $i++){ ?>
                 <li class="page-item <?php if($currentPage == $i){ echo "active";}else { echo "";} ?>">
-                    <a href="index.php?action=listWishBooks&page=<?= $i ?>#block_pagination" class="page-link"><?= $i ?></a>
+                    <a href="index.php?action=listWishBooks&page=<?= $i ?><?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>#block_pagination" class="page-link"><?= $i ?></a>
                     </li>
                 <?php } ?>
                 <li class="page-item <?php if($currentPage == $pages){ echo "disabled"; } else { echo ""; } ?>">
-                    <a href="index.php?action=listWishBooks&page=<?= $currentPage + 1 ?>#block_pagination" class="page-link"><i class="fas fa-chevron-right"></i></a>
+                    <a href="index.php?action=listWishBooks&page=<?= $currentPage + 1 ?><?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>#block_pagination" class="page-link"><i class="fas fa-chevron-right"></i></a>
                 </li>
             </ul>
         </nav>
