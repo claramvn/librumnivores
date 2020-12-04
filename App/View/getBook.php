@@ -9,7 +9,7 @@ $title = 'Ma bibliothèque';
 
     <!-- BACK TO BOOKCASE -->
     <div class="links">
-        <a href="index.php?action=listBooks&amp;f=all">Bibliothèque</a> <span class="red"><i class=" fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span> <?= htmlspecialchars($book['title_book']) ?>
+        <a href="index.php?action=listBooks<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>">Bibliothèque</a> <span class="red"><i class=" fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span> <?= htmlspecialchars($book['title_book']) ?>
     </div>
 
     <!-- UPDATES --> 
@@ -24,7 +24,7 @@ $title = 'Ma bibliothèque';
         <!-- FORM -->
         <div class="display_form">
             <h1 id="update_title"><?= htmlspecialchars($book['title_book']) ?> <span class="red"><i class="fas fa-square"></i></span></h1>
-            <form action="index.php?action=updateInfosBook" method="post" enctype="multipart/form-data">
+            <form action="index.php?action=updateInfosBook<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>" method="post" enctype="multipart/form-data">
                 <input type="hidden" class="form-control" id="id_book" name="id_book" value="<?= htmlspecialchars($book['id_book']) ?>" >
                 <div class="form-group">
                     <div id="block_cover"> 
@@ -80,17 +80,17 @@ $title = 'Ma bibliothèque';
         <div id="flags">
             <?php if($book['wish_book'] === "0") {
                       if($book['favorite_book'] === "0") {?>
-                    <div class="fav"><a href="index.php?action=addToFavoritesBooks&amp;id=<?= htmlspecialchars($book['id_book']) ?>" title="AJOUTER AUX FAVORIS"><i class="fas fa-heart"></i></a></div>
+                    <div class="fav"><a href="index.php?action=addToFavoritesBooks&amp;id=<?php echo htmlspecialchars($book['id_book']); if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>" title="AJOUTER AUX FAVORIS"><i class="fas fa-heart"></i></a></div>
             <?php } else { ?>
-                    <div class="fav"><a href="index.php?action=takeBackFromFavoritesBooks&amp;id=<?= htmlspecialchars($book['id_book']) ?>" title="SUPPRIMER DES FAVORIS"><i class="fas fa-heart-broken"></i></a></div>
+                    <div class="fav"><a href="index.php?action=takeBackFromFavoritesBooks&amp;id=<?php echo htmlspecialchars($book['id_book']); if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>" title="SUPPRIMER DES FAVORIS"><i class="fas fa-heart-broken"></i></a></div>
             <?php } if($book['lend_book'] === "0") { ?>
-                    <div class="lend"><a href="index.php?action=lendABook&amp;id=<?= htmlspecialchars($book['id_book']) ?>" title="PRÊTER LE LIVRE"><i class="fas fa-user-plus"></i></a></div>
+                    <div class="lend"><a href="index.php?action=lendABook&amp;id=<?php echo htmlspecialchars($book['id_book']); if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>" title="PRÊTER LE LIVRE"><i class="fas fa-user-plus"></i></a></div>
             <?php } else { ?>
-                    <div class="lend"><a href="index.php?action=takeBackFromLentBooks&amp;id=<?= htmlspecialchars($book['id_book']) ?>" title="RÉCUPÉRER LE LIVRE"><i class="fas fa-users-cog"></i></a></div>
+                    <div class="lend"><a href="index.php?action=takeBackFromLentBooks&amp;id=<?php echo htmlspecialchars($book['id_book']); if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>" title="RÉCUPÉRER LE LIVRE"><i class="fas fa-users-cog"></i></a></div>
             <?php } } else { ?>
-                <div class="add_wish"><a href="index.php?action=addWishToBookcase&amp;id=<?= htmlspecialchars($book['id_book']) ?>" title="AJOUTER À MA BIBLIOTHÈQUE"><i class="fas fa-book-open"></i></a></div>
+                <div class="add_wish"><a href="index.php?action=addWishToBookcase&amp;id=<?php echo htmlspecialchars($book['id_book']); if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>" title="AJOUTER À MA BIBLIOTHÈQUE"><i class="fas fa-book-open"></i></a></div>
             <?php } ?>
-                <div class="delete_book"><a id="btn_delete_book" href="index.php?action=deleteBook&amp;id=<?= htmlspecialchars($book['id_book']) ?>" title="SUPPRIMER LE LIVRE"><i class="fas fa-trash-alt"></i></a></div>
+                <div class="delete_book"><a id="btn_delete_book" href="index.php?action=deleteBook&amp;id=<?php echo htmlspecialchars($book['id_book']); if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>" title="SUPPRIMER LE LIVRE"><i class="fas fa-trash-alt"></i></a></div>
         </div>
 
         

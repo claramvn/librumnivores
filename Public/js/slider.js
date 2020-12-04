@@ -31,4 +31,4 @@ class Slider {
 };
 
 let objetSlider = new Slider(["Public/img/cover.png", "Public/img/cover2.png", "Public/img/cover3.png"]);
-objetSlider.init(5000);
+objetSlider.init(2000);

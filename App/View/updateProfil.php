@@ -17,7 +17,7 @@ $title = 'Mon profil';
 
     <!-- FORM -->
     <div class="display_form">
-        <form action="index.php?action=updateProfil" method="post" enctype="multipart/form-data">
+        <form action="index.php?action=updateProfil<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);} else { echo '&amp;f=all'; } ?>" method="post" enctype="multipart/form-data">
             <div id="block_avatar"> 
                 <img src="Public/img/avatar/<?= $avatar ?>" alt="Librumnivores - avatar utilisateur"/>
             </div>

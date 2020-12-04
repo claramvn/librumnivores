@@ -14,7 +14,7 @@ $title = 'Contact';
     <!-- FORM -->
     <div class="display_form">
         <h1>Contact <span class="red"><i class="fas fa-square"></i></span></h1>
-        <form action="index.php?action=contact" method="post">
+        <form action="index.php?action=contact<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>" method="post">
             <div class="form-group">
                 <label for="user_name">NOM D'UTILISATEUR<span class="asterisk">*</span></label>
                 <input type="text" class="form-control" id="user_name_contact" name="user_name" value="<?= $name ?>" required>

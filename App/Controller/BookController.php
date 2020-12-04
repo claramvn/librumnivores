@@ -20,6 +20,8 @@ class BookController extends AncestorController
 
         $idUser = $this->user['id_user'];
 
+        $filter = $this->cleanParam($_GET['f']);
+
         $title = $this->cleanParam($_POST['title_book']);
         $author = $this->cleanParam($_POST['author_book']);
         $isbn = $this->cleanParam($_POST['isbn_book']);
@@ -34,7 +36,7 @@ class BookController extends AncestorController
         if (isset($_POST['button_add'])) {
 
             if(empty($title) || empty($author) || empty($isbn) || empty($publisher) || empty($publishedDate) || empty($pageCount) || empty($shortDescription) || empty($description) || empty($cover)) {
-                $_SESSION['error_add_book'] = "Le livre séléctionné fait déjà parti de votre bibliothèque.";
+                $_SESSION['error_add_book'] = "Oups, un problème est survenu. Impossible d'ajouter le livre à votre bibliothèque.";
             }
 
             
@@ -49,11 +51,11 @@ class BookController extends AncestorController
 
                 if($addBook !== false) {
                     $_SESSION['success_add_book'] = "Le livre a bien été ajouté à votre bibliothèque.";
-                    header('Location:index.php?action=listBooks&f=all');
+                    header('Location:index.php?action=listBooks&f=' . $filter);
                 }
 
             } else {
-                header('Location:index.php?action=listBooks&f=all');
+                header('Location:index.php?action=listBooks&f=' . $filter);
             }
         }
 
@@ -75,11 +77,11 @@ class BookController extends AncestorController
 
                 if($addWishBook !== false) {
                     $_SESSION['success_add_wish_book'] = "Le livre a bien été ajouté à votre bibliothèque des souhaits.";
-                    header('Location:index.php?action=listWishBooks&f=all');
+                    header('Location:index.php?action=listWishBooks&f=' . $filter);
                 } 
 
             } else {
-                header('Location:index.php?action=listBooks&f=all');
+                header('Location:index.php?action=listBooks&f=' . $filter);
             }
 
         }
@@ -199,7 +201,7 @@ class BookController extends AncestorController
         require('App/View/listWishBooks.php');
     }
 
-    // LIST FAVORITES BOOKS BOOKCASE
+    // LIST FAVORITES BOOKCASE
     public function listFavoritesBooks()
     {
         if (!$this->isLogged()) {
@@ -334,14 +336,16 @@ class BookController extends AncestorController
         
         $idUser = $this->user['id_user'];
         
+        $filter = $this->cleanParam($_GET['f']);
+
         $newObject = $this->bookManager->$objectModel($idBook,$idUser);
         
         if ($newObject === false || !isset($idBook) || $idBook === 0 ) {
             $_SESSION['error_flags'] = $errorMessage;
-            header('Location: index.php?action=getBook&id=' . $idBook . '#flags');
+            header('Location: index.php?action=getBook&id=' . $idBook . '&f=' . $filter . '#flags');
         } else {
             $_SESSION['success_flags'] = $successMessage;
-            header('Location: index.php?action=getBook&id=' . $idBook . '#flags');
+            header('Location: index.php?action=getBook&id=' . $idBook . '&f=' . $filter . '#flags');
         }
     }
 
@@ -403,6 +407,8 @@ class BookController extends AncestorController
         }
 
         $idUser = $this->user['id_user'];
+
+        $filter = $this->cleanParam($_GET['f']);
     
         if (isset($_POST['button_updates_book'])) {
             $idBook = $this->cleanParam($_POST['id_book']);;
@@ -477,7 +483,7 @@ class BookController extends AncestorController
             }
 
             $updateInfosBook = $this->bookManager->updateInfosBook($titleBook, $authorBook, $coverBook, $descriptionBook, $idBook, $idUser);
-            header('Location: index.php?action=getBook&id=' . $idBook);
+            header('Location: index.php?action=getBook&id=' . $idBook . '&f=' . $filter);
         }
     }
 
@@ -492,6 +498,8 @@ class BookController extends AncestorController
 
         $idUser = $this->user['id_user'];
 
+        $filter = $this->cleanParam($_GET['f']);
+
         $book = $this->bookManager->getBook($idBook, $idUser);
 
         if(!preg_match("(http)", $book['cover_book'])) {
@@ -502,10 +510,10 @@ class BookController extends AncestorController
 
         if ($deleteBook === false || !isset($idBook) || $idBook === 0) {
             $_SESSION['error_flags'] = "Oups, désolé mais il est impossible de supprimmer le livre séléctionné.";
-            header('Location: index.php?action=getBook&id=' . $idBook . '#flags');
+            header('Location: index.php?action=getBook&id=' . $idBook . '&f=' . $filter . '#flags');
         } else {
             $_SESSION['success_delete_book'] = "Le livre a bien été supprimé de votre bibliothèque.";
-            header('Location: index.php?action=listBooks&f=all');
+            header('Location: index.php?action=listBooks&f=' . $filter);
         }
     }
 

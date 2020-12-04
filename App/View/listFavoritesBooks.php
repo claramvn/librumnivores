@@ -28,7 +28,7 @@ $title = 'Mes favoris';
     <!-- LISTING BOOKS --> 
     <div id="block_shelves">
         <?php if ($favoritesBookCount > 0) { foreach ($favoritesBooks as $dataFavoritesBooks) { ?>
-            <div id="card_shelves" class="card"><a href="index.php?action=getBook&amp;id=<?= htmlspecialchars($dataFavoritesBooks['id_book']) ?>">
+            <div id="card_shelves" class="card"><a href="index.php?action=getBook&amp;id=<?php echo htmlspecialchars($dataFavoritesBooks['id_book']); if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>">
                 <img src="<?php if(preg_match("(http)", htmlspecialchars_decode($dataFavoritesBooks['cover_book']))) { echo htmlspecialchars_decode($dataFavoritesBooks['cover_book']); } else if(preg_match("((noimg))", htmlspecialchars_decode($dataFavoritesBooks['cover_book']))) { echo "Public/img/" . htmlspecialchars_decode($dataFavoritesBooks['cover_book']); }else { echo "Public/img/cover/" . htmlspecialchars_decode($dataFavoritesBooks['cover_book']);} ?>" class="card-img-top" alt="Librumnivores - Image de couverture"/>
                 <div class="card-body">
                     <p id="title_list" class="card-text"><?= htmlspecialchars($dataFavoritesBooks['title_book']) ?></p>

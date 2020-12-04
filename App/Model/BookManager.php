@@ -48,7 +48,7 @@ class BookManager extends Manager
     public function listSearchBooks($idUser, $content)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare("SELECT id_book, title_book, author_book, cover_book, wish_book, lend_book, date_add_book, id_user FROM books WHERE title_book LIKE '%$content%' OR author_book LIKE '%$content%' AND id_user = ? LIMIT 24");
+        $req = $db->prepare("SELECT id_book, title_book, author_book, cover_book, wish_book, lend_book, date_add_book, id_user FROM books WHERE (title_book LIKE '%$content%' OR author_book LIKE '%$content%') AND id_user = ? LIMIT 24");
         $req->execute(array($idUser));
         $searchBooks = $req->fetchAll();
         $req->closeCursor();
@@ -104,6 +104,24 @@ class BookManager extends Manager
         return  $book;
     } 
 
+    // ADD BOOK TO FAVORITES BOOKCASE
+    public function addToFavoritesBooks($idBook,$idUser)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE books SET favorite_book = 1 WHERE id_book = ? AND id_user = ?');
+        $addToFavoritesBooks = $req->execute(array($idBook,$idUser));
+        return $addToFavoritesBooks;
+    }
+
+    // TAKE BACK BOOK FROM FAVORITES BOOKCASE
+    public function takeBackFromFavoritesBooks($idBook,$idUser)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE books SET favorite_book = 0 WHERE id_book = ? AND id_user = ?');
+        $takeBackFavoritesBooks = $req->execute(array($idBook,$idUser));
+        return $takeBackFavoritesBooks;
+    }
+
     // COUNT FAVORITES BOOKS
     public function favoritesBookCount($idUser) {
         $db = $this->dbConnect();
@@ -123,24 +141,6 @@ class BookManager extends Manager
         $req->closeCursor();
         return $favoritesBooks;
     } 
-
-    // ADD BOOK TO FAVORITES BOOKCASE
-    public function addToFavoritesBooks($idBook,$idUser)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('UPDATE books SET favorite_book = 1 WHERE id_book = ? AND id_user = ?');
-        $addToFavoritesBooks = $req->execute(array($idBook,$idUser));
-        return $addToFavoritesBooks;
-    }
-
-    // TAKE BACK BOOK FROM FAVORITES BOOKCASE
-    public function takeBackFromFavoritesBooks($idBook,$idUser)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('UPDATE books SET favorite_book = 0 WHERE id_book = ? AND id_user = ?');
-        $takeBackFavoritesBooks = $req->execute(array($idBook,$idUser));
-        return $takeBackFavoritesBooks;
-    }
 
     // ADD BOOK TO LEND BOOK BOOKCASE
     public function lendABook($idBook,$idUser)

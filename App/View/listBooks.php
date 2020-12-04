@@ -68,7 +68,7 @@ $title = 'Ma bibliothèque';
                         <p id="result_description" class="card-text"></p>
 
                         <!-- FORM FOR DB -->
-                        <form action="index.php?action=addBook" method="post">
+                        <form action="index.php?action=addBook<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>" method="post">
                             <input type="hidden" name="title_book" id="title_book" />
                             <input type="hidden" name="author_book" id="author_book" />
                             <input type="hidden" name="image_book" id="image_book" />
@@ -109,17 +109,22 @@ $title = 'Ma bibliothèque';
     <!-- SEARCH ENGINE -->
     <div id="block_search_engine"> 
         <form action="index.php?action=listBooks<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>" method="post"> 
-            <input id="input_search_engine" type="text" name="content_search" placeholder="Rechercher" />
+            <input id="input_search_engine" type="search" name="content_search" placeholder="Rechercher" />
             <button id="button_search_engine" type="submit" name="button_search_engine" class="btn btn-primary"><i class="fas fa-search"></i></button> 
         </form>
     </div>
 
     <!-- LISTING SEARCH BOOKS --> 
     <?php if (isset($_POST['content_search'])) { if($countedBooksSearch > 0) { ?>
-    <h4 id="titre_recherche"><span class="red"><i class="fas fa-square"></i></span> Et voici le(s) fruit(s) de votre recherche :</h4>
+
+    <!-- BACK TO BOOKCASE -->
+    <div id="back_recherche" class="links">
+        <a href="index.php?action=listBooks<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>">Bibliothèque</a> <span class="red"><i class=" fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span> Et voici le(s) fruit(s) de votre recherche :
+    </div>
+
     <div id="block_shelves">
         <?php foreach ($searchBooks as $dataBooksSearch) { ?> 
-                <div id="card_shelves" class="card"><a href="index.php?action=getBook&amp;id=<?= htmlspecialchars($dataBooksSearch['id_book']) ?>">
+                <div id="card_shelves" class="card"><a href="index.php?action=getBook&amp;id=<?php echo htmlspecialchars($dataBooksSearch['id_book']); if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>">
                     <img src="<?php if(preg_match("(http)", htmlspecialchars_decode($dataBooksSearch['cover_book']))) { echo htmlspecialchars_decode($dataBooksSearch['cover_book']); } else if(preg_match("((noimg))", htmlspecialchars_decode($dataBooksSearch['cover_book']))) { echo "Public/img/" . htmlspecialchars_decode($dataBooksSearch['cover_book']); }else { echo "Public/img/cover/" . htmlspecialchars_decode($dataBooksSearch['cover_book']);} ?>" class="card-img" alt="Librumnivores - Image de couverture"/>   
                     <div class="card-body">
                         <p id="title_list" class="card-text"><?= htmlspecialchars($dataBooksSearch['title_book']) ?></p>
@@ -138,7 +143,7 @@ $title = 'Ma bibliothèque';
     <div id="block_shelves">
         <?php if ($bookCount > 0) {
             foreach ($books as $dataBooks) { ?> 
-                <div id="card_shelves" class="card"><a href="index.php?action=getBook&amp;id=<?= htmlspecialchars($dataBooks['id_book']) ?>">
+                <div id="card_shelves" class="card"><a href="index.php?action=getBook&amp;id=<?php echo htmlspecialchars($dataBooks['id_book']); if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>">
                     <img src="<?php if(preg_match("(http)", htmlspecialchars_decode($dataBooks['cover_book']))) { echo htmlspecialchars_decode($dataBooks['cover_book']); } else if(preg_match("((noimg))", htmlspecialchars_decode($dataBooks['cover_book']))) { echo "Public/img/" . htmlspecialchars_decode($dataBooks['cover_book']); }else { echo "Public/img/cover/" . htmlspecialchars_decode($dataBooks['cover_book']);} ?>" class="card-img" alt="Librumnivores - Image de couverture"/>   
                     <div class="card-body">
                         <p id="title_list" class="card-text"><?= htmlspecialchars($dataBooks['title_book']) ?></p>
@@ -176,7 +181,7 @@ $title = 'Ma bibliothèque';
     <?php if ($countedLentBooks > 0) { ?>
     <div id="header_bookcase">
         <div>
-            <h1>Vous avez <span class="number_book"><?= $countedLentBooks ?></span> prêts en cours. <span id="link_lent_books"><a href="index.php?action=listLentBooks&amp;f=all">ah oui ? allons voir d'un peu plus prêts, euh près ...</a></span></h1>
+            <h1>Vous avez <span class="number_book"><?= $countedLentBooks ?></span> prêts en cours. <span id="link_lent_books"><a href="index.php?action=listLentBooks<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>">ah oui ? allons voir d'un peu plus prêts, euh près ...</a></span></h1>
         </div>
     </div>
     <?php } ?>

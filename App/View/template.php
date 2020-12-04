@@ -28,7 +28,7 @@
         <div id="intro_header">
             <h1 id="librum"><a href="index.php">LIBRUMNIVORES</a></h1>
             <?php if($this->isLogged()) { ?>
-            <a id="avatar_header" href="index.php?action=updateProfil" title="PROFIL"><img src="Public/img/avatar/<?php echo $this->user['avatar_user']?>" alt="Librumnivores - avatar utilisateur" /></a>
+            <a id="avatar_header" href="index.php?action=updateProfil<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);} else { echo '&amp;f=all'; } ?>" title="PROFIL"><img src="Public/img/avatar/<?php echo $this->user['avatar_user']?>" alt="Librumnivores - avatar utilisateur" /></a>
             <?php } ?>
         </div>  
         <div>
@@ -38,11 +38,11 @@
                     if ($this->isLogged()) { 
                     ?>
                         <li class="nav-item"><a class="nav-link" >Bienvenue à toi <?php echo ' ' . $this->user['name_user'] . ' ';?> <span class="logged"><i class="fas fa-square"></i></span></a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php">ACCUEIL</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php?action=listBooks&amp;f=all">BIBLIOTHÈQUE</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php?action=listWishBooks&amp;f=all">SOUHAITS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php?action=listFavoritesBooks&amp;f=all">FAVORIS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php?action=listLentBooks&amp;f=all">PRÊTS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php<?php if(isset($_GET['f'])){ echo '?f=' . $this->cleanParam($_GET['f']);} else { echo '?f=all'; } ?>">ACCUEIL</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?action=listBooks<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);} else { echo '&amp;f=all'; } ?>">BIBLIOTHÈQUE</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?action=listWishBooks<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);} else { echo '&amp;f=all'; } ?>">SOUHAITS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?action=listFavoritesBooks<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);} else { echo '&amp;f=all'; } ?>">FAVORIS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?action=listLentBooks<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);} else { echo '&amp;f=all'; } ?>">PRÊTS</a></li>
                         <li class="nav-item"><a class="nav-link" href="index.php?action=logout">DÉCONNECTION</a></li>
                         <li class="nav-item"><a class="nav-link" id="btn_toggle_theme"><i class="fas fa-adjust"></i></a></li>
                         <?php 
@@ -65,16 +65,16 @@
 
     <!-- CONTACT --> 
     <div id="contact">
-        <p><a href="index.php?action=contact"><span class="red"><i class="fas fa-square"></i></span> CONTACTER LIBRUMNIVORES <span class="red"><i class="fas fa-square"></i></span></a></p>
+        <p><a href="index.php?action=contact<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);} else { echo '&amp;f=all'; } ?>"><span class="red"><i class="fas fa-square"></i></span> CONTACTER LIBRUMNIVORES <span class="red"><i class="fas fa-square"></i></span></a></p>
         <p>Une question ? Un disfonctionnement ? Faites-nous en part !</p>
     </div>
     <!-- ARROW GO TOP -->
     <p id="arrow"><a href="#"><i class="fas fa-arrow-up"></i></a></p>
     <!-- FOOTER -->
     <footer>
-        <p><a href="index.php?action=mentions">MENTIONS LÉGALES</a></p>
+        <p><a href="index.php?action=mentions<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>">MENTIONS LÉGALES</a></p>
         <p> © COPYRIGHT 2020 - CLARA MORVAN ® - Tous droits réservés.</p>
-        <p><a href="index.php?action=privacyPolicy">POLITIQUE DE CONFIDENTIALITÉ</a></p>
+        <p><a href="index.php?action=privacyPolicy<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>">POLITIQUE DE CONFIDENTIALITÉ</a></p>
     </footer>
     <!-- SCRIPT -->
     <script src="Public/js/theme.js"></script>
