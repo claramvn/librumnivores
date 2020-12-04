@@ -8,7 +8,7 @@ $title = 'Contact';
 <div class="content">
 
     <!-- BACK HOME -->
-    <div class="links"><a href="index.php">Accueil</a> <span class="red"><i class=" fas
+    <div class="links"><a href="index.php<?php if(isset($_GET['f'])){ echo '?f=' . $this->cleanParam($_GET['f']);}?>">Accueil</a> <span class="red"><i class=" fas
                     fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span> Contact</div>
 
     <!-- FORM -->
