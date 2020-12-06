@@ -11,7 +11,7 @@ $title = 'Mes souhaits';
     <div id="header_bookcase">
         <div id="intro_header_bookcase">
             <h1>Ma liste de souhaits <span class="red"><i class="fas fa-square"></i></span></h1>
-            <div id="infos_count"><p>Mijoter ici vos futurs régals</p><span><?php if ($wishBookCount > 0) { echo "(" . $wishBookCount . ")" ; } ?></span></div>
+            <div id="infos_count"><p>Mijotez ici vos futurs régals</p><span><?php if ($wishBookCount > 0) { echo "(" . $wishBookCount . ")" ; } ?></span></div>
         </div>
     </div>
 

@@ -86,22 +86,6 @@ class Form {
         };
     };
 
-    localStorageContact() {
-        this.buttonContact.addEventListener("click", () => {
-
-            localStorage.setItem('nom_contact', this.nomContact.value.trim());
-            localStorage.setItem('email_contact', this.emailContact.value.trim());
-
-        });
-
-        if (localStorage.getItem('nom_contact') !== "") {
-            this.nomContact.value = localStorage.getItem('nom_contact');
-        };
-        if (localStorage.getItem('email_contact') !== "") {
-            this.emailContact.value = localStorage.getItem('email_contact');
-        }
-    };
-
     initRegister() {
         this.emptyFields(this.nomRegister);
         this.emptyFields(this.emailRegister);
@@ -128,7 +112,6 @@ class Form {
         this.emptyFields(this.messageContact);
         this.checkEmail(this.emailContact);
         this.checkMessageLength(this.messageContact);
-        this.localStorageContact();
     }
 
     initProfil() {

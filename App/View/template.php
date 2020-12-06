@@ -5,16 +5,35 @@
     <meta charset="utf-8" />
     <title>- Librumnivores - <?= $title ?>
     </title>
-    <!-- favicon -->
+    <!-- META VIEWPORT -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- META TAGS -->
+    <meta name="description"
+        content="Besoin de répertorier vos livres ? Munissez-vous de l'application Librumnivores et créez votre bibliothèque en ligne ! Cataloguez vos livres préférés, listez vos souhaits les plus chers et faites-vous des pense-bêtes pour vous souvenir de vos prêts à durée illimitée !" />
+    <meta name="keywords" lang="fr"
+        content=" Librumnivores, bibliothèque, livres, titre, auteur, édition, isbn" />
+    <!-- OPEN GRAPH DATA -->
+    <meta property="og:title" content="Librumnivores - Votre bibliothèque en ligne" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="Public/img/favicon.png" />
+    <meta property="og:description"
+        content="Besoin de répertorier vos livres ? Munissez-vous de l'application Librumnivores et créez votre bibliothèque en ligne ! Cataloguez vos livres préférés, listez vos souhaits les plus chers et faites-vous des pense-bêtes pour vous souvenir de vos prêts à durée illimitée !" />
+    <!-- TWITTER CARD DATA -->
+    <meta name="twitter:card" content="Librumnivores - Votre bibliothèque en ligne" />
+    <meta name="twitter:title" content="Librumnivores" />
+    <meta name="twitter:description"
+        content="Besoin de répertorier vos livres ? Munissez-vous de l'application Librumnivores et créez votre bibliothèque en ligne ! Cataloguez vos livres préférés, listez vos souhaits les plus chers et faites-vous des pense-bêtes pour vous souvenir de vos prêts à durée illimitée !" />
+    <meta name="twitter:image" content="Public/img/favicon.png" />
+    <!-- FAVICON -->
     <link rel="icon" type="image/png" href="Public/img/favicon.png" />
-    <!-- FontAwesome -->
+    <!-- FONTAWESOME -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <!-- Grenze Gotisch google font --> 
+    <!-- GOOGLE FONT : Grenze Gotisch  --> 
     <link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@200&display=swap" rel="stylesheet">
-    <!-- Montserrat google font --> 
+    <!-- GOOGLE FONT : Montserrat --> 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
-    <!-- Boostrap CSS -->
+    <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <!-- CSS -->
     <link href="Public/css/style.css" rel="stylesheet" />
@@ -65,17 +84,23 @@
 
     <!-- CONTACT --> 
     <div id="contact">
-        <p><a href="index.php?action=contact<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);} else { echo '&amp;f=all'; } ?>"><span class="red"><i class="fas fa-square"></i></span> CONTACTER LIBRUMNIVORES <span class="red"><i class="fas fa-square"></i></span></a></p>
+        <p><a href="index.php?action=contact<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>"><span class="red"><i class="fas fa-square"></i></span> CONTACTER LIBRUMNIVORES <span class="red"><i class="fas fa-square"></i></span></a></p>
         <p>Une question ? Un disfonctionnement ? Faites-nous en part !</p>
     </div>
+
+
     <!-- ARROW GO TOP -->
     <p id="arrow"><a href="#"><i class="fas fa-arrow-up"></i></a></p>
+
+
     <!-- FOOTER -->
     <footer>
         <p><a href="index.php?action=mentions<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>">MENTIONS LÉGALES</a></p>
         <p> © COPYRIGHT 2020 - CLARA MORVAN ® - Tous droits réservés.</p>
         <p><a href="index.php?action=privacyPolicy<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>">POLITIQUE DE CONFIDENTIALITÉ</a></p>
     </footer>
+
+    
     <!-- SCRIPT -->
     <script src="Public/js/theme.js"></script>
 

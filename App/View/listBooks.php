@@ -11,7 +11,7 @@ $title = 'Ma bibliothèque';
     <div id="header_bookcase">
         <div id="intro_header_bookcase">
             <h1>Ma bibliothèque <span class="red"><i class="fas fa-square"></i></span></h1>
-            <div id="infos_count"><p>Organiser ici l'ensemble de vos librum</p><span><?php if ($bookCount > 0) { echo "(" . $bookCount . ")" ; } ?></span></div>
+            <div id="infos_count"><p>Organisez ici l'ensemble de vos librum</p><span><?php if ($bookCount > 0) { echo "(" . $bookCount . ")" ; } ?></span></div>
         </div>
         <div> 
             <button id="button_open_search" type="button" class="btn btn-primary">Ajouter un livre</button>
@@ -38,12 +38,12 @@ $title = 'Ma bibliothèque';
             unset($_SESSION['success_delete_book']); ?>
 
 
-    <!-- BLOCK SEARCH TO ADD BOOK -->
+    <!-- BLOCK SEARCH ISBN TO ADD BOOK -->
     <div id="block_search">
 
         <button type="button" id="button_close"><i class="fas fa-times"></i></button>
 
-        <!-- SEARCH -->
+        <!-- SEARCH ISBN -->
         <div class="display_form">
             <form>
                 <div class="form-group">
@@ -54,9 +54,8 @@ $title = 'Ma bibliothèque';
             </form>
         </div>
 
-        <!-- RESPONSE -->
+        <!-- RESPONSE  SEARCH ISBN -->
         <div id="block_result" class="card mb-3">
-            <!-- CARD -->
             <div class="row no-gutters">
                 <div class="col-md-4">
                     <img src="" id="result_img" class="card-img" alt="Librumnivores - image de couverture">
@@ -67,7 +66,7 @@ $title = 'Ma bibliothèque';
                         <h6 id="result_author" class="card-title"></h6>
                         <p id="result_description" class="card-text"></p>
 
-                        <!-- FORM FOR DB -->
+                        <!-- FORM INFOS BOOK FOR  ADD TO DB -->
                         <form action="index.php?action=addBook<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>" method="post">
                             <input type="hidden" name="title_book" id="title_book" />
                             <input type="hidden" name="author_book" id="author_book" />
@@ -114,7 +113,7 @@ $title = 'Ma bibliothèque';
         </form>
     </div>
 
-    <!-- LISTING SEARCH BOOKS --> 
+    <!-- LISTING SEARCH ENGINE BOOKS --> 
     <?php if (isset($_POST['content_search'])) { if($countedBooksSearch > 0) { ?>
 
     <!-- BACK TO BOOKCASE -->
@@ -122,6 +121,7 @@ $title = 'Ma bibliothèque';
         <a href="index.php?action=listBooks<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>">Bibliothèque</a> <span class="red"><i class=" fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span> Et voici le(s) fruit(s) de votre recherche :
     </div>
 
+    <!-- BLOCK DISPLAY SEARCH ENGINE BOOKS -->
     <div id="block_shelves">
         <?php foreach ($searchBooks as $dataBooksSearch) { ?> 
                 <div id="card_shelves" class="card"><a href="index.php?action=getBook&amp;id=<?php echo htmlspecialchars($dataBooksSearch['id_book']); if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>">
@@ -139,7 +139,7 @@ $title = 'Ma bibliothèque';
     <?php } } else { ?>
    
 
-    <!-- LISTING BOOKS --> 
+    <!-- LISTING BOOKS / BOOKCASE --> 
     <div id="block_shelves">
         <?php if ($bookCount > 0) {
             foreach ($books as $dataBooks) { ?> 

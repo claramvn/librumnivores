@@ -11,7 +11,7 @@ $title = 'Mes prêts';
     <div id="header_bookcase">
         <div id="intro_header_bookcase">
             <h1>Ma liste de prêts <span class="red"><i class="fas fa-square"></i></span></h1>
-            <div id="infos_count"><p>Garder un oeil du côté de vos prêts</p><span><?php if ($lentBookCount > 0) { echo "(" . $lentBookCount . ")" ; } ?></span></div>
+            <div id="infos_count"><p>Gardez un oeil du côté de vos prêts</p><span><?php if ($lentBookCount > 0) { echo "(" . $lentBookCount . ")" ; } ?></span></div>
         </div>
     </div>
 

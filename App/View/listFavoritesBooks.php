@@ -11,7 +11,7 @@ $title = 'Mes favoris';
     <div id="header_bookcase">
         <div id="intro_header_bookcase">
             <h1>Ma liste de favoris <span class="red"><i class="fas fa-square"></i></span></h1>
-            <div id="infos_count"><p>Réunisser ici vos librum 5 étoiles</p><span><?php if ($favoritesBookCount > 0) { echo "(" . $favoritesBookCount . ")" ; } ?></span></div>
+            <div id="infos_count"><p>Réunissez ici vos librum 5 étoiles</p><span><?php if ($favoritesBookCount > 0) { echo "(" . $favoritesBookCount . ")" ; } ?></span></div>
         </div>
     </div>
 
@@ -25,7 +25,7 @@ $title = 'Mes favoris';
     </div>
     <?php } ?>
 
-    <!-- LISTING BOOKS --> 
+    <!-- LISTING FAVORITES BOOKS / BOOKCASE --> 
     <div id="block_shelves">
         <?php if ($favoritesBookCount > 0) { foreach ($favoritesBooks as $dataFavoritesBooks) { ?>
             <div id="card_shelves" class="card"><a href="index.php?action=getBook&amp;id=<?php echo htmlspecialchars($dataFavoritesBooks['id_book']); if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>">

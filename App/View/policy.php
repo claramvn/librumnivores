@@ -8,10 +8,9 @@ $title = 'Politique de confidentialité';
 <div class="content">
 
     <!-- BACK HOME -->
-    <div class="links"><a href="index.php<?php if(isset($_GET['f'])){ echo '?f=' . $this->cleanParam($_GET['f']);}?>">Accueil</a> <span class="red"><i class=" fas
-                    fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span> Politique de confidentialité
-    </div>
+    <div class="links"><a href="index.php<?php if(isset($_GET['f'])){ echo '?f=' . $this->cleanParam($_GET['f']);}?>">Accueil</a> <span class="red"><i class=" fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span> Politique de confidentialité</div>
 
+    <!-- BLOCK PRIVACY POLICY -->
     <div id="privacyPolicy">
         <h1>[ <strong>POLITIQUE DE CONFIDENTIALITE</strong> ]</h1><br /><br />
 
@@ -97,7 +96,7 @@ $title = 'Politique de confidentialité';
             sécurisé. Elles
             sont
             hébergées auprès du <strong>prestataire</strong> désigné dans les <a
-                href="index.php/action=mentionsLegals">Mentions Légales</a> du Site
+                href="index.php/action=mentions<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>">Mentions Légales</a> du Site
             <strong>Le propriétaire</strong> prend toutes les mesures physiques, techniques et organisationnelles
             appropriées pour assurer la
             sécurité

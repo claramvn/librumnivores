@@ -41,7 +41,7 @@ class UserController extends AncestorController
             $avatar = "thumbnail.jpg";
 
             if(empty($name) || empty($email) || empty($password) || empty($confPassword)) {
-                $errors['empty_fields_registration']= '<span class="cross"><i class="fas fa-times"></i></span> Oups, vous ne pouvez pas laisser de champs vides.';
+                $errors['empty_fields_registration']= '<span class="cross"><i class="fas fa-times"></i></span> Oups, il est impossible de laisser un champ vide.';
             }
 
             $user = $this->userManager->getUserByName($name);
@@ -100,7 +100,7 @@ class UserController extends AncestorController
             $password=$this->getPowerfulHash($eltHash);
 
             if(empty($name) || empty($password)) {
-                $errors['empty_fields_connection']= '<span class="cross"><i class="fas fa-times"></i></span> Oups, vous ne pouvez pas laisser de champs vides.';
+                $errors['empty_fields_connection']= '<span class="cross"><i class="fas fa-times"></i></span> Oups, il est impossible de laisser un champ vide.';
             }
 
             $user = $this->userManager->getUserByName($name);
@@ -147,20 +147,27 @@ class UserController extends AncestorController
     // CONTACT
     public function contact()
     {
-        $name= "";
-        $email= "";
+
+        if ($this->isLogged()) {
+            $name = $this->user['name_user'];
+            $email = $this->user['email_user'];
+        } else {
+            $name = "";
+            $email = "";
+        }
         $message= "";
 
         $errors = [];
         $success = "";
 
         if(isset($_POST['button_contact'])) {
+
             $name=$this->cleanParam($_POST['user_name']);
             $email=$this->cleanParam($_POST['user_email']);
             $message=$this->cleanParam($_POST['user_message']);
 
             if(empty($name) || empty($email) || empty($message)) {
-                $errors['empty_fields_contact'] = '<span class="cross"><i class="fas fa-times"></i></span> Oups, vous ne pouvez pas laisser de champs vides.';
+                $errors['empty_fields_contact'] = '<span class="cross"><i class="fas fa-times"></i></span> Oups, il est impossible de laisser un champ vide.';
             } 
 
             if(!$this->cleanEmail($email)) {
@@ -168,7 +175,7 @@ class UserController extends AncestorController
             }
 
             if (!$this->checkMessageLength($message)) {
-                $errors['message_length_contact'] = '<span class="cross"><i class="fas fa-times"></i></span> Oups, votre message est trop court.';
+                $errors['message_length_contact'] = '<span class="cross"><i class="fas fa-times"></i></span> Oups, votre message est un peu trop court.';
             }
 
             if(!$errors) {
@@ -212,7 +219,7 @@ class UserController extends AncestorController
         
 
             if (empty($name) && empty($email)) {
-                $errors['empty_fields_profil'] = "<span class='cross'><i class='fas fa-times'></i></span> Tous les champs sont nécessaires";
+                $errors['empty_fields_profil'] = "<span class='cross'><i class='fas fa-times'></i></span> Il est impossible de laisser un champ vide.";
             }
 
 
@@ -241,7 +248,7 @@ class UserController extends AncestorController
                 }
         
                 if (!$this->cleanEmail($email)) {
-                    $errors['email_user_profil'] = "<span class='cross'><i class='fas fa-times'></i></span> Le format de l'adresse e-mail n'est pas valide ";
+                    $errors['email_user_profil'] = "<span class='cross'><i class='fas fa-times'></i></span> Le format de l'adresse e-mail n'est pas valide.";
                 }
         
                 if (!$errors) {

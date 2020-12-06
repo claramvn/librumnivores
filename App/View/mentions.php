@@ -8,9 +8,9 @@ $title = 'Mentions légales';
 <div class="content">
 
     <!-- BACK HOME -->
-    <div class="links"><a href="index.php<?php if(isset($_GET['f'])){ echo '?f=' . $this->cleanParam($_GET['f']);}?>">Accueil</a> <span class="red"><i class=" fas
-                    fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span> Mentions légales</div>
+    <div class="links"><a href="index.php<?php if(isset($_GET['f'])){ echo '?f=' . $this->cleanParam($_GET['f']);}?>">Accueil</a> <span class="red"><i class=" fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span> Mentions légales</div>
 
+    <!-- BLOCK LEGALS MENTIONS -->
     <div id="mentions">
         <h1>[ <strong>MENTIONS LEGALES</strong> ]</h1>
         <br /><br />
@@ -27,8 +27,7 @@ $title = 'Mentions légales';
 
         <p>Statut : <strong>Particulier</strong><br />
             Propriétaire, webmaster, créatrice, responsable publication : <strong>Clara Morvan</strong><br />
-            Contact : <strong><a
-                    href="mailto:claramvnbrg@gmail.com?subject=Contact a partir des mentions lÃ©gales via le site claramvn.fr">claramvnbrg@gmail.com</a></strong><br />
+            Contact : <strong>claramvnbrg@gmail.com</strong><br />
             <br />
 
             L’hebergeur du site est : <strong>1&1 7 Place de la Gare 57200 Sarreguemines</strong><br />
@@ -129,8 +128,7 @@ $title = 'Mentions légales';
             l’informatique, aux fichiers et aux libertés, tout utilisateur dispose d’un droit d’accès, de rectification,
             de
             suppression et d’opposition aux données personnelles le concernant. Pour l’exercer, adressez votre demande à
-            claramvn.fr par email : <strong><a
-                    href="mailto:claramvnbrg@gmail.com?subject=Contact ï¿½ partir des mentions lï¿½gales via le site claramvn.fr">claramvnbrg@gmail.com</a></strong>
+            claramvn.fr par email : <strong>claramvnbrg@gmail.com</strong>
             ou par écrit dûment signée, accompagnée d’une copie du titre d’identité avec signature du titulaire de la
             pièce,
             en
@@ -145,7 +143,7 @@ $title = 'Mentions légales';
         <p>Les bases de données sont protégées par les dispositions de la loi du 1er juillet 1998
             transposant la directive 96/9 du 11 mars 1996 relative à la protection juridique des bases de données.</p>
 
-        <strong>CRÉDITS :</strong> Les mentions légales ont étés générées par<strong> <a
+        <strong>CRÉDITS :</strong> Les mentions légales ont étés générées par<strong><a
                 href="https://www.generer-mentions-legales.com/generateur-mentions-legales.html">générateur
                 de mentions legales</a></strong>
     </div>
