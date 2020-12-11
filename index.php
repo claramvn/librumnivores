@@ -60,6 +60,16 @@ try {
                 $userController->logout();
             break;
 
+            case 'resetPassRequest':
+                $userController = new UserController();
+                $userController->resetPassRequest();
+            break;
+
+            case 'resetPass':
+                $userController = new UserController();
+                $userController->resetPass();
+            break;
+
             case 'contact':
                 $userController = new UserController();
                 $userController->contact();

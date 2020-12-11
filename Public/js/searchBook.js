@@ -82,7 +82,7 @@ class SearchBook {
             this.shortDescriptionInput.value = "[pas de description]";
         }
 
-        this.isbnInput.value = book.volumeInfo.industryIdentifiers[0].identifier;
+        this.isbnInput.value = book.volumeInfo.industryIdentifiers[1].identifier;
 
         if (book.volumeInfo.publisher !== undefined) {
             this.publisherInput.value = book.volumeInfo.publisher;

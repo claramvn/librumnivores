@@ -14,6 +14,14 @@ class Form {
         this.nomConnection = document.getElementById("user_name_connection");
         this.passwordConnection = document.getElementById("user_pass_connection");
 
+        // RESET PASS REQUEST
+        this.emailResetPassRequest = document.getElementById("user_email_reset_pass_request");
+        this.regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+        // RESET PASS
+        this.passwordResetPass = document.getElementById("user_reset_pass");
+        this.confirmPasswordResetPass = document.getElementById("user_confirm_reset_pass");
+
         // CONTACT
         this.buttonContact = document.getElementById("button_contact");
         this.nomContact = document.getElementById("user_name_contact");
@@ -104,6 +112,19 @@ class Form {
         this.emptyFields(this.passwordConnection);
         this.checkPasswordLength(this.passwordConnection);
         this.localStorageConnection();
+    }
+
+    initResetPassRequest() {
+        this.emptyFields(this.emailResetPassRequest);
+        this.checkEmail(this.emailResetPassRequest);
+    }
+
+    initResetPass() {
+        this.emptyFields(this.passwordResetPass);
+        this.emptyFields(this.confirmPasswordResetPass);
+
+        this.checkPasswordLength(this.passwordResetPass);
+        this.checkPasswordLength(this.confirmPasswordResetPass);
     }
 
     initContact() {
