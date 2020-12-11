@@ -38,9 +38,37 @@ class UserManager extends Manager
     public function addUser($name, $email, $password, $avatar)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO users (name_user, email_user, pass_user, avatar_user, rank_user) VALUES (?, ?, ?, ?, 0)');
+        $req = $db->prepare('INSERT INTO users (name_user, email_user, pass_user, avatar_user, token_user, rank_user) VALUES (?, ?, ?, ?, " ", 0)');
         $addUser = $req->execute(array($name, $email, $password, $avatar));
         return $addUser;
+    }
+
+    // SET TOKEN
+    public function setTokenUser($token, $email)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE users SET token_user = ? WHERE email_user = ?');
+        $setTokenUser = $req->execute(array($token, $email));
+        return $setTokenUser;
+    }
+
+    // GET USER BY TOKEN
+    public function getUserByToken($token)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT token_user FROM users WHERE token_user = ?');
+        $req->execute(array($token));
+        $user = $req->fetch();
+        return $user;
+    }
+
+    // RESET PASSWORD
+    public function resetPass($password, $token)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE users SET pass_user = ? WHERE token_user = ?');
+        $resetPass = $req->execute(array($password, $token));
+        return $resetPass;
     }
 
     // UPDATE PROFIL USER
