@@ -36,7 +36,7 @@ $title = 'Mes favoris';
                 </div></a>
             </div>
         <?php } } else { ?>
-        <p id="nothing_to_show"><i class="fas fa-book-open"></i> Votre librumnivothèque des favoris attend son premier coup de coeur ...</p>
+        <p id="nothing_to_show"><i class="fas fa-book-open"></i> Votre librumnivothèque attend son premier coup de coeur ...</p>
         <?php } ?>
     </div>
 

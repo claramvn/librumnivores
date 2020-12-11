@@ -35,15 +35,15 @@ $title = 'Ma bibliothèque';
                     <input type="file" class="form-control-file" id="cover_book" name="cover_book" accept="image/png, image/jpeg, image/jpg"/>
                 </div>
                 <div class="form-group">
-                    <label for="title_book">TITRE</label>
+                    <label>TITRE</label>
                     <input type="text" class="form-control" id="title_book" name="title_book" value="<?= htmlspecialchars($titleBook) ?>" >
                 </div>
                 <div class="form-group">
-                    <label for="author_book">AUTEUR</label>
+                    <label>AUTEUR</label>
                     <input type="text" class="form-control" id="author_book" name="author_book" value="<?= htmlspecialchars($authorBook) ?>">
                 </div>
                 <div class="form-group">
-                    <label for="description_book">DESCRIPTION</label>
+                    <label>DESCRIPTION</label>
                     <textarea class="form-control" id="description_book" name="description_book" rows="8"><?= htmlspecialchars_decode($descriptionBook) ?></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" id="button_updates_book" name="button_updates_book">MODIFIER</button>

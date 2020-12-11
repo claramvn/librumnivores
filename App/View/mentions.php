@@ -20,7 +20,7 @@ $title = 'Mentions légales';
             2004 pour la Confiance dans l'économie numérique, dite L.C.E.N., nous portons à la connaissance des
             utilisateurs
             et
-            visiteurs du site : <a href="http://claramvn.fr">claramvn.fr</a> les informations suivantes :
+            visiteurs du site : <a href="https://librumnivores.claramvn.fr">librumnivores.claramvn.fr</a> les informations suivantes :
         </p>
 
         <p><strong>1. Informations légales :</strong></p>
@@ -35,7 +35,7 @@ $title = 'Mentions légales';
         <p><strong>2. Présentation et principe :</strong></p>
 
         <p>Est désigné ci-après : <strong>Utilisateur</strong>, tout internaute se connectant et
-            utilisant le site : <a href="http://claramvn.fr">claramvn.fr</a>.<br />
+            utilisant le site : <a href="https://librumnivores.claramvn.fr">librumnivores.claramvn.fr</a>.<br />
             Il est ici précisé que ces derniers doivent rester courtois et faire preuve de
             bonne
             foi tant envers les autres utilisateurs qu'envers le webmaster du site. <br />

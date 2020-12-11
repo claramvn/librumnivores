@@ -30,6 +30,11 @@ $title = 'Ma bibliothèque';
             }
             unset($_SESSION['success_add_book']); ?>
 
+    <!-- ERRORS -->
+    <?php if (!empty($errors)) { ?>
+        <div class="errors"><?= implode('<br/>', $errors) ?></div><br /><br />
+    <?php } ?>
+
 
     <!-- SUCCESS DELETE SELECTED BOOK -->
     <?php if (isset($_SESSION['success_delete_book'])) {
@@ -47,7 +52,7 @@ $title = 'Ma bibliothèque';
         <div class="display_form">
             <form>
                 <div class="form-group">
-                    <label id="search_label" for ="input_search">Un livre à ajouter ?</label>
+                    <label id="search_label">Un livre à ajouter ?</label>
                     <input type="search" id ="input_search" class="form-control" placeholder="Identification par ISBN" >
                 </div>
                 <button id="button_search" type="button" class="btn btn-primary">Rechercher</button>
@@ -79,7 +84,7 @@ $title = 'Ma bibliothèque';
                             <input type="hidden" name="description_book" id="description_book" />
                             <input type="submit" name="button_add" id="button_add" class="btn btn-primary" value="Ajouter à ma bibliothèque" />
                             <div id="line"></div>
-                            <label for="button_add_wish"><span id="more_sign"><i class="fas fa-plus"></i></span></label>
+                            <label><span id="more_sign"><i class="fas fa-plus"></i></span></label>
                             <input type="submit" name="button_add_wish" id="button_add_wish" value="Ajouter à ma liste de souhaits"/>
                         </form>
 
@@ -106,12 +111,14 @@ $title = 'Ma bibliothèque';
     <?php } ?>
 
     <!-- SEARCH ENGINE -->
+    <?php if ($bookCount > 0) { ?>
     <div id="block_search_engine"> 
         <form action="index.php?action=listBooks<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>" method="post"> 
-            <input id="input_search_engine" type="search" name="content_search" placeholder="Rechercher" />
+            <input id="input_search_engine" type="search" name="content_search" placeholder="Recherche par isbn, auteur, titre" />
             <button id="button_search_engine" type="submit" name="button_search_engine" class="btn btn-primary"><i class="fas fa-search"></i></button> 
         </form>
     </div>
+    <?php } ?>
 
     <!-- LISTING SEARCH ENGINE BOOKS --> 
     <?php if (isset($_POST['content_search'])) { if($countedBooksSearch > 0) { ?>
@@ -125,6 +132,8 @@ $title = 'Ma bibliothèque';
     <div id="block_shelves">
         <?php foreach ($searchBooks as $dataBooksSearch) { ?> 
                 <div id="card_shelves" class="card"><a href="index.php?action=getBook&amp;id=<?php echo htmlspecialchars($dataBooksSearch['id_book']); if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>">
+                <?php if($dataBooksSearch['wish_book'] === "1") { echo "<p class='bookshelf_search_details'><span class='red_dash'><i class='fas fa-square'></i></span> Bibliothèque des souhaits <span class='red_dash'><i class='fas fa-square'></i></span></p>";} 
+                        else if ($dataBooksSearch['lend_book'] === "1") { echo "<p class='bookshelf_search_details'><span class='red_dash'><i class='fas fa-square'></i></span> Bibliothèque des prêts <span class='red_dash'><i class='fas fa-square'></i></span></p>";} ?>
                     <img src="<?php if(preg_match("(http)", htmlspecialchars_decode($dataBooksSearch['cover_book']))) { echo htmlspecialchars_decode($dataBooksSearch['cover_book']); } else if(preg_match("((noimg))", htmlspecialchars_decode($dataBooksSearch['cover_book']))) { echo "Public/img/" . htmlspecialchars_decode($dataBooksSearch['cover_book']); }else { echo "Public/img/cover/" . htmlspecialchars_decode($dataBooksSearch['cover_book']);} ?>" class="card-img" alt="Librumnivores - Image de couverture"/>   
                     <div class="card-body">
                         <p id="title_list" class="card-text"><?= htmlspecialchars($dataBooksSearch['title_book']) ?></p>
