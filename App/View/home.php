@@ -22,7 +22,7 @@ $title = 'Accueil';
 <div class="features_right">
     <h1>02<span class="red"><i class="fas fa-square"></i></span></h1>
     <h2>SOUHAITS</h2><br/><br/>
-    <h3>Profitez de la rubrique des souhaits afin d'y ajouter les différents ouvrages qu'il vous plairait d'acquérir, de lire ou bien même de dévorer.
+    <h3>Profitez de la rubrique des souhaits afin d'y ajouter les différents ouvrages qu'il vous plairait d'acquérir, de lire ou bien même de dévorer.</h3>
 </div>
 <div class="features">
     <h1>03<span class="red"><i class="fas fa-square"></i></span></h1>
@@ -32,7 +32,7 @@ $title = 'Accueil';
 <div class="features_right">
     <h1>04<span class="red"><i class="fas fa-square"></i></span></h1>
     <h2>PRÊTS</h2><br/><br/>
-    <h3>Indiquez dans la rubrique des prêts les ouvrages que vous avez généreusement prétés à vos proches, amis, collègues, voisins. N'accusez plus votre belle-mère d'appropriation de biens appartenant à autrui !
+    <h3>Indiquez dans la rubrique des prêts les ouvrages que vous avez généreusement prétés à vos proches, amis, collègues, voisins. N'accusez plus votre belle-mère d'appropriation de biens appartenant à autrui !</h3>
 </div>
 
 <!-- DARK MODE --> 

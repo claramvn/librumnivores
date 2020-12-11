@@ -16,15 +16,15 @@ $title = 'Contact';
         <h1>Contact <span class="red"><i class="fas fa-square"></i></span></h1>
         <form action="index.php?action=contact<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>" method="post">
             <div class="form-group">
-                <label for="user_name">NOM D'UTILISATEUR <span class="asterisk">*</span></label>
+                <label>NOM D'UTILISATEUR <span class="asterisk">*</span></label>
                 <input type="text" class="form-control" id="user_name_contact" name="user_name" value="<?= $name ?>" required>
             </div>
             <div class="form-group">
-                <label for="user_email">E-MAIL<span class="asterisk">*</span></label>
+                <label>E-MAIL<span class="asterisk">*</span></label>
                 <input type="email" class="form-control" id="user_email_contact" name="user_email" value="<?= $email ?>" required>
             </div>
             <div class="form-group">
-            <label for="user_message">MESSSAGE<span class="asterisk">*</span></label>
+            <label>MESSSAGE<span class="asterisk">*</span></label>
             <textarea class="form-control" id="user_message" name="user_message" rows="8" minlength="15" required><?= $message ?></textarea>
             </div>
             <div id="mentions_required"><p><span class="asterisk">*</span> OBLIGATOIRE</div>

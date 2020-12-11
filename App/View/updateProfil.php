@@ -22,16 +22,16 @@ $title = 'Mon profil';
                 <img src="Public/img/avatar/<?= $avatar ?>" alt="Librumnivores - avatar utilisateur"/>
             </div>
             <div class="form-group">
-                <label for="user_avatar">IMAGE :</label><br />
+                <label>IMAGE :</label><br />
                 <input type="file" class="form-control-file" id="user_avatar" name="user_avatar" accept="image/png, image/jpeg, image/jpg" />
             </div>
             <div class="form-group">
-                <label for="user_name">NOM D'UTILISATEUR</label>
-                <input type="text" class="form-control" id="user_name_profil" name="user_name" value="<?= htmlspecialchars($name) ?>">
+                <label>NOM D'UTILISATEUR</label>
+                <input type="text" class="form-control" id="user_name_profil" name="user_name" value="<?= htmlspecialchars($name) ?>" required>
             </div>
             <div class="form-group">
-                <label for="user_email">E-MAIL</label>
-                <input type="email" class="form-control" id="user_email_profil" name="user_email" value="<?= htmlspecialchars($email) ?>">
+                <label>E-MAIL</label>
+                <input type="email" class="form-control" id="user_email_profil" name="user_email" value="<?= htmlspecialchars($email) ?>" required>
             </div>
             <input id="button_update_profil" type="submit" class="btn btn-primary" name="button_update_profil" value="ACTUALISER MON PROFIL" />
         </form>
