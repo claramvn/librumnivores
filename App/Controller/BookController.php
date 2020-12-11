@@ -24,7 +24,8 @@ class BookController extends AncestorController
 
         $title = $this->cleanParam($_POST['title_book']);
         $author = $this->cleanParam($_POST['author_book']);
-        $isbn = $this->cleanParam($_POST['isbn_book']);
+        $isbn10 = $this->cleanParam($_POST['isbn10_book']);
+        $isbn13 = $this->cleanParam($_POST['isbn13_book']);
         $publisher = $this->cleanParam($_POST['publisher_book']);
         $pageCount = $this->cleanParam($_POST['page_count_book']);
         $publishedDate = $this->cleanParam($_POST['published_date_book']);
@@ -35,14 +36,14 @@ class BookController extends AncestorController
         // ADD directly to bookcase
         if (isset($_POST['button_add'])) {
 
-            if(empty($title) || empty($author) || empty($isbn) || empty($publisher) || empty($publishedDate) || empty($pageCount) || empty($shortDescription) || empty($description) || empty($cover)) {
+            if(empty($title) || empty($author) || empty($isbn10) || empty($isbn13) || empty($publisher) || empty($publishedDate) || empty($pageCount) || empty($shortDescription) || empty($description) || empty($cover)) {
                 $_SESSION['error_add_book'] = "Oups, un problème est survenu. Impossible d'ajouter le livre à votre bibliothèque.";
             }
 
 
             if(!isset($_SESSION['error_add_book'])) {
 
-                $addBook = $this->bookManager->addBook($isbn, $title, $author, $cover, $publisher, $publishedDate, $pageCount, $shortDescription, $description, $idUser);
+                $addBook = $this->bookManager->addBook($isbn10, $isbn13, $title, $author, $cover, $publisher, $publishedDate, $pageCount, $shortDescription, $description, $idUser);
 
                 if($addBook === false) {
                     $_SESSION['error_add_book'] = "Oups désolé, impossible d'ajouter le livre à votre bibliothèque.";
@@ -53,7 +54,6 @@ class BookController extends AncestorController
                 header('Location:index.php?action=listBooks&f=' . $filter);
 
             } else {
-                $_SESSION['error_add_book'] = "Oups désolé, impossible d'ajouter le livre à votre bibliothèque.";
                 header('Location:index.php?action=listBooks&f=' . $filter);
             }
         }
@@ -61,13 +61,13 @@ class BookController extends AncestorController
         // ADD to wish list
         if (isset($_POST['button_add_wish'])) {
 
-            if(empty($title) || empty($author) || empty($isbn) || empty($publisher) || empty($publishedDate) || empty($pageCount) || empty($shortDescription) || empty($description) || empty($cover)) {
+            if(empty($title) || empty($author) || empty($isbn10) || empty($isbn13) || empty($publisher) || empty($publishedDate) || empty($pageCount) || empty($shortDescription) || empty($description) || empty($cover)) {
                 $_SESSION['error_add_book'] = "Oups, un problème est survenu. Impossible d'ajouter le livre à votre bibliothèque des souhaits.";
             }
 
             if(!isset($_SESSION['error_add_book'])) {
 
-                $addWishBook = $this->bookManager->addWishBook($isbn, $title, $author, $cover, $publisher, $publishedDate, $pageCount, $shortDescription, $description, $idUser);
+                $addWishBook = $this->bookManager->addWishBook($isbn10, $isbn13, $title, $author, $cover, $publisher, $publishedDate, $pageCount, $shortDescription, $description, $idUser);
 
                 if($addWishBook === false) {
                     $_SESSION['error_add_book'] = "Oups désolé, impossible d'ajouter le livre à votre bibliothèque des souhaits.";
@@ -314,7 +314,6 @@ class BookController extends AncestorController
         $authorBook = $book['author_book'];
         $coverBook = $book['cover_book'];
         $descriptionBook = $book['description_book'];
-        $isbnBook = $book['isbn_book'];
  
         if ($book === false || !isset($idBook) || $idBook === 0) {
             header('Location: index.php?action=error404');
@@ -462,8 +461,9 @@ class BookController extends AncestorController
                     $_SESSION['errors_updates']['ext_cover_book'] = "Impossible de modifier l'image : le fichier n'est pas au format jpg/jpeg/png/gif";
                 } 
 
-                if (!isset($_SESSION['error_size_cover_update_book']) || !isset($_SESSION['error_ext_cover_update_book'])) {
-                    if(!preg_match("(http)", $book['cover_book'])) {
+                if (!isset($_SESSION['errors_updates']['size_cover_book']) && !isset($_SESSION['errors_updates']['ext_cover_book'])) {
+
+                    if(isset($book['cover_book']) && !preg_match("(http)", $book['cover_book']) && !preg_match("(noimg)", $book['cover_book'])) {
                         unlink('Public/img/cover/' . $book['cover_book']);
                     }
                     $nameFile = $this->renameFile($file, $extensionUpload);
@@ -500,7 +500,7 @@ class BookController extends AncestorController
 
         $book = $this->bookManager->getBook($idBook, $idUser);
 
-        if(!preg_match("(http)", $book['cover_book'])) {
+        if(isset($book['cover_book']) && !preg_match("(http)", $book['cover_book']) && !preg_match("(noimg)", $book['cover_book'])) {
             unlink('Public/img/cover/' . $book['cover_book']);
         }
 

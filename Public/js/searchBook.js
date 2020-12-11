@@ -18,7 +18,8 @@ class SearchBook {
         this.imageInput = document.getElementById("image_book");
         this.titleInput = document.getElementById("title_book");
         this.authorInput = document.getElementById("author_book");
-        this.isbnInput = document.getElementById("isbn_book");
+        this.isbn10Input = document.getElementById("isbn10_book");
+        this.isbn13Input = document.getElementById("isbn13_book");
         this.publisherInput = document.getElementById("publisher_book");
         this.pageCountInput = document.getElementById("page_count_book");
         this.publishedDateInput = document.getElementById("published_date_book");
@@ -82,7 +83,16 @@ class SearchBook {
             this.shortDescriptionInput.value = "[pas de description]";
         }
 
-        this.isbnInput.value = book.volumeInfo.industryIdentifiers[1].identifier;
+        //this.isbnInput.value = book.volumeInfo.industryIdentifiers[1].identifier;
+        if (book.volumeInfo.industryIdentifiers[0].type === "ISBN_10") {
+            this.isbn10Input.value = book.volumeInfo.industryIdentifiers[0].identifier;
+            this.isbn13Input.value = book.volumeInfo.industryIdentifiers[1].identifier;
+        }
+
+        if (book.volumeInfo.industryIdentifiers[0].type === "ISBN_13") {
+            this.isbn10Input.value = book.volumeInfo.industryIdentifiers[1].identifier;
+            this.isbn13Input.value = book.volumeInfo.industryIdentifiers[0].identifier;
+        }
 
         if (book.volumeInfo.publisher !== undefined) {
             this.publisherInput.value = book.volumeInfo.publisher;

@@ -5,20 +5,20 @@ namespace App\Model;
 class BookManager extends Manager
 {
     // ADD BOOK
-    public function addBook($isbn, $title, $author, $cover, $publisher, $publishedDate, $pageCount, $shortDescription, $description, $idUser)
+    public function addBook($isbn10, $isbn13, $title, $author, $cover, $publisher, $publishedDate, $pageCount, $shortDescription, $description, $idUser)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO books (isbn_book, title_book, author_book, cover_book, publisher_book, published_date_book, page_count_book, short_description_book, description_book, wish_book, favorite_book, lend_book, date_add_book, id_user ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0, NOW(), ?)');
-        $addBook = $req->execute(array($isbn, $title, $author, $cover, $publisher, $publishedDate, $pageCount, $shortDescription, $description, $idUser));
+        $req = $db->prepare('INSERT INTO books (isbn10_book, isbn13_book, title_book, author_book, cover_book, publisher_book, published_date_book, page_count_book, short_description_book, description_book, wish_book, favorite_book, lend_book, date_add_book, id_user ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0, NOW(), ?)');
+        $addBook = $req->execute(array($isbn10, $isbn13, $title, $author, $cover, $publisher, $publishedDate, $pageCount, $shortDescription, $description, $idUser));
         return $addBook;
     }
 
     // GET BOOK BY ISBN
-    public function getBookByIsbn($isbn, $idUser)
+    public function getBookByIsbn($isbn10, $isbn13, $idUser)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT isbn_book, id_user FROM book WHERE isbn_book = ? AND id_user = ?');
-        $req->execute(array($isbn, $idUser));
+        $req = $db->prepare('SELECT isbn10_book, isbn13_book, id_user FROM book WHERE isbn10_book = ? OR isbn13_book = ? AND id_user = ?');
+        $req->execute(array($isbn10, $isbn13, $idUser));
         $book = $req->fetch();
         $req->closeCursor();
         return $book;
@@ -48,7 +48,7 @@ class BookManager extends Manager
     public function listSearchBooks($idUser, $content)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare("SELECT id_book, isbn_book, title_book, author_book, cover_book, wish_book, lend_book, date_add_book, id_user FROM books WHERE (isbn_book LIKE '%$content%' OR title_book LIKE '%$content%' OR author_book LIKE '%$content%') AND id_user = ? LIMIT 24");
+        $req = $db->prepare("SELECT id_book, isbn10_book, isbn13_book, title_book, author_book, cover_book, wish_book, lend_book, date_add_book, id_user FROM books WHERE (isbn10_book LIKE '%$content%' OR isbn13_book LIKE '%$content%' OR title_book LIKE '%$content%' OR author_book LIKE '%$content%') AND id_user = ? LIMIT 24");
         $req->execute(array($idUser));
         $searchBooks = $req->fetchAll();
         $req->closeCursor();
@@ -56,11 +56,11 @@ class BookManager extends Manager
     }
 
     // ADD WISH BOOK 
-    public function addWishBook($isbn, $title, $author, $cover, $publisher, $publishedDate, $pageCount, $shortDescription, $description, $idUser)
+    public function addWishBook($isbn10, $isbn13, $title, $author, $cover, $publisher, $publishedDate, $pageCount, $shortDescription, $description, $idUser)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO books (isbn_book, title_book, author_book, cover_book, publisher_book, published_date_book, page_count_book, short_description_book, description_book, wish_book, favorite_book, lend_book, date_add_book, id_user ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1, 0, 0, NOW(), ?)');
-        $addWishBook = $req->execute(array($isbn, $title, $author, $cover, $publisher, $publishedDate, $pageCount, $shortDescription, $description, $idUser));
+        $req = $db->prepare('INSERT INTO books (isbn10_book, isbn13_book, title_book, author_book, cover_book, publisher_book, published_date_book, page_count_book, short_description_book, description_book, wish_book, favorite_book, lend_book, date_add_book, id_user ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, 0, 0, NOW(), ?)');
+        $addWishBook = $req->execute(array($isbn10, $isbn13, $title, $author, $cover, $publisher, $publishedDate, $pageCount, $shortDescription, $description, $idUser));
         return $addWishBook;
     }
 

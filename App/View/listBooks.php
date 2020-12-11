@@ -19,7 +19,7 @@ $title = 'Ma bibliothèque';
     </div>
 
     
-    <!-- ERROR OR SUCCESS ADD BOOK -->
+    <!-- ERROR OR SUCCESS SESSIONs ADD BOOK -->
     <?php if (isset($_SESSION['error_add_book'])) {
                 echo '<p class="errors">' . $_SESSION['error_add_book'] . '</p>';
             }
@@ -36,7 +36,7 @@ $title = 'Ma bibliothèque';
     <?php } ?>
 
 
-    <!-- SUCCESS DELETE SELECTED BOOK -->
+    <!-- SUCCESS DELETE BOOK -->
     <?php if (isset($_SESSION['success_delete_book'])) {
                 echo '<p class="success">' . $_SESSION['success_delete_book'] . '</p>';
             }
@@ -76,7 +76,8 @@ $title = 'Ma bibliothèque';
                             <input type="hidden" name="title_book" id="title_book" />
                             <input type="hidden" name="author_book" id="author_book" />
                             <input type="hidden" name="image_book" id="image_book" />
-                            <input type="hidden" name="isbn_book" id="isbn_book" />
+                            <input type="hidden" name="isbn10_book" id="isbn10_book" />
+                            <input type="hidden" name="isbn13_book" id="isbn13_book" />
                             <input type="hidden" name="publisher_book" id="publisher_book" />
                             <input type="hidden" name="published_date_book" id="published_date_book" />
                             <input type="hidden" name="page_count_book" id="page_count_book" />
