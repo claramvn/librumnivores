@@ -41,16 +41,18 @@ class AncestorController
 
             $userManager = new UserManager();
             $this->user = $userManager->getUserById($id);
+            
+            if($this->user) {
+                $eltHash = $this->user['id_user'];     
 
-            $eltHash = $this->user['id_user'];
-
-            $hash1 = $_SESSION['id_hash_user'];
-            $hash2 = $this->getPowerfulHash($eltHash);
+                $hash1 = $_SESSION['id_hash_user'];
+                $hash2 = $this->getPowerfulHash($eltHash);
        
-            if ($hash1 === $hash2) {
-                return true;
-            } else {
-                return false;
+                if ($hash1 === $hash2) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
              
         } else {

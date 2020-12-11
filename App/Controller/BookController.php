@@ -39,22 +39,21 @@ class BookController extends AncestorController
                 $_SESSION['error_add_book'] = "Oups, un problème est survenu. Impossible d'ajouter le livre à votre bibliothèque.";
             }
 
-            
-            $bookExist = $this->bookManager->bookExist($isbn, $idUser);
-            if ($bookExist['isbn_book'] === $isbn) {
-                $_SESSION['error_add_book'] = "Le livre séléctionné fait déjà parti de votre bibliothèque.";
-            }
 
-            if(!$_SESSION['error_add_book']) {
+            if(!isset($_SESSION['error_add_book'])) {
 
                 $addBook = $this->bookManager->addBook($isbn, $title, $author, $cover, $publisher, $publishedDate, $pageCount, $shortDescription, $description, $idUser);
 
-                if($addBook !== false) {
-                    $_SESSION['success_add_book'] = "Le livre a bien été ajouté à votre bibliothèque.";
+                if($addBook === false) {
+                    $_SESSION['error_add_book'] = "Oups désolé, impossible d'ajouter le livre à votre bibliothèque.";
                     header('Location:index.php?action=listBooks&f=' . $filter);
-                }
+                } 
+
+                $_SESSION['success_add_book'] = "Le livre a bien été ajouté à votre bibliothèque.";
+                header('Location:index.php?action=listBooks&f=' . $filter);
 
             } else {
+                $_SESSION['error_add_book'] = "Oups désolé, impossible d'ajouter le livre à votre bibliothèque.";
                 header('Location:index.php?action=listBooks&f=' . $filter);
             }
         }
@@ -66,26 +65,25 @@ class BookController extends AncestorController
                 $_SESSION['error_add_book'] = "Oups, un problème est survenu. Impossible d'ajouter le livre à votre bibliothèque des souhaits.";
             }
 
-            $bookExist = $this->bookManager->bookExist($isbn, $idUser);
-            if ($bookExist['isbn_book'] === $isbn) {
-                $_SESSION['error_add_book'] = "Le livre séléctionné fait déjà parti de votre bibliothèque.";
-            }
-
-            if(!$_SESSION['error_add_book']) {
+            if(!isset($_SESSION['error_add_book'])) {
 
                 $addWishBook = $this->bookManager->addWishBook($isbn, $title, $author, $cover, $publisher, $publishedDate, $pageCount, $shortDescription, $description, $idUser);
 
-                if($addWishBook !== false) {
-                    $_SESSION['success_add_wish_book'] = "Le livre a bien été ajouté à votre bibliothèque des souhaits.";
-                    header('Location:index.php?action=listWishBooks&f=' . $filter);
+                if($addWishBook === false) {
+                    $_SESSION['error_add_book'] = "Oups désolé, impossible d'ajouter le livre à votre bibliothèque des souhaits.";
+                    header('Location:index.php?action=listBooks&f=' . $filter);
                 } 
+                
+                $_SESSION['success_add_wish_book'] = "Le livre a bien été ajouté à votre bibliothèque des souhaits.";
+                header('Location:index.php?action=listWishBooks&f=' . $filter);
+                
 
             } else {
+                $_SESSION['error_add_book'] = "Oups désolé, impossible d'ajouter le livre à votre bibliothèque des souhaits.";
                 header('Location:index.php?action=listBooks&f=' . $filter);
             }
 
         }
-
     } 
 
     // LIST BOOKCASE
@@ -462,9 +460,9 @@ class BookController extends AncestorController
 
                 if (!in_array($extensionUpload, $extensionAllowed)) {
                     $_SESSION['errors_updates']['ext_cover_book'] = "Impossible de modifier l'image : le fichier n'est pas au format jpg/jpeg/png/gif";
-                }
+                } 
 
-                if (!$_SESSION['error_size_cover_update_book'] || !$_SESSION['error_ext_cover_update_book']) {
+                if (!isset($_SESSION['error_size_cover_update_book']) || !isset($_SESSION['error_ext_cover_update_book'])) {
                     if(!preg_match("(http)", $book['cover_book'])) {
                         unlink('Public/img/cover/' . $book['cover_book']);
                     }

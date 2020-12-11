@@ -13,15 +13,15 @@ class BookManager extends Manager
         return $addBook;
     }
 
-    // BOOK EXIST 
-    public function bookExist($isbn, $idUser)
+    // GET BOOK BY ISBN
+    public function getBookByIsbn($isbn, $idUser)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT isbn_book FROM books WHERE isbn_book = ? AND id_user = ?');
+        $req = $db->prepare('SELECT isbn_book, id_user FROM book WHERE isbn_book = ? AND id_user = ?');
         $req->execute(array($isbn, $idUser));
-        $bookExist = $req->fetch();
+        $book = $req->fetch();
         $req->closeCursor();
-        return $bookExist;
+        return $book;
     }
 
     // COUNT BOOKS OF BOOKCASE
@@ -48,7 +48,7 @@ class BookManager extends Manager
     public function listSearchBooks($idUser, $content)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare("SELECT id_book, title_book, author_book, cover_book, wish_book, lend_book, date_add_book, id_user FROM books WHERE (title_book LIKE '%$content%' OR author_book LIKE '%$content%') AND id_user = ? LIMIT 24");
+        $req = $db->prepare("SELECT id_book, isbn_book, title_book, author_book, cover_book, wish_book, lend_book, date_add_book, id_user FROM books WHERE (isbn_book LIKE '%$content%' OR title_book LIKE '%$content%' OR author_book LIKE '%$content%') AND id_user = ? LIMIT 24");
         $req->execute(array($idUser));
         $searchBooks = $req->fetchAll();
         $req->closeCursor();
