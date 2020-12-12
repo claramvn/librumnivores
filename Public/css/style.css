@@ -421,7 +421,7 @@ header {
     border-radius: 15px;
     background: black;
     border: 1px solid;
-    border-color: inherit;
+    border-color: initial;
 }
 
 .errors_triangle,

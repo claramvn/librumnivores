@@ -40,6 +40,11 @@ class BookController extends AncestorController
                 $_SESSION['error_add_book'] = "Oups, un problème est survenu. Impossible d'ajouter le livre à votre bibliothèque.";
             }
 
+            $bookByIsbn = $this->bookManager->getBookByIsbn($isbn10, $isbn13, $idUser);
+            if(isset($bookByIsbn['isbn10_book']) && isset($bookByIsbn['isbn13_book']) && $bookByIsbn['isbn10_book'] === $isbn10 && $bookByIsbn['isbn13_book'] === $isbn13) {
+                $_SESSION['error_add_book'] = "Oups, ce livre appartient déjà à votre bibliothèque !";
+            }
+
 
             if(!isset($_SESSION['error_add_book'])) {
 
@@ -65,6 +70,11 @@ class BookController extends AncestorController
                 $_SESSION['error_add_book'] = "Oups, un problème est survenu. Impossible d'ajouter le livre à votre bibliothèque des souhaits.";
             }
 
+            $bookByIsbn = $this->bookManager->getBookByIsbn($isbn10, $isbn13, $idUser);
+            if(isset($bookByIsbn['isbn10_book']) && isset($bookByIsbn['isbn13_book']) && $bookByIsbn['isbn10_book'] === $isbn10 && $bookByIsbn['isbn13_book'] === $isbn13) {
+                $_SESSION['error_add_book'] = "Oups, ce livre appartient déjà à votre bibliothèque !";
+            }
+
             if(!isset($_SESSION['error_add_book'])) {
 
                 $addWishBook = $this->bookManager->addWishBook($isbn10, $isbn13, $title, $author, $cover, $publisher, $publishedDate, $pageCount, $shortDescription, $description, $idUser);
@@ -79,7 +89,6 @@ class BookController extends AncestorController
                 
 
             } else {
-                $_SESSION['error_add_book'] = "Oups désolé, impossible d'ajouter le livre à votre bibliothèque des souhaits.";
                 header('Location:index.php?action=listBooks&f=' . $filter);
             }
 

@@ -17,7 +17,7 @@ class BookManager extends Manager
     public function getBookByIsbn($isbn10, $isbn13, $idUser)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT isbn10_book, isbn13_book, id_user FROM book WHERE isbn10_book = ? OR isbn13_book = ? AND id_user = ?');
+        $req = $db->prepare('SELECT isbn10_book, isbn13_book, id_user FROM books WHERE isbn10_book = ? OR isbn13_book = ? AND id_user = ?');
         $req->execute(array($isbn10, $isbn13, $idUser));
         $book = $req->fetch();
         $req->closeCursor();
