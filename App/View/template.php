@@ -44,39 +44,37 @@
 
     <!-- HEADER --> 
     <header id="header">
-        <div id="intro_header">
-            <h1 id="librum"><a href="index.php">LIBRUMNIVORES</a></h1>
-            <?php if($this->isLogged()) { ?>
-            <a id="avatar_header" href="index.php?action=updateProfil<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);} else { echo '&amp;f=all'; } ?>" title="PROFIL"><img src="Public/img/avatar/<?php echo $this->user['avatar_user']?>" alt="Librumnivores - avatar utilisateur" /></a>
-            <?php } ?>
-        </div>  
-        <div>
-            <nav>
-                <ul class="nav">
+        <nav id="nav_header" class="navbar navbar-expand-lg navbar-light">
+            <div id="intro_header">
+                <div>
+                    <p id="librum"><a href="index.php">LIBRUMNIVORES</a> <?php if($this->isLogged()) { ?>
+                    <a id="avatar_header" href="index.php?action=updateProfil<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);} else { echo '&amp;f=all'; } ?>" title="PROFIL"><img src="Public/img/avatar/<?php echo $this->user['avatar_user']?>" alt="Librumnivores - avatar utilisateur" /></a>
+                    <?php } ?></p>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span></button>
+                </div>
+                <div id="navbarNav" class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
                     <?php   
                     if ($this->isLogged()) { 
                     ?>
-                        <li class="nav-item"><a class="nav-link" >Bienvenue à toi <?php echo ' ' . $this->user['name_user'] . ' ';?> <span class="logged"><i class="fas fa-square"></i></span></a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php<?php if(isset($_GET['f'])){ echo '?f=' . $this->cleanParam($_GET['f']);} else { echo '?f=all'; } ?>">ACCUEIL</a></li>
+                        <li class="nav-item"><a class="nav-link">Bienvenue à toi <?php echo ' ' . $this->user['name_user'] . ' ';?> <span class="logged"><i class="fas fa-square"></i></span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php<?php if(isset($_GET['f'])){ echo '?f=' . $this->cleanParam($_GET['f']);} else { echo '?f=all'; } ?>">ACCUEIL <span class="sr-only">(current)</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="index.php?action=listBooks<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);} else { echo '&amp;f=all'; } ?>">BIBLIOTHÈQUE</a></li>
                         <li class="nav-item"><a class="nav-link" href="index.php?action=listWishBooks<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);} else { echo '&amp;f=all'; } ?>">SOUHAITS</a></li>
                         <li class="nav-item"><a class="nav-link" href="index.php?action=listFavoritesBooks<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);} else { echo '&amp;f=all'; } ?>">FAVORIS</a></li>
                         <li class="nav-item"><a class="nav-link" href="index.php?action=listLentBooks<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);} else { echo '&amp;f=all'; } ?>">PRÊTS</a></li>
                         <li class="nav-item"><a class="nav-link" href="index.php?action=logout">DÉCONNECTION</a></li>
-                        <li class="nav-item"><a class="nav-link" id="btn_toggle_theme"><i class="fas fa-adjust"></i></a></li>
-                        <?php 
-                    } else {
-                    ?>
-                        <li class="nav-item"><a class="nav-link" href="index.php?action=home#slogan">FONCTIONNALITÉS</a></li>
+                        <li class="nav-item"><a class="nav-link" id="btn_toggle_theme" tabindex="-1" aria-disabled="true"><i class="fas fa-adjust"></i></a></li>
+                    <?php } else {?>
+                        <li class="nav-item"><a class="nav-link" href="index.php?action=home#slogan">FONCTIONNALITÉS <span class="sr-only">(current)</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="index.php?action=connection">MON COMPTE</a></li>
                         <li class="nav-item"><a class="nav-link" href="index.php?action=register">CRÉER UN COMPTE</a></li>
-                        <li class="nav-item"><a class="nav-link" id="btn_toggle_theme"><i class="fas fa-adjust"></i></a></li>
-                    <?php
-                    }
-                    ?>
-                </ul>
-            </nav> 
-        </div>
+                        <li class="nav-item"><a class="nav-link" id="btn_toggle_theme" tabindex="-1" aria-disabled="true"><i class="fas fa-adjust"></i></a></li>
+                    <?php } ?>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
 
     <!-- SECTIONS -->
@@ -85,9 +83,7 @@
     <!-- CONTACT --> 
     <div id="contact">
         <p><a href="index.php?action=contact<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>"><span class="red"><i class="fas fa-square"></i></span> CONTACTER LIBRUMNIVORES <span class="red"><i class="fas fa-square"></i></span></a></p>
-        <p>Une question ? Un disfonctionnement ? Faites-nous en part !</p>
     </div>
-
 
     <!-- ARROW GO TOP -->
     <p id="arrow"><a href="#"><i class="fas fa-arrow-up"></i></a></p>
