@@ -13,7 +13,7 @@ $title = 'Demande de réinitialisation de mot de passe';
 
     <!-- FORM -->
     <div class="display_form">
-        <h1>Réinitialiser le mot de passe <span class="red"><i class="fas fa-square"></i></span></h1><br/<<br/>
+        <h1>Réinitialiser le mot de passe <span class="red"><i class="fas fa-square"></i></span></h1><br/><br/>
         <?php if (empty($success)) { ?>
         <p id="instructions">Veuillez saisir votre adresse e-mail ci-dessous afin de recevoir les instructions pour créer un nouveau mot de passe.</p><br/><br/>
         <form action="index.php?action=resetPassRequest" method="post">
