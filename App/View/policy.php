@@ -12,9 +12,9 @@ $title = 'Politique de confidentialité';
 
     <!-- BLOCK PRIVACY POLICY -->
     <div id="privacyPolicy">
-        <h1>[ <strong>POLITIQUE DE CONFIDENTIALITE</strong> ]</h1><br /><br />
+        <h1>[ <strong>POLITIQUE DE CONFIDENTIALITÉ</strong> ]</h1><br /><br />
 
-        <p>Dans le cadre de la visite du site <strong>claramvn.fr</strong>, <strong>le propriétaire</strong> est
+        <p>Dans le cadre de la visite du site <strong>librumnivores.claramvn.fr</strong>, <strong>le propriétaire</strong> est
             susceptible
             de collecter et traiter des données à caractère personnel de tout
             utilisateur du Site (ci-après le(s) « Utilisateur(s) »). Toute information se rapportant à une personne
