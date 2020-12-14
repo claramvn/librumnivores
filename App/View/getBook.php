@@ -61,7 +61,7 @@ $title = 'Ma bibliothèque';
                 <div class="card-body">
                     <h5 class="card-title"><?= htmlspecialchars($book['title_book']) ?></h5>
                     <h6 class="card-title"><?= htmlspecialchars($book['author_book']) ?></h6>
-                    <p class="card-text"><?= nl2br(htmlspecialchars_decode($book['description_book'])) ?></p>
+                    <p class="card-text"><?= nl2br(htmlspecialchars($book['description_book'])) ?></p>
                     <div id="line"></div>
                     <div class="card_infos">
                         <p class="card-text"><small class="text-muted">ISBN : <?= htmlspecialchars($book['isbn13_book']) ?></small></p>

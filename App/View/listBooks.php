@@ -19,7 +19,7 @@ $title = 'Ma bibliothèque';
     </div>
 
     
-    <!-- ERROR OR SUCCESS SESSIONs ADD BOOK -->
+    <!-- ERROR OR SUCCESS SESSIONS ADD BOOK -->
     <?php if (isset($_SESSION['error_add_book'])) {
                 echo '<p class="errors">' . $_SESSION['error_add_book'] . '</p>';
             }
@@ -30,12 +30,11 @@ $title = 'Ma bibliothèque';
             }
             unset($_SESSION['success_add_book']); ?>
 
-    <!-- ERRORS -->
     <?php if (!empty($errors)) { ?>
         <div class="errors"><?= implode('<br/>', $errors) ?></div><br /><br />
     <?php } ?>
 
-
+    
     <!-- SUCCESS DELETE BOOK -->
     <?php if (isset($_SESSION['success_delete_book'])) {
                 echo '<p class="success">' . $_SESSION['success_delete_book'] . '</p>';

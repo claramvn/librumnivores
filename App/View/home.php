@@ -9,8 +9,8 @@ $title = 'Accueil';
 <div id="slider"><img id="mainImage" src="Public/img/cover3.png" alt="cover librumnivores"/></div>
 
 <!-- SLOGAN --> 
-<div id="slogan">
-    <p>Votre Bibliothèque Personnelle En Ligne </p>
+<div id="slogan" class="container">
+    <p>Votre Bibliothèque Personnelle En Ligne </p>  
 </div>
 
 <!-- FEATURES --> 
