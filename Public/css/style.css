@@ -49,7 +49,7 @@ a:hover {
 #button_reset_pass_request {
     font-weight: bold;
     background: #DA5B5A !important;
-    border-color: initial !important;
+    border: 1px solid #DA5B5A !important;
 }
 
 #button_close,
@@ -58,7 +58,7 @@ a:hover {
     font-size: 25px;
     background: #f5f5f7;
     font-weight: normal !important;
-    border-color: initial !important;
+    border: 1px solid rgba(0, 0, 0, 0.6) !important;
 }
 
 #btn_delete_account {
@@ -92,9 +92,21 @@ header {
 }
 
 #intro_header {
-    display: flex;
+    width: 100% !important;
 }
 
+/* NAV */
+#nav_header {
+    width: 100% !important;
+    justify-content: inherit !important;
+}
+
+#navbarNav {
+    text-align: center !important;
+    justify-content: center !important;
+}
+
+/* AVATAR */
 #avatar_header {
     margin-top: 1.2%;
     margin-left: 1%;
@@ -106,17 +118,29 @@ header {
     border-radius: 50%;
 }
 
-.nav {
-    justify-content: center;
-}
-
+/* TITLE BRAND */
 #librum {
-    margin-left: 5%;
     padding: 1%;
+    margin-left: 5%;
     letter-spacing: 4px;
+    font-size: 2.4rem;
     font-family: 'Grenze Gotisch', cursive;
 }
 
+/* HAMBURGER */
+.navbar-toggler {
+    background: white !important;
+}
+
+.navbar-toggler-icon {
+    width: inherit;
+    height: inherit;
+    content: inherit;
+    color: black !important;
+    background-image: none !important;
+}
+
+/* LIGHTMODE/DARKMODE */
 #btn_toggle_theme {
     cursor: pointer;
 }
@@ -221,7 +245,7 @@ header {
 }
 
 #intro_header_bookcase {
-    width: 30%;
+    width: 40%;
     border-bottom: 1px solid;
 }
 
@@ -420,8 +444,7 @@ header {
     text-align: center;
     border-radius: 15px;
     background: black;
-    border: 1px solid;
-    border-color: initial;
+    border: 1px solid black;
 }
 
 .errors_triangle,
@@ -673,7 +696,7 @@ header {
 
 /************************* FOOTER *************************/
 
-/* Contact */
+/* CONTACT */
 #contact {
     width: 50%;
     padding: 2%;
@@ -683,11 +706,7 @@ header {
     text-align: center;
 }
 
-#contact>p {
-    font-size: 18px;
-}
-
-/* Flèche go top */
+/* ARROW GO TOP */
 #arrow {
     text-align: right;
     margin-bottom: 1.5%;
@@ -700,7 +719,7 @@ header {
     padding: 1%;
 }
 
-/* Mentions légales */
+/* LEGALS MENTIONS */
 #mentions,
 #privacyPolicy {
     width: 80%;
@@ -720,10 +739,372 @@ header {
     text-align: center;
 }
 
-/* footer */
+/* FOOTER */
 footer {
     width: 100%;
     margin: auto;
     display: flex;
     justify-content: space-around;
+}
+
+/************************* RESPONSIVE *************************/
+
+/* MOBILES */
+@media all and (min-width: 320px) and (max-width: 767px) {
+
+    /* PARAM */
+    .content {
+        min-height: 380px;
+        margin-top: 140px;
+        margin-bottom: 8%;
+    }
+
+    button,
+    input {
+        font-size: 14px !important;
+    }
+
+    /* HEADER */
+    header {
+        height: 135px;
+    }
+
+    #intro_header {
+        text-align: center !important;
+    }
+
+    .navbar-toggler {
+        border: 1px solid black;
+    }
+
+    .navbar-nav {
+        color: black;
+        padding: 3%;
+        margin-top: 5%;
+        border-radius: 3%;
+        background: white;
+        width: 100% !important;
+    }
+
+    .navbar-nav a {
+        color: black !important;
+    }
+
+    #librum {
+        font-size: 22px;
+    }
+
+    /* SLIDER */
+    #slider {
+        margin-top: 110px !important;
+        overflow: hidden !important;
+    }
+
+    #slider img {
+        width: 130%;
+    }
+
+    /* SLOGAN */
+    #slogan {
+        padding: 2% !important;
+        font-size: 20px !important;
+    }
+
+    /* FEATURES */
+    .features,
+    .features_right {
+        width: 90% !important;
+        font-size: 14px !important;
+    }
+
+    .features h1,
+    .features_right h1,
+    .features h2,
+    .features_right h2 {
+        font-size: 23px !important;
+    }
+
+    .features h3,
+    .features_right h3 {
+        font-size: 20px !important;
+    }
+
+    #feature_dark_mode {
+        flex-direction: column !important;
+    }
+
+    #feature_dark_mode div {
+        width: 100% !important;
+        padding: 4% !important;
+    }
+
+    #feature_dark_mode h1,
+    #feature_dark_mode h2 {
+        margin-top: 2%;
+        font-size: 24px !important;
+        text-align: center !important;
+    }
+
+    #feature_dark_mode img {
+        margin-top: -15% !important;
+    }
+
+    /* FRIEZE */
+    #frieze {
+        margin-top: -28% !important;
+    }
+
+    #frieze img {
+        height: 350px !important;
+    }
+
+    /* BOOKCASE */
+    #header_bookcase {
+        margin-bottom: 0 !important;
+        flex-direction: column-reverse !important;
+    }
+
+    #header_bookcase h1 {
+        font-size: 1.6rem;
+    }
+
+    #intro_header_bookcase {
+        width: 100% !important;
+        margin-bottom: 5% !important;
+    }
+
+    #search_label {
+        font-size: 18px !important;
+        margin-top: 15% !important;
+    }
+
+    #button_open_search {
+        margin-bottom: 25% !important;
+    }
+
+    #filters {
+        font-size: 11px;
+    }
+
+    .filters {
+        letter-spacing: 2px;
+    }
+
+    #block_search_engine {
+        width: 100% !important;
+    }
+
+    #input_search_engine {
+        font-size: 12px;
+    }
+
+    #input_search_engine {
+        width: 85% !important;
+        height: 41px !important;
+    }
+
+    #block_shelves {
+        padding: 0 !important;
+        margin-top: 4% !important;
+        margin-bottom: 5% !important;
+        justify-content: space-around !important;
+    }
+
+    #card_shelves {
+        margin: 0.5% !important;
+        width: 9.4rem !important;
+    }
+
+    .number_book {
+        width: 32px !important;
+        height: 32px !important;
+    }
+
+    /* SELECTED BOOK */
+
+    #btn_update_infos_book {
+        right: 3% !important;
+        margin-top: 3% !important;
+    }
+
+    #card_book {
+        width: 100% !important;
+        padding: 2% !important;
+    }
+
+    #card_book img {
+        margin-left: 6.5% !important;
+    }
+
+    .card_infos {
+        flex-direction: column !important;
+        margin-bottom: 5% !important;
+    }
+
+    #flags {
+        width: 55% !important;
+    }
+
+    #block_result {
+        width: 270px !important;
+        margin-left: 1% !important;
+    }
+
+    #button_add_wish,
+    #more_sign {
+        font-size: 12px !important;
+    }
+
+    /* FORMS */
+    .display_form {
+        width: 90% !important;
+    }
+
+    .display_form h1 {
+        font-size: 24px !important;
+        margin-top: 10% !important;
+    }
+
+    /* PROFIL */
+    #user_avatar,
+    #cover_book {
+        width: 132px !important;
+    }
+
+    /* LEGALS MENTIONS */
+    #mentions,
+    #privacyPolicy {
+        width: 98% !important;
+    }
+
+    /* CONTACT */
+    #contact {
+        width: 90% !important;
+    }
+
+    /* ARROW GO TOP */
+    #arrow {
+        margin-top: 2% !important;
+        margin-bottom: 4% !important;
+        margin-right: 10% !important;
+    }
+
+    #arrow a {
+        padding: 3% !important;
+    }
+
+    /* FOOTER */
+    footer {
+        width: 90% !important;
+        text-align: center;
+        flex-direction: column !important;
+        justify-content: center !important;
+    }
+}
+
+/* TABLETS */
+@media all and (min-width: 768px) and (max-width: 1023px) {
+
+    /* HEADER */
+    header {
+        height: 135px;
+    }
+
+    #intro_header {
+        text-align: center !important;
+    }
+
+    .navbar-toggler {
+        border: 1px solid black;
+    }
+
+    .navbar-nav {
+        color: black;
+        padding: 3%;
+        margin-top: 5%;
+        border-radius: 3%;
+        background: white;
+        width: 100% !important;
+    }
+
+    .navbar-nav a {
+        color: black !important;
+    }
+
+    #librum {
+        font-size: 35px;
+    }
+
+    /* HOME */
+    .features,
+    .features_right {
+        width: 65%;
+    }
+
+    #feature_dark_mode div {
+        width: 100% !important;
+        padding: 4% !important;
+    }
+
+    #feature_dark_mode h1,
+    #feature_dark_mode h2 {
+        margin-top: 2%;
+        font-size: 28px !important;
+        text-align: center !important;
+    }
+
+    /* BOOKCASE */
+    #header_bookcase h1 {
+        font-size: 1.8rem;
+    }
+
+    #intro_header_bookcase {
+        width: 60%;
+    }
+
+    #input_search_engine {
+        width: 92%;
+    }
+
+    .number_book {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* GET BOOK */
+    #card_book {
+        width: 90%;
+    }
+
+    #btn_update_infos_book {
+        right: 8%;
+        margin-top: 1%;
+    }
+
+    #flags {
+        width: 35%;
+    }
+
+    /* ADD BOOK */
+    #block_result {
+        width: 550px;
+    }
+
+    /* FRIEZE */
+    #frieze {
+        margin-top: -28% !important;
+    }
+
+    /* FORMS */
+    .display_form h1 {
+        font-size: 30px !important;
+    }
+
+    /* FOOTER */
+    footer {
+        width: 90% !important;
+        text-align: center;
+        flex-direction: column !important;
+        justify-content: center !important;
+    }
 }
