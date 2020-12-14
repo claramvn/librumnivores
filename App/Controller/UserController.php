@@ -78,7 +78,7 @@ class UserController extends AncestorController
                 $_SESSION['id_user'] = $eltHash;
                 $_SESSION['id_hash_user'] = $this->getPowerfulHash($eltHash);
 
-                header('Location: index.php');
+                header('Location: index.php?action=listBooks&f=all');
             }
         }
 
