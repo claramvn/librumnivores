@@ -12,8 +12,7 @@ $title = 'Mentions légales';
 
     <!-- BLOCK LEGALS MENTIONS -->
     <div id="mentions">
-        <h1>[ <strong>MENTIONS LEGALES</strong> ]</h1>
-        <br /><br />
+        <h1>[ <strong>MENTIONS LEGALES</strong> ]</h1><br /><br />
 
         <p>Conformément aux dispositions des articles 6-III et 19 de la Loi n° 2004-575 du 21
             juin
@@ -143,7 +142,7 @@ $title = 'Mentions légales';
         <p>Les bases de données sont protégées par les dispositions de la loi du 1er juillet 1998
             transposant la directive 96/9 du 11 mars 1996 relative à la protection juridique des bases de données.</p>
 
-        <strong>CRÉDITS :</strong> Les mentions légales ont étés générées par<strong><a
+        <strong>CRÉDITS :</strong> Les mentions légales ont étés générées par <strong><a
                 href="https://www.generer-mentions-legales.com/generateur-mentions-legales.html">générateur
                 de mentions legales</a></strong>
     </div>
