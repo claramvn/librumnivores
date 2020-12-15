@@ -11,36 +11,12 @@ $title = 'Ma bibliothèque';
     <div id="header_bookcase">
         <div id="intro_header_bookcase">
             <h1>Ma bibliothèque <span class="red"><i class="fas fa-square"></i></span></h1>
-            <div id="infos_count"><p>Organisez ici l'ensemble de vos librum</p><span><?php if ($bookCount > 0) { echo "(" . $bookCount . ")" ; } ?></span></div>
+            <div id="infos_count"><p>Organisez ici l'ensemble de vos libri</p><span><?php if ($bookCount > 0) { echo "(" . $bookCount . ")" ; } ?></span></div>
         </div>
         <div> 
             <button id="button_open_search" type="button" class="btn btn-primary">Ajouter un livre</button>
         </div>
     </div>
-
-    
-    <!-- ERROR OR SUCCESS SESSIONS ADD BOOK -->
-    <?php if (isset($_SESSION['error_add_book'])) {
-                echo '<p class="errors">' . $_SESSION['error_add_book'] . '</p>';
-            }
-            unset($_SESSION['error_add_book']);
-
-            if (isset($_SESSION['success_add_book'])) {
-                echo '<p class="success">' . $_SESSION['success_add_book'] . '</p>';
-            }
-            unset($_SESSION['success_add_book']); ?>
-
-    <?php if (!empty($errors)) { ?>
-        <div class="errors"><?= implode('<br/>', $errors) ?></div><br /><br />
-    <?php } ?>
-
-    
-    <!-- SUCCESS DELETE BOOK -->
-    <?php if (isset($_SESSION['success_delete_book'])) {
-                echo '<p class="success">' . $_SESSION['success_delete_book'] . '</p>';
-            }
-            unset($_SESSION['success_delete_book']); ?>
-
 
     <!-- BLOCK SEARCH ISBN TO ADD BOOK -->
     <div id="block_search">
@@ -52,7 +28,7 @@ $title = 'Ma bibliothèque';
             <form>
                 <div class="form-group">
                     <label id="search_label">Un livre à ajouter ?</label>
-                    <input type="search" id ="input_search" class="form-control" placeholder="Identification par ISBN" >
+                    <input type="search" id ="input_search" class="form-control" placeholder="Identification par ISBN - Exemple : 9782070584628" >
                 </div>
                 <button id="button_search" type="button" class="btn btn-primary">Rechercher</button>
             </form>
@@ -132,8 +108,6 @@ $title = 'Ma bibliothèque';
     <div id="block_shelves">
         <?php foreach ($searchBooks as $dataBooksSearch) { ?> 
                 <div id="card_shelves" class="card"><a href="index.php?action=getBook&amp;id=<?php echo htmlspecialchars($dataBooksSearch['id_book']); if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>">
-                <?php if($dataBooksSearch['wish_book'] === "1") { echo "<p class='bookshelf_search_details'><span class='red_dash'><i class='fas fa-square'></i></span> Bibliothèque des souhaits <span class='red_dash'><i class='fas fa-square'></i></span></p>";} 
-                        else if ($dataBooksSearch['lend_book'] === "1") { echo "<p class='bookshelf_search_details'><span class='red_dash'><i class='fas fa-square'></i></span> Bibliothèque des prêts <span class='red_dash'><i class='fas fa-square'></i></span></p>";} ?>
                     <img src="<?php if(preg_match("(http)", htmlspecialchars_decode($dataBooksSearch['cover_book']))) { echo htmlspecialchars_decode($dataBooksSearch['cover_book']); } else if(preg_match("((noimg))", htmlspecialchars_decode($dataBooksSearch['cover_book']))) { echo "Public/img/" . htmlspecialchars_decode($dataBooksSearch['cover_book']); }else { echo "Public/img/cover/" . htmlspecialchars_decode($dataBooksSearch['cover_book']);} ?>" class="card-img" alt="Librumnivores - Image de couverture"/>   
                     <div class="card-body">
                         <p id="title_list" class="card-text"><?= htmlspecialchars($dataBooksSearch['title_book']) ?></p>
@@ -144,8 +118,22 @@ $title = 'Ma bibliothèque';
     </div>
     <div id="separation"></div>
     <?php } else { ?> 
-        <div id="search_no_result"><p id="nothing_to_show"><i class="fas fa-book-open"></i> Votre recherche ne correspond à aucun résultat ...</p></div>
+        <div id="search_no_result"><p id="nothing_to_show"><i class="fas fa-book-open"></i> Oups, aucun ingrédient ne correspond à cette recette ...</p></div>
+        <div id="separation"></div>
     <?php } } else { ?>
+    
+    
+    
+    <!-- ERROR OR SUCCESS SESSIONS ADD BOOK -->
+    <?php if (isset($_SESSION['error_add_book'])) {
+        echo '<div id="block_message"><p class="errors">' . $_SESSION['error_add_book'] . '</p></div>';
+    }
+    unset($_SESSION['error_add_book']);
+
+    if (isset($_SESSION['success_add_book'])) {
+        echo '<div id="block_message"><p class="success">' . $_SESSION['success_add_book'] . '</p></div>';
+    }
+    unset($_SESSION['success_add_book']); ?>
    
 
     <!-- LISTING BOOKS / BOOKCASE --> 

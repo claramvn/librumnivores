@@ -14,11 +14,11 @@ class BookManager extends Manager
     }
 
     // GET BOOK BY ISBN
-    public function getBookByIsbn($isbn10, $isbn13, $idUser)
+    public function getBookByIsbn($idUser, $isbn10, $isbn13)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT isbn10_book, isbn13_book, id_user FROM books WHERE isbn10_book = ? OR isbn13_book = ? AND id_user = ?');
-        $req->execute(array($isbn10, $isbn13, $idUser));
+        $req = $db->prepare('SELECT isbn10_book, isbn13_book, id_user FROM books WHERE id_user = ? AND ( isbn10_book = ? OR isbn13_book = ? )');
+        $req->execute(array($idUser, $isbn10, $isbn13));
         $book = $req->fetch();
         $req->closeCursor();
         return $book;
@@ -45,14 +45,25 @@ class BookManager extends Manager
     }
 
     // LIST SEARCH BOOKS
-    public function listSearchBooks($idUser, $content)
+    public function listSearchBooks($idUser, $wishBook, $lendBook, $content)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare("SELECT id_book, isbn10_book, isbn13_book, title_book, author_book, cover_book, wish_book, lend_book, date_add_book, id_user FROM books WHERE (isbn10_book LIKE '%$content%' OR isbn13_book LIKE '%$content%' OR title_book LIKE '%$content%' OR author_book LIKE '%$content%') AND id_user = ? LIMIT 24");
-        $req->execute(array($idUser));
+        $req = $db->prepare("SELECT id_book, isbn10_book, isbn13_book, title_book, author_book, cover_book, wish_book, favorite_book, lend_book, date_add_book, id_user FROM books WHERE (isbn10_book LIKE '%$content%' OR isbn13_book LIKE '%$content%' OR title_book LIKE '%$content%' OR author_book LIKE '%$content%') AND id_user = ? AND wish_book = ? AND lend_book = ? LIMIT 24");
+        $req->execute(array($idUser, $wishBook, $lendBook));
         $searchBooks = $req->fetchAll();
         $req->closeCursor();
         return $searchBooks;
+    }
+
+    // LIST SEARCH BOOKS
+    public function listSearchFavBooks($idUser, $content)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare("SELECT id_book, isbn10_book, isbn13_book, title_book, author_book, cover_book, wish_book, favorite_book, lend_book, date_add_book, id_user FROM books WHERE (isbn10_book LIKE '%$content%' OR isbn13_book LIKE '%$content%' OR title_book LIKE '%$content%' OR author_book LIKE '%$content%') AND id_user = ? AND wish_book = 0 AND favorite_book = 1 LIMIT 24");
+        $req->execute(array($idUser));
+        $searchFavBooks = $req->fetchAll();
+        $req->closeCursor();
+        return $searchFavBooks;
     }
 
     // ADD WISH BOOK 

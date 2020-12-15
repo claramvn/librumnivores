@@ -40,7 +40,7 @@ class BookController extends AncestorController
                 $_SESSION['error_add_book'] = "Oups, un problème est survenu. Impossible d'ajouter le livre à votre bibliothèque.";
             }
 
-            $bookByIsbn = $this->bookManager->getBookByIsbn($isbn10, $isbn13, $idUser);
+            $bookByIsbn = $this->bookManager->getBookByIsbn($idUser, $isbn10, $isbn13);
             if(isset($bookByIsbn['isbn10_book']) && isset($bookByIsbn['isbn13_book']) && $bookByIsbn['isbn10_book'] === $isbn10 && $bookByIsbn['isbn13_book'] === $isbn13) {
                 $_SESSION['error_add_book'] = "Oups, ce livre appartient déjà à votre bibliothèque !";
             }
@@ -137,12 +137,12 @@ class BookController extends AncestorController
 
         if(isset($_POST['button_search_engine'])) {
             if(isset($_POST['content_search']) && !empty($_POST['content_search'])) {
+                $wishBook = 0;
+                $lendBook = 0;
                 $content = $this->cleanParam($_POST['content_search']);
 
-                $searchBooks = $this->bookManager->listSearchBooks($idUser, $content);
+                $searchBooks = $this->bookManager->listSearchBooks($idUser, $wishBook, $lendBook, $content);
                 $countedBooksSearch = count($searchBooks);
-            } else {
-                $_SESSION['error_add_book'] = "Veuillez renseigner un élément de recherche";
             } 
         } 
 
@@ -199,6 +199,17 @@ class BookController extends AncestorController
             $sortKey = "date_add_book";
         }
 
+        if(isset($_POST['button_search_engine'])) {
+            if(isset($_POST['content_search']) && !empty($_POST['content_search'])) {
+                $wishBook = 1;
+                $lendBook = 0;
+                $content = $this->cleanParam($_POST['content_search']);
+
+                $searchBooks = $this->bookManager->listSearchBooks($idUser, $wishBook, $lendBook, $content);
+                $countedBooksSearch = count($searchBooks);
+            } 
+        } 
+
         $listWishBooks = $this->bookManager->listWishBooks($idUser, $sortKey, $first, $perPage);
 
         if ($listWishBooks === false) {
@@ -248,6 +259,15 @@ class BookController extends AncestorController
             $sortKey = "date_add_book";
         }
 
+        if(isset($_POST['button_search_engine'])) {
+            if(isset($_POST['content_search']) && !empty($_POST['content_search'])) {
+                $content = $this->cleanParam($_POST['content_search']);
+
+                $searchFavBooks = $this->bookManager->listSearchFavBooks($idUser, $content);
+                $countedFavBooksSearch = count($searchFavBooks);
+            } 
+        } 
+
         $favoritesBooks = $this->bookManager->listFavoritesBooks($idUser, $sortKey, $first, $perPage);
 
         if ($favoritesBooks === false) {
@@ -296,6 +316,17 @@ class BookController extends AncestorController
         else {
             $sortKey = "date_add_book";
         }
+
+        if(isset($_POST['button_search_engine'])) {
+            if(isset($_POST['content_search']) && !empty($_POST['content_search'])) {
+                $wishBook = 0;
+                $lendBook = 1;
+                $content = $this->cleanParam($_POST['content_search']);
+
+                $searchBooks = $this->bookManager->listSearchBooks($idUser, $wishBook, $lendBook, $content);
+                $countedBooksSearch = count($searchBooks);
+            } 
+        } 
 
         $listLentBooks = $this->bookManager->listLentBooks($idUser, $sortKey, $first, $perPage);
 
@@ -519,7 +550,6 @@ class BookController extends AncestorController
             $_SESSION['error_flags'] = "Oups, désolé mais il est impossible de supprimmer le livre séléctionné.";
             header('Location: index.php?action=getBook&id=' . $idBook . '&f=' . $filter . '#flags');
         } else {
-            $_SESSION['success_delete_book'] = "Le livre a bien été supprimé de votre bibliothèque.";
             header('Location: index.php?action=listBooks&f=' . $filter);
         }
     }

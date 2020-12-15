@@ -23,7 +23,40 @@ $title = 'Mes favoris';
         <p id="btn_filter_title" class="<?php if(isset($_GET['f']) && $_GET['f'] === 'title') { echo 'filters activate'; } else {echo 'filters desactivate'; } ?>"><a href="index.php?action=listFavoritesBooks&amp;f=title">Titre</a></p>
         <p id="btn_filter_author" class="<?php if(isset($_GET['f']) && $_GET['f'] === 'author') { echo 'filters activate'; } else {echo 'filters desactivate'; } ?>"><a href="index.php?action=listFavoritesBooks&amp;f=author">Auteur</a></p>
     </div>
+
+    <!-- SEARCH ENGINE -->
+    <div id="block_search_engine"> 
+        <form action="index.php?action=listFavoritesBooks<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>" method="post"> 
+            <input id="input_search_engine" type="search" name="content_search" placeholder="Recherche par isbn, auteur, titre" />
+            <button id="button_search_engine" type="submit" name="button_search_engine" class="btn btn-primary"><i class="fas fa-search"></i></button> 
+        </form>
+    </div>
     <?php } ?>
+
+    <!-- LISTING SEARCH ENGINE BOOKS --> 
+    <?php if (isset($_POST['content_search'])) { if($countedFavBooksSearch > 0) { ?>
+
+    <!-- BACK TO BOOKCASE -->
+    <div id="back_recherche" class="links">
+        <a href="index.php?action=listFavoritesBooks<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>">Ma liste de favoris</a> <span class="red"><i class=" fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span> Et voici le(s) fruit(s) de votre recherche :
+    </div>
+
+    <!-- BLOCK DISPLAY SEARCH ENGINE BOOKS -->
+    <div id="block_shelves">
+        <?php foreach ($searchFavBooks as $dataBooksSearch) { ?> 
+                <div id="card_shelves" class="card"><a href="index.php?action=getBook&amp;id=<?php echo htmlspecialchars($dataBooksSearch['id_book']); if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>">
+                    <img src="<?php if(preg_match("(http)", htmlspecialchars_decode($dataBooksSearch['cover_book']))) { echo htmlspecialchars_decode($dataBooksSearch['cover_book']); } else if(preg_match("((noimg))", htmlspecialchars_decode($dataBooksSearch['cover_book']))) { echo "Public/img/" . htmlspecialchars_decode($dataBooksSearch['cover_book']); }else { echo "Public/img/cover/" . htmlspecialchars_decode($dataBooksSearch['cover_book']);} ?>" class="card-img" alt="Librumnivores - Image de couverture"/>   
+                    <div class="card-body">
+                        <p id="title_list" class="card-text"><?= htmlspecialchars($dataBooksSearch['title_book']) ?></p>
+                        <p id="author_list" class="card-text"><?= htmlspecialchars($dataBooksSearch['author_book']) ?></p>
+                    </div>
+                </a></div>
+        <?php }?>
+    </div>
+    <div id="separation"></div>
+    <?php } else { ?> 
+        <div id="search_no_result"><p id="nothing_to_show"><i class="fas fa-book-open"></i> Oups, aucun ingrédient ne correspond à cette recette ...</p></div>
+    <?php } } else { ?>
 
     <!-- LISTING FAVORITES BOOKS / BOOKCASE --> 
     <div id="block_shelves">
@@ -60,10 +93,8 @@ $title = 'Mes favoris';
             </ul>
         </nav>
     </div>
-    <?php } ?>
+    <?php } }?>
     
 </div>
-
-
 <?php $content = ob_get_clean(); ?>
 <?php require('App/View/template.php');
