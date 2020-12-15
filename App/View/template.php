@@ -63,7 +63,7 @@
                         <li class="nav-item"><a class="nav-link" href="index.php?action=listWishBooks<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);} else { echo '&amp;f=all'; } ?>">SOUHAITS</a></li>
                         <li class="nav-item"><a class="nav-link" href="index.php?action=listFavoritesBooks<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);} else { echo '&amp;f=all'; } ?>">FAVORIS</a></li>
                         <li class="nav-item"><a class="nav-link" href="index.php?action=listLentBooks<?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);} else { echo '&amp;f=all'; } ?>">PRÊTS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php?action=logout">DÉCONNECTION</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?action=logout">DÉCONNEXION</a></li>
                         <li class="nav-item"><a class="nav-link" id="btn_toggle_theme" tabindex="-1" aria-disabled="true"><i class="fas fa-adjust"></i></a></li>
                     <?php } else {?>
                         <li class="nav-item"><a class="nav-link" href="index.php?action=home#slogan">FONCTIONNALITÉS <span class="sr-only">(current)</span></a></li>

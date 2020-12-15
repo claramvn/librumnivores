@@ -10,14 +10,14 @@ $title = 'Accueil';
 
 <!-- SLOGAN --> 
 <div id="slogan" class="container">
-    <p>Votre Bibliothèque Personnelle En Ligne </p>  
+    <p>Votre bibliothèque personnelle en ligne </p>  
 </div>
 
 <!-- FEATURES --> 
 <div class="features">
     <h1>01<span class="red"><i class="fas fa-square"></i></span></h1>
     <h2>BIBLIOTHÈQUE</h2><br/><br/>
-    <h3>Répertoriez vos livres sur Librumnivores et créez votre bibliothèque en ligne. Ajoutez ces derniers à l'aide de leurs numéros ISBN et profitez de notre plateforme accessible sur mobile, tablette et ordinateurs. Autrement dit, régalez-vous !</h3> 
+    <h3>Répertoriez vos livres sur Librumnivores et créez votre bibliothèque en ligne. Ajoutez ces derniers à l'aide de leurs numéros ISBN et profitez de notre plateforme accessible sur mobile, tablette et ordinateur. Autrement dit, régalez-vous !</h3> 
 </div>
 <div class="features_right">
     <h1>02<span class="red"><i class="fas fa-square"></i></span></h1>

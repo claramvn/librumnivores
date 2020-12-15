@@ -14,6 +14,19 @@ a,
 a:hover {
     text-decoration: none;
     color: black;
+    border-color: initial;
+}
+
+a:focus,
+.btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+a:active,
+.btn:active {
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 .content {
@@ -62,7 +75,7 @@ a:hover {
 }
 
 #btn_delete_account {
-    background: #bb2a2a !important;
+    background: #DA5B5A !important;
     border-color: initial !important;
 }
 
@@ -239,7 +252,7 @@ header {
 
 #header_bookcase {
     display: flex;
-    margin-bottom: 8%;
+    margin-bottom: 4%;
     align-items: center;
     justify-content: space-between;
 }
@@ -345,8 +358,8 @@ header {
 }
 
 .card img {
-    max-width: 138px;
-    max-height: 208px;
+    max-width: 140px;
+    max-height: 200px;
 }
 
 #nothing_to_show {
@@ -520,7 +533,7 @@ header {
 
 #input_search_engine {
     width: 95%;
-    height: 35px;
+    height: 40px;
     border: 1px solid;
     border-radius: 5px;
     border-color: rgba(0, 0, 0, 0.1);
@@ -598,13 +611,20 @@ header {
     margin-bottom: 8%;
 }
 
+#block_message {
+    width: 35%;
+    margin-left: 2.5%;
+    text-align: center;
+    margin-bottom: -2%;
+}
+
 .errors,
 .success {
     padding: 2%;
-    color: white !important;
     margin-top: 2%;
-    border-radius: 5px;
     font-weight: bold;
+    border-radius: 5px;
+    color: white !important;
 }
 
 .errors {
@@ -671,8 +691,15 @@ header {
 
 #user_avatar,
 #cover_book {
-    width: 150px;
-    overflow: hidden;
+    display: none;
+}
+
+.label_file {
+    cursor: pointer;
+}
+
+.wrench {
+    font-size: 12px;
 }
 
 #block_delete_account {
@@ -900,7 +927,12 @@ footer {
 
     #input_search_engine {
         width: 85% !important;
-        height: 41px !important;
+        height: 39px !important;
+    }
+
+    #block_message {
+        width: 100% !important;
+        margin-left: 0 !important;
     }
 
     #block_shelves {
@@ -965,10 +997,8 @@ footer {
         margin-top: 10% !important;
     }
 
-    /* PROFIL */
-    #user_avatar,
-    #cover_book {
-        width: 132px !important;
+    .label_file {
+        margin-top: 15%;
     }
 
     /* LEGALS MENTIONS */
@@ -979,14 +1009,15 @@ footer {
 
     /* CONTACT */
     #contact {
-        width: 90% !important;
+        width: 100% !important;
+        margin-top: 4% !important;
     }
 
     /* ARROW GO TOP */
     #arrow {
-        margin-top: 2% !important;
+        margin-top: 4% !important;
         margin-bottom: 4% !important;
-        margin-right: 10% !important;
+        margin-right: 8% !important;
     }
 
     #arrow a {
@@ -1004,6 +1035,11 @@ footer {
 
 /* TABLETS */
 @media all and (min-width: 768px) and (max-width: 1023px) {
+
+    /* PARAM */
+    .content {
+        min-height: 750px;
+    }
 
     /* HEADER */
     header {
@@ -1023,8 +1059,10 @@ footer {
         padding: 3%;
         margin-top: 5%;
         border-radius: 3%;
+        margin-left: auto;
+        margin-right: auto;
         background: white;
-        width: 100% !important;
+        width: 80% !important;
     }
 
     .navbar-nav a {
@@ -1095,9 +1133,18 @@ footer {
         margin-top: -28% !important;
     }
 
+    #block_message {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+
     /* FORMS */
     .display_form h1 {
         font-size: 30px !important;
+    }
+
+    .label_file {
+        margin-top: 5%;
     }
 
     /* FOOTER */

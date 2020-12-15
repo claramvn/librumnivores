@@ -32,6 +32,7 @@ $title = 'Ma bibliothèque';
                     </div>
                 </div>
                 <div class="form-group">
+                <label for="cover_book" class="label_file">NOUVELLE IMAGE <span class="wrench"><i class="fas fa-wrench"></i></span></label><br />
                     <input type="file" class="form-control-file" id="cover_book" name="cover_book" accept="image/png, image/jpeg, image/jpg"/>
                 </div>
                 <div class="form-group">

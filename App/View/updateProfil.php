@@ -22,7 +22,7 @@ $title = 'Mon profil';
                 <img src="Public/img/avatar/<?= $avatar ?>" alt="Librumnivores - avatar utilisateur"/>
             </div>
             <div class="form-group">
-                <label>IMAGE :</label><br />
+                <label for="user_avatar" class="label_file">NOUVEL AVATAR <span class="wrench"><i class="fas fa-wrench"></i></span></label><br />
                 <input type="file" class="form-control-file" id="user_avatar" name="user_avatar" accept="image/png, image/jpeg, image/jpg" />
             </div>
             <div class="form-group">

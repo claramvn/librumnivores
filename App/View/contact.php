@@ -24,7 +24,7 @@ $title = 'Contact';
                 <input type="email" class="form-control" id="user_email_contact" name="user_email" value="<?= $email ?>" required>
             </div>
             <div class="form-group">
-            <label>MESSSAGE<span class="asterisk">*</span></label>
+            <label>MESSAGE<span class="asterisk">*</span></label>
             <textarea class="form-control" id="user_message" name="user_message" rows="8" minlength="15" required><?= $message ?></textarea>
             </div>
             <div id="mentions_required"><p><span class="asterisk">*</span> OBLIGATOIRE</div>
