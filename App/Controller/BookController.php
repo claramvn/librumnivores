@@ -460,7 +460,7 @@ class BookController extends AncestorController
                 $titleBook = $this->cleanParam($book['title_book']);
                 $authorBook = $this->cleanParam($book['author_book']);
                 $descriptionBook = $this->cleanParam($book['description_book']);
-                $_SESSION['errors_updates']['empty_fields_book'] = "Tous les champs sont nécessaires";
+                $_SESSION['errors_updates']['empty_fields_book'] = "Tous les champs sont nécessaires.";
             } else {
                 $titleBook = $this->cleanParam($_POST['title_book']);
                 $authorBook = $this->cleanParam($_POST['author_book']);
@@ -469,21 +469,21 @@ class BookController extends AncestorController
  
             if ($_POST['title_book'] !== $book['title_book']) {
                 $titleBook = $this->cleanParam($_POST['title_book']);
-                $_SESSION['success_updates']['title_book'] = "Le titre a bien été modifié";
+                $_SESSION['success_updates']['title_book'] = "Le titre a bien été modifié.";
             } else {
                 $titleBook = $this->cleanParam($book['title_book']);
             }
 
             if ($_POST['author_book'] !== $book['author_book']) {
                 $authorBook = $this->cleanParam($_POST['author_book']);
-                $_SESSION['success_updates']['author_book'] = "L'auteur a bien été modifié";
+                $_SESSION['success_updates']['author_book'] = "L'auteur a bien été modifié.";
             } else {
                 $authorBook = $this->cleanParam($book['author_book']);
             }
         
             if ($_POST['description_book'] !== $book['description_book']) {
                 $descriptionBook = $this->cleanParam($_POST['description_book']);
-                $_SESSION['success_updates']['description_book'] = "La description a bien été modifiée";
+                $_SESSION['success_updates']['description_book'] = "La description a bien été modifiée.";
             } else {
                $descriptionBook = $this->cleanParam($book['description_book']);
             }

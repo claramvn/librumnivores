@@ -154,18 +154,17 @@ class UserController extends AncestorController
                 $setTokenUser = $this->userManager->setTokenUser($token, $email);
 
                 if($setTokenUser) {
-                    $subject = 'Envoi depuis la page : Réinitialiser le mot de passe - Librumnivores.';
-                    $header='MIME-Version: 1.0' . "\r\n";
-                    $header.='From:"Librumnivores"<claramvnbrg@gmail.com>'."\n";
-                    $header.='Content-Type:text/html; charset="uft-8"'."\n";
-                    $header.='Content-Transfer-Encoding: 8bit';
+                    $subject = 'Envoi depuis la page : nouveau mot de passe - Librumnivores.';
+                    $headers = 'MIME-Version: 1.0' . "\r\n";
+                    $headers .= 'From:"Librumnivores"<claramvnbrg@gmail.com>'."\n";
+                    $headers .= 'Content-Type:text/html; charset="uft-8"'."\n";
+                    $headers .= 'Content-Transfer-Encoding: 8bit';
+                    $headers .= 'Date:' . date("D, j M Y H:i:s -0600") .  "\n";
 
                     $text = '<h1>LIBRUMNIVORES</h1>
-                    <h2>Le lien pour réinitialiser votre mot de passe est prêt !</h2>
-                    <p>Cliquez simplement sur le lien pour le réinitialiser :
-                    <a href="https://librumnivores.claramvn.fr/index.php?action=resetPass&token='. $token . '">Réinitialisez votre mot de passe</a></p>';
+                    <p><a href="https://librumnivores.claramvn.fr/index.php?action=resetPass&token='. $token . '">Voici le lien pour changer votre mot de passe.</a></p>';
         
-                    mail($email, mb_encode_mimeheader($subject), $text, $header);
+                    mail($email, mb_encode_mimeheader($subject), $text, $headers);
 
                     $success['valid_email_reset_pass_request'] = 'Nous vous avons envoyé un e-mail pour réinitialiser votre mot de passe.<br/><br/>Pour créer votre nouveau mot de passe, il vous suffit de cliquer sur le lien contenu dans l\'e-mail et d\'en saisir un nouveau.<br/><br/>Vous n\'avez pas reçu cet e-mail ? Vérifiez votre courrier indésirable ou toute autre adresse e-mail liée à votre compte LIBRUMNIVORES.';
                 } else {
@@ -277,20 +276,24 @@ class UserController extends AncestorController
             }
 
             if(!$errors) {
-                $header='MIME-Version: 1.0' . "\r\n";
-                $header.='From:"Librumnivores"<claramvnbrg@gmail.com>'."\n";
-                $header.='Content-Type:text/html; charset="uft-8"'."\n";
-                $header.='Content-Transfer-Encoding: 8bit';
+                $to = 'claramvn@hotmail.fr';
+                $subject = 'Envoi depuis la page : Contact - Librumnivores';
+                $headers = 'MIME-Version: 1.0' . "\r\n";
+                $headers .= 'From:"Librumnivores"<claramvnbrg@gmail.com>'."\n";
+                $headers .= 'Content-Type:text/html; charset="uft-8"'."\n";
+                $headers .= 'Content-Transfer-Encoding: 8bit';
+                $headers .= 'Date:' . date("D, j M Y H:i:s -0600") .  "\n";
 
-                $text = '<h1>Message envoyé depuis la page Contact de Librumnivores</h1>
+                $text = '<h1>Librumnivores</h1>
                 <p>Nom : ' . $name . '</p><br><br>
                 <p>Email : ' . $email . '</p><br><br>
                 <p>Message : ' . nl2br($message) . '</p>';
 
-                mail('claramvnbrg@gmail.com', "Envoi depuis la page : Contact - Librumnivores", $text, $header);
+                $test = mail($to, mb_encode_mimeheader($subject), $text, $headers);
 
-                $success= "Votre message a bien été transmis. Merci";
-
+                if ($test) {
+                    $success= "Votre message a bien été transmis. Merci";
+                }
             }
         }
         require('App/View/contact.php');

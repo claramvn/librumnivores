@@ -55,6 +55,7 @@ a:active,
 #button_open_search,
 #button_search,
 #button_add,
+#button_add_wish,
 #button_update_profil,
 #button_updates_book,
 #button_search_engine,
@@ -67,9 +68,9 @@ a:active,
 
 #button_close,
 #button_close_block_updates {
-    color: rgba(0, 0, 0, 0.6);
     font-size: 25px;
     background: #f5f5f7;
+    color: rgba(0, 0, 0, 0.6);
     font-weight: normal !important;
     border: 1px solid rgba(0, 0, 0, 0.6) !important;
 }
@@ -126,8 +127,8 @@ header {
 }
 
 #avatar_header img {
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
 }
 
@@ -252,24 +253,29 @@ header {
 
 #header_bookcase {
     display: flex;
-    margin-bottom: 4%;
+    margin-bottom: 8%;
     align-items: center;
     justify-content: space-between;
 }
 
 #intro_header_bookcase {
     width: 40%;
-    border-bottom: 1px solid;
+    cursor: context-menu;
+    padding-left: 0.5%;
+    border-left: 3px solid #DA5B5A;
 }
 
 #infos_count {
     display: flex;
+    margin-left: 1%;
+    font-weight: 900;
+    line-height: 1.2;
     justify-content: space-between;
 }
 
 #infos_count span {
+    opacity: 0.8;
     font-size: 12px;
-    opacity: 0.7;
 }
 
 /* BLOCK SEARCH */
@@ -297,6 +303,11 @@ header {
     display: none;
 }
 
+.choose_btn {
+    margin-top: 8%;
+    text-align: center;
+}
+
 #search_label {
     font-size: 22px;
     color: black;
@@ -317,20 +328,6 @@ header {
     margin-top: 5%;
     margin-left: 10%;
     color: black !important;
-}
-
-#button_add_wish {
-    background: none !important;
-    border: none !important;
-    text-decoration: none !important;
-    box-shadow: none !important;
-    margin-top: 2%;
-}
-
-#more_sign {
-    cursor: pointer;
-    color: #DA5B5A;
-    font-weight: bold;
 }
 
 /* DISPLAY LIST BOOKS */
@@ -358,8 +355,8 @@ header {
 }
 
 .card img {
-    max-width: 140px;
-    max-height: 200px;
+    width: 140px;
+    height: 200px;
 }
 
 #nothing_to_show {
@@ -501,6 +498,7 @@ header {
 }
 
 #card_book .success,
+#card_book .success_update,
 #card_book .errors {
     color: white !important;
 }
@@ -619,7 +617,8 @@ header {
 }
 
 .errors,
-.success {
+.success,
+.success_update {
     padding: 2%;
     margin-top: 2%;
     font-weight: bold;
@@ -633,6 +632,10 @@ header {
 
 .success {
     background: #2EA44F;
+}
+
+.success_update {
+    background: black;
 }
 
 .cross {
@@ -711,12 +714,15 @@ header {
 /************************* ERROR PAGE *************************/
 
 #error {
-    width: 561px;
+    width: 1000px;
     margin: auto;
 }
 
+#error img {
+    width: 1000px;
+}
+
 #para_error {
-    width: 561px;
     margin: auto;
     text-align: center;
 }
@@ -895,9 +901,19 @@ footer {
         font-size: 1.6rem;
     }
 
+    #infos_count {
+        font-weight: 400 !important;
+        line-height: 1 !important;
+    }
+
     #intro_header_bookcase {
         width: 100% !important;
         margin-bottom: 5% !important;
+    }
+
+    #button_add,
+    #button_add_wish {
+        font-size: 9px !important;
     }
 
     #search_label {
@@ -982,11 +998,6 @@ footer {
         margin-left: 1% !important;
     }
 
-    #button_add_wish,
-    #more_sign {
-        font-size: 12px !important;
-    }
-
     /* FORMS */
     .display_form {
         width: 90% !important;
@@ -1005,6 +1016,16 @@ footer {
     #mentions,
     #privacyPolicy {
         width: 98% !important;
+    }
+
+    /* PAGE ERROR */
+    #error {
+        width: 300px;
+    }
+
+    #error img {
+        width: 300px;
+        height: auto;
     }
 
     /* CONTACT */
@@ -1145,6 +1166,27 @@ footer {
 
     .label_file {
         margin-top: 5%;
+    }
+
+    /* PAGE ERROR */
+    #error {
+        width: 700px;
+    }
+
+    #error img {
+        width: 700px;
+        height: auto;
+    }
+
+    /* ARROW GO TOP */
+    #arrow {
+        margin-top: 4% !important;
+        margin-bottom: 4% !important;
+        margin-right: 8% !important;
+    }
+
+    #arrow a {
+        padding: 3% !important;
     }
 
     /* FOOTER */

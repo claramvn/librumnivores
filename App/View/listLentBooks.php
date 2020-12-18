@@ -80,15 +80,15 @@ $title = 'Mes prêts';
         <nav>
             <ul class="pagination">
                 <li class="page-item <?php if($currentPage == 1){ echo "disabled"; }else { echo ""; } ?>">
-                    <a href="index.php?action=listLentBooks&page=<?= $currentPage - 1 ?><?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>#block_pagination" class="page-link"><i class="fas fa-chevron-left"></i></a>
+                    <a href="index.php?action=listLentBooks&page=<?= $currentPage - 1 ?><?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>#filters" class="page-link"><i class="fas fa-chevron-left"></i></a>
                 </li>
                 <?php for($i = 1; $i <= $pages; $i++){ ?>
                 <li class="page-item <?php if($currentPage == $i){ echo "active";}else { echo "";} ?>">
-                    <a href="index.php?action=listLentBooks&page=<?= $i ?><?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>#block_pagination" class="page-link"><?= $i ?></a>
+                    <a href="index.php?action=listLentBooks&page=<?= $i ?><?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>#filters" class="page-link"><?= $i ?></a>
                 </li>
                 <?php } ?>
                 <li class="page-item <?php if($currentPage == $pages){ echo "disabled"; } else { echo ""; } ?>">
-                <a href="index.php?action=listLentBooks&page=<?= $currentPage + 1 ?><?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>#block_pagination" class="page-link"><i class="fas fa-chevron-right"></i></a>
+                <a href="index.php?action=listLentBooks&page=<?= $currentPage + 1 ?><?php if(isset($_GET['f'])){ echo '&amp;f=' . $this->cleanParam($_GET['f']);}?>#filters" class="page-link"><i class="fas fa-chevron-right"></i></a>
                 </li>
             </ul>
         </nav>

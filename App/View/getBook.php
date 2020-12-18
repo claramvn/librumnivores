@@ -115,7 +115,7 @@ $title = 'Ma bibliothèque';
         unset($_SESSION['errors_updates']); ?>
 
         <?php if (isset($_SESSION['success_updates'])) { ?>
-             <p class="success"><?= implode('<br/>', $_SESSION['success_updates']) ?></p><br />
+             <p class="success_update"><?= implode('<br/>', $_SESSION['success_updates']) ?></p><br />
         <?php }
         unset($_SESSION['success_updates']); ?>        
 
