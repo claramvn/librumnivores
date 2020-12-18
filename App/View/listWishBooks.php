@@ -7,13 +7,19 @@ $title = 'Mes souhaits';
 
 <div class="content">
 
-    <!-- HEADER BOOKCASE -->
-    <div id="header_bookcase">
+     <!-- HEADER BOOKCASE -->
+     <div id="header_bookcase">
         <div id="intro_header_bookcase">
             <h1>Ma liste de souhaits <span class="red"><i class="fas fa-square"></i></span></h1>
             <div id="infos_count"><p>Mijotez ici vos futurs régals</p><span><?php if ($wishBookCount > 0) { echo "(" . $wishBookCount . ")" ; } ?></span></div>
         </div>
+        <div> 
+            <button id="button_open_search" type="submit" class="btn btn-primary">AJOUTER UN LIVRE</button>
+        </div>
     </div>
+
+    <!-- BLOCK SEARCH ISBN TO ADD BOOK -->
+    <?php include("searchIsbn.php"); ?>
 
     <!-- FILTERS WISH BOOKS -->
     <?php if ($wishBookCount > 0) {?>
@@ -108,6 +114,12 @@ $title = 'Mes souhaits';
 
     
 </div>
+
+<!-- SCRIPT JS -->
+<script src="Public/js/ajax.js"></script>
+<script src="Public/js/searchBook.js"></script>
+<script src="Public/js/form.js"></script>
+<script>objetForm.initSearchBook();</script>
 
 
 <?php $content = ob_get_clean(); ?>
